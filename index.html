@@ -60,7 +60,7 @@
 
   function resultIDtoHTML( id ) {
     var obj = agsModules.find(item => item.id === id)
-    return obj.name + "<br>" + 
+    return "<b>" + obj.name + "</b> <br>" + 
            "description: " + obj.text + "<br>" + 
            "author: " + obj.author + "<br>" + 
            "version: " + obj.version + "<br>" + 
