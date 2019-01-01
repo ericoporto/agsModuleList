@@ -73,7 +73,7 @@ var agsModules = [{
   "name": "Easy3D",
   "text": "Easy way to create 3D games using the AGS editor. And add 3D parallax areas to normal 2D rooms.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=26130.0",
-  "version" : "1.4.0,
+  "version" : "1.4.0",
   "author" : "Wretched",
 }]
 
