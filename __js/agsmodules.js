@@ -133,6 +133,34 @@ var agsModules = [{
   "version" : "1.0.0",
   "author" : "Crimson Wizard",
   "depends" : "dragdrop"
+}, {
+  "id" : "textfield",
+  "name": "TextField",
+  "text": "TextField",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55915.0",
+  "version" : "1.2.0",
+  "author" : "Snarky"
+}, {
+  "id" : "multiresponse",
+  "name": "MultiResponse",
+  "text": "MultiResponse",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27947.0",
+  "version" : "1.2.0",
+  "author" : "SSH"
+}, {
+  "id" : "credits",
+  "name": "Credits",
+  "text": "Credits",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28659.0",
+  "version" : "1.19.0",
+  "author" : "SSH"
+}, {
+  "id" : "typedtext",
+  "name": "TypedText",
+  "text": "TypedText",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
+  "version" : "0.7.0",
+  "author" : "Crimson Wizard"
 }]
 
 
