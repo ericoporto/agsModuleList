@@ -7,8 +7,7 @@ body{
 
 .search {
   width: 100%;
-  position: relative
-}
+  position: relative;}
 
 .searchTerm {
   float: left;
@@ -29,7 +28,7 @@ body{
 
 .searchButton {
   position: absolute;  
-  right: -50px;
+  right: -34px;
   width: 40px;
   height: 36px;
   border: 1px solid #2B72C5;
