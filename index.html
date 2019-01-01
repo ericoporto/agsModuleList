@@ -29,11 +29,20 @@
     }
   });
 
+  function resultIDtoHTML( id ) {
+    var obj = agsModules.find(item => item.id === id)
+    return obj.name + "<br>" + 
+           "description: " + obj.text + "<br>" + 
+           "author: " + obj.author + "<br>" + 
+           "version: " + obj.version + "<br>" + 
+           "forum page: " + obj.forum + "<br>";
+  }
+
   function getAllResults() {
     var i;
     var text_results = ""
     for (i = 0; i < agsModules.length; i++) { 
-      text_results += agsModules[i].name + "<br>";
+      text_results += resultIDtoHTML(agsModules[i].id) + "<br>";
     }
     return text_results;
   }
@@ -44,7 +53,7 @@
     var i;
     var text_results = ""
     for (i = 0; i < search_results.length; i++) { 
-      text_results += search_results[i].ref + "<br>";
+      text_results += resultIDtoHTML(search_results[i].ref) + "<br>";
     }
 
     if(text_results.length < 2){
