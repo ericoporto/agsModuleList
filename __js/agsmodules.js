@@ -122,8 +122,7 @@ var agsModules = [{
   "original_download" : "https://bitbucket.org/ivan-mogilko/ags-script-modules/downloads/DragDrop_1.0.0.scm",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
   "version" : "1.0.0",
-  "author" : "Crimson Wizard",
-  "depends" : "drag"
+  "author" : "Crimson Wizard"
 }, {
   "id" : "dragdropcommon",
   "name": "DragDropCommon",

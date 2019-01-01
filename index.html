@@ -14,6 +14,9 @@
 </head>
 
 <body>
+
+  <h1>Beta List of AGS Modules</h1>
+
   <input type="search" id="mySearch" placeholder="Type what you need..">
   <button id="mySearchBtn" onclick="searchModules()">search</button>
 
@@ -29,13 +32,31 @@
     }
   });
 
+  function getDependIfDefined( depend){
+    if (typeof depend === 'undefined') {
+      return "";  
+    } else {
+      return "depends: " + depend + "<br>";
+    }
+  }
+
+  function getDemoIfDefined( demo){
+    if (typeof demo === 'undefined') {
+      return "";  
+    } else {
+      return "<a href=\""+demo+"\">demo</a> " + "<br>";
+    }
+  }
+
   function resultIDtoHTML( id ) {
     var obj = agsModules.find(item => item.id === id)
     return obj.name + "<br>" + 
            "description: " + obj.text + "<br>" + 
            "author: " + obj.author + "<br>" + 
            "version: " + obj.version + "<br>" + 
-           "<a href=\""+obj.forum+"\">forum page</a> " + "<br>";
+           "<a href=\""+obj.forum+"\">forum page</a> "+ "<br>" + 
+           getDependIfDefined(obj.depends) +
+           getDemoIfDefined(obj.demo) + "<br>";
   }
 
   function getAllResults() {
