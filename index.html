@@ -29,6 +29,15 @@
     }
   });
 
+  function getAllResults() {
+    var i;
+    var text_results = ""
+    for (i = 0; i < agsModules.length; i++) { 
+      text_results += agsModules[i].name + "<br>";
+    }
+    return text_results;
+  }
+
   function searchModules() {
     var search_input = document.getElementById("mySearch").value;
     var search_results = idx.search(search_input);
@@ -39,11 +48,13 @@
     }
 
     if(text_results.length < 2){
-      text_results = "no results were found"
+      document.getElementById("searchResults").innerHTML = getAllResults();
     }
 
     document.getElementById("searchResults").innerHTML = text_results;
   }
+
+  document.getElementById("searchResults").innerHTML = getAllResults();
   </script>
 
 </body>

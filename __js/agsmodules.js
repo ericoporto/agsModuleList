@@ -105,6 +105,35 @@ var agsModules = [{
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=26306.0",
   "version" : "1.6.0",
   "author" : "SSH",
+}, {
+  "id" : "drawantialiased",
+  "name": "DrawAntialiased",
+  "text": "DrawAntialiased allows you to draw antialiased lines and circles on a drawing surface.",
+  "demo" : "http://www.kweepa.org/step/ags/tech/RopeTest.zip",
+  "original_download" : "http://www.kweepa.org/step/ags/tech/DrawAntialiased.zip",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=39846.0",
+  "version" : "1.1.0",
+  "author" : "Kweepa",
+}, {
+  "id" : "dragdrop",
+  "name": "DragDrop",
+  "text": "DragDrop implements abstract drag-and-drop functionality.",
+  "demo" : "https://bitbucket.org/ivan-mogilko/ags-script-demos/downloads/DragDropDemo_1.0.0.zip",
+  "original_download" : "https://bitbucket.org/ivan-mogilko/ags-script-modules/downloads/DragDrop_1.0.0.scm",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
+  "version" : "1.0.0",
+  "author" : "Crimson Wizard",
+  "depends" : "drag"
+}, {
+  "id" : "dragdropcommon",
+  "name": "DragDropCommon",
+  "text": "DragDrop implements drag-and-drop for built-in AGS objects such as characters, room-objects.",
+  "demo" : "https://bitbucket.org/ivan-mogilko/ags-script-demos/downloads/DragDropDemo_1.0.0.zip",
+  "original_download" : "https://bitbucket.org/ivan-mogilko/ags-script-modules/downloads/DragDropCommon_1.0.0.scm",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
+  "version" : "1.0.0",
+  "author" : "Crimson Wizard",
+  "depends" : "dragdrop"
 }]
 
 
