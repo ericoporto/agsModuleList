@@ -11,16 +11,26 @@
   <script src="__js/lunr.js"></script>
   <script src="__js/agsmodules.js"></script>
   <script src="__js/main.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="__css/base_style.css">
 </head>
 
 <body>
 
   <h1>Beta List of AGS Modules</h1>
 
-  <input type="search" id="mySearch" placeholder="Type what you need..">
-  <button id="mySearchBtn" onclick="searchModules()">search</button>
+  <div class="wrap">
+    <div class="search">
+      <input type="search" class="searchTerm"  id="mySearch" placeholder="Type what you need..">
+      <button id="mySearchBtn" class="searchButton"  onclick="searchModules()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
 
-  <p id="searchResults"></p>
+  <div class="searchResults">
+    <p id="searchResults"></p>
+  </div>
 
   <script>
   var input = document.getElementById("mySearch");
