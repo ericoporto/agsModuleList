@@ -189,6 +189,34 @@ var agsModules = [{
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=46631.0",
   "version" : "1.0.0",
   "author" : "Wyz"
+}, {
+  "id" : "displaybasedgui",
+  "name": "Display-based GUI",
+  "text": "Creates a GUI using display.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55331.0",
+  "version" : "1.0.0",
+  "author" : "Monsieur OUXX"
+}, {
+  "id" : "adventurejoy",
+  "name": "adventureJoy",
+  "text": "Joystick for BASS Template.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55235.0",
+  "version" : "0.1.0",
+  "author" : "eri0o"
+}, {
+  "id" : "timero",
+  "name": "Timer",
+  "text": "Timer module.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28979.0",
+  "version" : "3.1.0",
+  "author" : "monkey0506"
+}, {
+  "id" : "normrnd",
+  "name": "NormRnd",
+  "text": "Standard normal random number.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55133.0",
+  "version" : "0.1.0",
+  "author" : "eri0o"
 }]
 
 
