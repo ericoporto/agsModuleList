@@ -103,6 +103,9 @@
   } else if(urlParams.has('query')){
     document.getElementById("mySearch").value = urlParams.get('query');
     document.getElementById("mySearchBtn").click();
+  } else if(urlParams.has('q')){
+    document.getElementById("mySearch").value = urlParams.get('q');
+    document.getElementById("mySearchBtn").click();
   }
   </script>
 
