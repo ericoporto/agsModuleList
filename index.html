@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The AGS Module Repository</title>
+  <meta name="description" content="AGS Module Repository">
+  <meta name="author" content="ericoporto">
+
+  <script src="__js/lunr.js"></script>
+  <script src="__js/main.js"></script>
+</head>
+
+<body>
+  <input type="search" id="mySearch" placeholder="Type what you need..">
+  <button id="mySearchBtn" onclick="searchModules()">search</button>
+
+  <p id="searchResults"></p>
+
+  <script>
+  var input = document.getElementById("mySearch");
+  input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      document.getElementById("mySearchBtn").click();
+    }
+  });
+
+  function searchModules() {
+    var search_input = document.getElementById("mySearch").value;
+    var search_results = idx.search(search_input);
+    var i;
+    var text_results = ""
+    for (i = 0; i < search_results.length; i++) { 
+      text_results += search_results[i].ref + "<br>";
+    }
+
+    document.getElementById("searchResults").innerHTML = text_results;
+  }
+  </script>
+
+</body>
+</html>
+
+
