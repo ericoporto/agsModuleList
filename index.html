@@ -95,6 +95,15 @@
   }
 
   document.getElementById("searchResults").innerHTML = getAllResults();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.has('search')){
+    document.getElementById("mySearch").value = urlParams.get('search');
+    document.getElementById("mySearchBtn").click();
+  } else if(urlParams.has('query')){
+    document.getElementById("mySearch").value = urlParams.get('query');
+    document.getElementById("mySearchBtn").click();
+  }
   </script>
 
 </body>
