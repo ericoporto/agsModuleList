@@ -37,6 +37,10 @@
       text_results += search_results[i].ref + "<br>";
     }
 
+    if(text_results.length < 2){
+      text_results = "no results were found"
+    }
+
     document.getElementById("searchResults").innerHTML = text_results;
   }
   </script>
