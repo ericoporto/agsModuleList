@@ -161,6 +161,34 @@ var agsModules = [{
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
   "version" : "0.7.0",
   "author" : "Crimson Wizard"
+}, {
+  "id" : "caterpillar",
+  "name": "Caterpillar",
+  "text": "Caterpillar to follow the player from behind.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=44845.0",
+  "version" : "0.1.0",
+  "author" : "Daniel Eakins"
+}, {
+  "id" : "timer",
+  "name": "Timer",
+  "text": "Timer module.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55545.0",
+  "version" : "0.9.0",
+  "author" : "Crimson Wizard"
+}, {
+  "id" : "magnifier",
+  "name": "Magnifier",
+  "text": "Magnifier module.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37548.0",
+  "version" : "1.0.0",
+  "author" : "monkey0506"
+}, {
+  "id" : "inifile2",
+  "name": "IniFile2",
+  "text": "IniFile 2 module for reading .ini files, read and write configuration files.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=46631.0",
+  "version" : "1.0.0",
+  "author" : "Wyz"
 }]
 
 
