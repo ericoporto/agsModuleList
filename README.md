@@ -1,5 +1,5 @@
 # agsModuleList
-A list of AGS modules with search - still a sketch
+[A list of AGS modules with search](https://ericoporto.github.io/agsModuleList/) - still a sketch
 
 You can query by typing in the box or url.
 
