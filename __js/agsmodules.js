@@ -248,6 +248,12 @@ var agsModules = [{
   "text" : "adds shadow",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28905.0",
   "author" : "SSH"
+}, {
+  "id" : "chatdisplay",
+  "name" : "ChatDisplay",
+  "text" : "WhatsApp like dialog chat display.",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54557.0",
+  "author" : "Khris"
 }]
 
 
