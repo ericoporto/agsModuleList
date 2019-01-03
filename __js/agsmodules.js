@@ -254,6 +254,13 @@ var agsModules = [{
   "text" : "WhatsApp like dialog chat display.",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54557.0",
   "author" : "Khris"
+}, {
+  "id" : "lake",
+  "name" : "Lake",
+  "text" : "Lake water",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27356.0",
+  "version" : "1.3.0",
+  "author" : "Kweepa"
 }]
 
 
