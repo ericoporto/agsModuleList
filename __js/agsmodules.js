@@ -217,6 +217,13 @@ var agsModules = [{
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55133.0",
   "version" : "0.1.0",
   "author" : "eri0o"
+}, {
+  "id" : "queuedspeech",
+  "name" : "QueuedSpeech",
+  "text" : "Provides queue for enabling queuing speech",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
+  "version" : "4.1.0",
+  "author" : "monkey0506"
 }]
 
 
