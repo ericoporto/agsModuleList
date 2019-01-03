@@ -224,6 +224,12 @@ var agsModules = [{
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
   "version" : "4.1.0",
   "author" : "monkey0506"
+}, {
+  "id" : "stack",
+  "name" : "Stack",
+  "text" : "Vectorized Stacks",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37232.0",
+  "author" : "monkey0506"
 }]
 
 
