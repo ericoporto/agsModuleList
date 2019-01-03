@@ -230,6 +230,18 @@ var agsModules = [{
   "text" : "Vectorized Stacks",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37232.0",
   "author" : "monkey0506"
+}, {
+  "id" : "shash",
+  "name" : "sHash",
+  "text" : "provides hash objects",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
+  "author" : "QCPolmer"
+}, {
+  "id" : "slist",
+  "name" : "sList",
+  "text" : "provides list objects",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
+  "author" : "QCPolmer"
 }]
 
 
