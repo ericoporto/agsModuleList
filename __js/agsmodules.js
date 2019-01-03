@@ -261,6 +261,12 @@ var agsModules = [{
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27356.0",
   "version" : "1.3.0",
   "author" : "Kweepa"
+}, {
+  "id" : "customdialoggui",
+  "name" : "Custom Dialog GUI",
+  "text" : "Custom Dialog GUI",
+  "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=36313.0",
+  "author" : "abstauber"
 }]
 
 
