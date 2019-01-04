@@ -13,10 +13,11 @@ var agsModules = [{
   "version" : "1.1.0",
   "author" : "Electroshokker",
 }, {
-  "id" : "alternativekeyboardmovement",
+  "id" : "altkeyboardmovement",
   "name": "Alternative Keyboard Movement",
   "text": "A replacement for the Keyboard Movement module included in the Default Game Template.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=42843.0",
+  "original_download" : "https://mega.nz/#!JBZgyBKZ!QfNt-W7GSXtO8dXbYvGPiQ87Jxf125LQ0sCu8UnHtNA",
   "version" : "0.3.0",
   "author" : "Khris",
 }, {
@@ -62,19 +63,20 @@ var agsModules = [{
   "version" : "0.5.0",
   "author" : "Snarky",
 }, {
+  "id" : "fakescreen",
+  "name": "FakeScreen",
+  "text": "FakeScreen draws a sprite with the objects, character and room on a drawing surface.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
+  "version" : "1.0.0",
+  "author" : "Kweepa",
+}, {
   "id" : "underwater",
   "name": "Underwater",
   "text": "Underwater distorts a background in a wibbly wavy way.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
   "version" : "1.1.0",
   "author" : "Kweepa",
-}, {
-  "id" : "easy3d",
-  "name": "Easy3D",
-  "text": "Easy way to create 3D games using the AGS editor. And add 3D parallax areas to normal 2D rooms.",
-  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=26130.0",
-  "version" : "1.4.0",
-  "author" : "Wretched",
+  "depends" : "fakescreen",
 }, {
   "id" : "easymirrors",
   "name": "Easy Mirrors",
@@ -122,7 +124,7 @@ var agsModules = [{
   "original_download" : "https://bitbucket.org/ivan-mogilko/ags-script-modules/downloads/DragDrop_1.0.0.scm",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
   "version" : "1.0.0",
-  "author" : "Crimson Wizard"
+  "author" : "Crimson Wizard",
 }, {
   "id" : "dragdropcommon",
   "name": "DragDropCommon",
@@ -132,141 +134,144 @@ var agsModules = [{
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
   "version" : "1.0.0",
   "author" : "Crimson Wizard",
-  "depends" : "dragdrop"
+  "depends" : "dragdrop",
 }, {
   "id" : "textfield",
   "name": "TextField",
   "text": "TextField",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55915.0",
   "version" : "1.2.0",
-  "author" : "Snarky"
+  "author" : "Snarky",
 }, {
   "id" : "multiresponse",
   "name": "MultiResponse",
   "text": "MultiResponse",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27947.0",
   "version" : "1.2.0",
-  "author" : "SSH"
+  "author" : "SSH",
 }, {
   "id" : "credits",
   "name": "Credits",
   "text": "Credits",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28659.0",
   "version" : "1.19.0",
-  "author" : "SSH"
+  "author" : "SSH",
 }, {
   "id" : "typedtext",
   "name": "TypedText",
   "text": "TypedText",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
   "version" : "0.7.0",
-  "author" : "Crimson Wizard"
+  "author" : "Crimson Wizard",
 }, {
   "id" : "caterpillar",
   "name": "Caterpillar",
   "text": "Caterpillar to follow the player from behind.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=44845.0",
   "version" : "0.1.0",
-  "author" : "Daniel Eakins"
+  "author" : "Daniel Eakins",
 }, {
   "id" : "timer",
   "name": "Timer",
   "text": "Timer module.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55545.0",
   "version" : "0.9.0",
-  "author" : "Crimson Wizard"
+  "author" : "Crimson Wizard",
 }, {
   "id" : "magnifier",
   "name": "Magnifier",
   "text": "Magnifier module.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37548.0",
   "version" : "1.0.0",
-  "author" : "monkey0506"
+  "author" : "monkey0506",
 }, {
   "id" : "inifile2",
   "name": "IniFile2",
   "text": "IniFile 2 module for reading .ini files, read and write configuration files.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=46631.0",
   "version" : "1.0.0",
-  "author" : "Wyz"
+  "author" : "Wyz",
 }, {
   "id" : "displaybasedgui",
   "name": "Display-based GUI",
   "text": "Creates a GUI using display.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55331.0",
   "version" : "1.0.0",
-  "author" : "Monsieur OUXX"
+  "author" : "Monsieur OUXX",
 }, {
   "id" : "adventurejoy",
   "name": "adventureJoy",
   "text": "Joystick for BASS Template.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55235.0",
   "version" : "0.1.0",
-  "author" : "eri0o"
+  "author" : "eri0o",
 }, {
   "id" : "timero",
   "name": "Timer",
   "text": "Timer module.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28979.0",
   "version" : "3.1.0",
-  "author" : "monkey0506"
+  "author" : "monkey0506",
 }, {
   "id" : "normrnd",
   "name": "NormRnd",
   "text": "Standard normal random number.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55133.0",
   "version" : "0.1.0",
-  "author" : "eri0o"
+  "author" : "eri0o",
 }, {
   "id" : "queuedspeech",
   "name" : "QueuedSpeech",
   "text" : "Provides queue for enabling queuing speech",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
   "version" : "4.1.0",
-  "author" : "monkey0506"
+  "author" : "monkey0506",
 }, {
   "id" : "stack",
   "name" : "Stack",
   "text" : "Vectorized Stacks",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37232.0",
-  "author" : "monkey0506"
+  "author" : "monkey0506",
 }, {
   "id" : "shash",
   "name" : "sHash",
   "text" : "provides hash objects",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
-  "author" : "QCPolmer"
+  "author" : "QCPolmer",
 }, {
   "id" : "slist",
   "name" : "sList",
   "text" : "provides list objects",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
-  "author" : "QCPolmer"
+  "author" : "QCPolmer",
 }, {
   "id" : "shadow",
   "name" : "Shadow",
   "text" : "adds shadow",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28905.0",
-  "author" : "SSH"
+  "author" : "SSH",
 }, {
   "id" : "chatdisplay",
   "name" : "ChatDisplay",
   "text" : "WhatsApp like dialog chat display.",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54557.0",
-  "author" : "Khris"
+  "author" : "Khris",
 }, {
   "id" : "lake",
   "name" : "Lake",
   "text" : "Lake water",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27356.0",
-  "version" : "1.3.0",
-  "author" : "Kweepa"
+  "original_download" : "http://shatten.sonores.de/wp-content/uploads/2017/01/LakeModule14.zip",
+  "version" : "1.4.0",
+  "author" : "Kweepa",
 }, {
   "id" : "customdialoggui",
   "name" : "Custom Dialog GUI",
-  "text" : "Custom Dialog GUI",
+  "text" : "Custom Dialog GUI, easy to use interface to AGS DialogOptionsRendering",
   "forum" : "https://www.adventuregamestudio.co.uk/forums/index.php?topic=36313.0",
-  "author" : "abstauber"
+  "original_download" : "http://shatten.sonores.de/wp-content/uploads/2017/01/CustomDialogGui_17.zip",
+  "version" : "1.7.0",
+  "author" : "abstauber",
 }]
 
 
