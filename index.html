@@ -61,6 +61,7 @@
   function resultIDtoHTML( id ) {
     var obj = agsModules.find(item => item.id === id)
     return "<b>" + obj.name + "</b> <br>" + 
+           "<a href=\""+ obj.id+ "/"+ obj.id+ ".scm" +"\">download "+ obj.id+ ".scm </a> "+ "<br>" + 
            "description: " + obj.text + "<br>" + 
            "author: " + obj.author + "<br>" + 
            "version: " + obj.version + "<br>" + 
