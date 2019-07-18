@@ -1,0 +1,8 @@
+{
+  "id": "speechbubble",
+  "name": "SpeechBubble",
+  "text": "A module to do comic book-style speech bubbles. SpeechBubble is an alternative to Phylactere, because the older module doesn't work properly with 32-bit color.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55542.0",
+  "version": "0.8.0",
+  "author": "Snarky"
+}

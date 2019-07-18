@@ -1,0 +1,8 @@
+{
+  "id": "daynightcycle",
+  "name": "Day Night Cycle",
+  "text": "This module for having dynamic time in your game, with day/night-cycles and seasons. The module takes care of the timekeeping and working out what that means in terms of time-of-day, season, etc.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=49791.0",
+  "version": "1.2.0",
+  "author": "Snarky"
+}

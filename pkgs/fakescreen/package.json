@@ -1,0 +1,8 @@
+{
+  "id": "fakescreen",
+  "name": "FakeScreen",
+  "text": "FakeScreen draws a sprite with the objects, character and room on a drawing surface.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
+  "version": "1.0.0",
+  "author": "Kweepa"
+}

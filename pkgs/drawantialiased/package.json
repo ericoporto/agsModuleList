@@ -1,0 +1,10 @@
+{
+  "id": "drawantialiased",
+  "name": "DrawAntialiased",
+  "text": "DrawAntialiased allows you to draw antialiased lines and circles on a drawing surface.",
+  "demo": "http://www.kweepa.org/step/ags/tech/RopeTest.zip",
+  "original_download": "http://www.kweepa.org/step/ags/tech/DrawAntialiased.zip",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=39846.0",
+  "version": "1.1.0",
+  "author": "Kweepa"
+}

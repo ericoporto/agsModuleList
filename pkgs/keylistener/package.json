@@ -1,0 +1,8 @@
+{
+  "id": "keylistener",
+  "name": "KeyListener",
+  "text": "KeyListener is a more sophisticated script module, that keeps track and record of the particular key and mouse button states in your game. Since AGS is limited in which key and mouse events it reports to the script, this module may be a useful workaround.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53226.0",
+  "version": "0.9.7",
+  "author": "Crimson Wizard"
+}

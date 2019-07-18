@@ -1,0 +1,11 @@
+{
+  "id": "dragdropcommon",
+  "name": "DragDropCommon",
+  "text": "DragDrop implements drag-and-drop for built-in AGS objects such as characters, room-objects.",
+  "demo": "https://bitbucket.org/ivan-mogilko/ags-script-demos/downloads/DragDropDemo_1.0.0.zip",
+  "original_download": "https://bitbucket.org/ivan-mogilko/ags-script-modules/downloads/DragDropCommon_1.0.0.scm",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
+  "version": "1.0.0",
+  "author": "Crimson Wizard",
+  "depends": "dragdrop"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "totallipsync",
+  "name": "TotalLipSync",
+  "text": "TotalLipSync is a module for voice-based lip sync. It allows you to play back speech animations that have been synchronized with voice clips. TotalLipSync has all the same capabilities as the voice-based lip sync that is built into AGS, and offers the following additional advantage.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54722.0",
+  "version": "0.5.0",
+  "author": "Snarky"
+}
