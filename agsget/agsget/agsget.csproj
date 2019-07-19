@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommandLineOptions\**" />
+    <EmbeddedResource Remove="CommandLineOptions\**" />
+    <None Remove="CommandLineOptions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.5.0" />
   </ItemGroup>
 

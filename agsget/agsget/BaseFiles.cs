@@ -8,55 +8,81 @@ namespace agsget
 {
     public class BaseFiles
     {
+        private static readonly BaseFiles instance = new BaseFiles();
         public const string PackageCacheDirectory = "ags_packages_cache";
         public const string PackageIndexFile = "package_index";
         public const string GameAgfFile = "Game.agf";
-        private string RunDirectory = Path.GetFullPath(Directory.GetCurrentDirectory());
 
-        public void setRunDirectory(string  rundir)
+        private BaseFiles() {
+            setRunDirectory("");
+        }
+
+        public static BaseFiles Instance
         {
-            if(rundir.Length > 0)
+            get
             {
-                RunDirectory = rundir;
+                return instance;
+            }
+        }
+
+        private string RunDirectory;
+
+
+
+        public static void setRunDirectory(string rundir)
+        {
+            if (rundir.Length > 0)
+            {
+                instance.RunDirectory = rundir;
             }
             else
             {
-                RunDirectory = Path.GetFullPath(Directory.GetCurrentDirectory());
+                instance.RunDirectory = Path.GetFullPath(Directory.GetCurrentDirectory());
             }
         }
 
-        public string getIndexFilePath()
+        public static string getRunDirectory()
         {
-            return Path.Combine(RunDirectory, PackageCacheDirectory, PackageIndexFile);
+            return instance.RunDirectory;
         }
 
-        public bool existsIndexFile()
+        public static string getIndexFilePath()
+        {
+            return Path.Combine(getRunDirectory(), PackageCacheDirectory, PackageIndexFile);
+        }
+
+        public static bool existsIndexFile()
         {
             return File.Exists(getIndexFilePath());
         }
 
-        public string getCacheDirectoryPath()
+        public static string getCacheDirectoryPath()
         {
-            return Path.Combine(RunDirectory, PackageCacheDirectory);
+            return Path.Combine(getRunDirectory(), PackageCacheDirectory);
         }
 
-        public bool existsPackageCacheDirectory()
+        public static bool existsPackageCacheDirectory()
         {
             return Directory.Exists(getCacheDirectoryPath());
         }
 
-        public string getGameAgfPath()
+        public static void createPackageDirIfDoesntExist()
         {
-            return Path.Combine(RunDirectory, GameAgfFile);
+            if (!existsPackageCacheDirectory())
+            {
+                Directory.CreateDirectory(getCacheDirectoryPath());
+            }
         }
 
-        public bool existsGameAgf()
+        public static string getGameAgfPath()
+        {
+            return Path.Combine(getRunDirectory(), GameAgfFile);
+        }
+
+        public static bool existsGameAgf()
         {
             return File.Exists(getGameAgfPath());
         }
-
-
-
 
     }
 }
