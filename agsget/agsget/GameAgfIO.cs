@@ -10,7 +10,7 @@ namespace agsget
         {
             // We need to check if an AGF file is valid. 
             // TEMPORARLY For now, we will just check if it exists.
-            return BaseFiles.existsGameAgf();
+            return BaseFiles.ExistsGameAgf();
         }
     }
 }

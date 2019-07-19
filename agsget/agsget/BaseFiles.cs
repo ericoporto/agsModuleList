@@ -14,7 +14,7 @@ namespace agsget
         public const string GameAgfFile = "Game.agf";
 
         private BaseFiles() {
-            setRunDirectory("");
+            SetRunDirectory("");
         }
 
         public static BaseFiles Instance
@@ -29,7 +29,7 @@ namespace agsget
 
 
 
-        public static void setRunDirectory(string rundir)
+        public static void SetRunDirectory(string rundir)
         {
             if (rundir.Length > 0)
             {
@@ -41,47 +41,47 @@ namespace agsget
             }
         }
 
-        public static string getRunDirectory()
+        public static string GetRunDirectory()
         {
             return instance.RunDirectory;
         }
 
-        public static string getIndexFilePath()
+        public static string GetIndexFilePath()
         {
-            return Path.Combine(getRunDirectory(), PackageCacheDirectory, PackageIndexFile);
+            return Path.Combine(GetRunDirectory(), PackageCacheDirectory, PackageIndexFile);
         }
 
-        public static bool existsIndexFile()
+        public static bool ExistsIndexFile()
         {
-            return File.Exists(getIndexFilePath());
+            return File.Exists(GetIndexFilePath());
         }
 
-        public static string getCacheDirectoryPath()
+        public static string GetCacheDirectoryPath()
         {
-            return Path.Combine(getRunDirectory(), PackageCacheDirectory);
+            return Path.Combine(GetRunDirectory(), PackageCacheDirectory);
         }
 
-        public static bool existsPackageCacheDirectory()
+        public static bool ExistsPackageCacheDirectory()
         {
-            return Directory.Exists(getCacheDirectoryPath());
+            return Directory.Exists(GetCacheDirectoryPath());
         }
 
-        public static void createPackageDirIfDoesntExist()
+        public static void CreatePackageDirIfDoesntExist()
         {
-            if (!existsPackageCacheDirectory())
+            if (!ExistsPackageCacheDirectory())
             {
-                Directory.CreateDirectory(getCacheDirectoryPath());
+                Directory.CreateDirectory(GetCacheDirectoryPath());
             }
         }
 
-        public static string getGameAgfPath()
+        public static string GetGameAgfPath()
         {
-            return Path.Combine(getRunDirectory(), GameAgfFile);
+            return Path.Combine(GetRunDirectory(), GameAgfFile);
         }
 
-        public static bool existsGameAgf()
+        public static bool ExistsGameAgf()
         {
-            return File.Exists(getGameAgfPath());
+            return File.Exists(GetGameAgfPath());
         }
 
     }

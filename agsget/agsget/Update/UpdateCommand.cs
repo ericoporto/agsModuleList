@@ -17,10 +17,11 @@ namespace agsget
             }
 
             //2.If it is, creates a folder `./ ags_packages_cache /` on the directory if it doesn't exist.
-            BaseFiles.createPackageDirIfDoesntExist();
+            BaseFiles.CreatePackageDirIfDoesntExist();
 
             //3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
             //If it already exists, overwrites it.
+
 
             Console.WriteLine("NOT IMPLEMENTED YET");
             Console.WriteLine("Looked Directory URL: '{0}'", UpdateOptions.PackageIndexURL);
