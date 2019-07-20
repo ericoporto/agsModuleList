@@ -8,6 +8,11 @@ namespace agsget
     {
         public static int Run(GetOptions GetOptions)
         {
+            BaseFiles.SetRunDirectory(GetOptions.changeRunDir);
+            Console.WriteLine("Dir set");
+
+            GameAgfIO.IsScriptPairInserted(GetOptions.PackageName);
+
             Console.WriteLine("NOT IMPLEMENTED YET");
             Console.WriteLine("Get Packaged: '{0}'", GetOptions.PackageName);
 

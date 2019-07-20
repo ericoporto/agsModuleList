@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "agsget": {
+      "commandName": "Project",
+      "commandLineArgs": "apply NormalMapping -c C:\\Users\\erico\\git\\agsModuleList\\demo_game\\"
+    }
+  }
+}
