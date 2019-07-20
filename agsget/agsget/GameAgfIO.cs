@@ -31,5 +31,11 @@ namespace agsget
             
             return result.AsEnumerable().Count() == 1;
         }
+
+        // Looks for lockfile to see if AGS Editor is open on current dir
+        public static bool IsProjectOpenOnAGSEditor()
+        {
+            return File.Exists(Path.Combine(BaseFiles.GetRunDirectory(), "_OpenInEditor.lock"));
+        }
     }
 }

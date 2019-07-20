@@ -39,6 +39,17 @@ namespace agsget
             return false;
         }
 
+        public static bool IsPackageOnLocalCache(string packageName)
+        {
+            var packageDirPath = Path.Combine(BaseFiles.GetCacheDirectoryPath(), packageName);
+
+            // because it's only scm script modules, I know this answer.
+            // later on, I will need extra information to resolve this.
+            var scriptModuleFile = Path.Combine(packageDirPath, packageName + ".scm");
+                       
+            return File.Exists(scriptModuleFile);
+        }
+
         public static bool GetPackage(string packageIndexUrl, string packageName)
         {
             var packageDirPath = Path.Combine(BaseFiles.GetCacheDirectoryPath(), packageName);
