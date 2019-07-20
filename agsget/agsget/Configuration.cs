@@ -6,6 +6,6 @@ namespace agsget
 {
     class Configuration
     {
-        public const string PackageIndexURL = "https://ericoporto.github.io/agsModuleList/index/package_index.json";
+        public const string PackageIndexURL = "https://ericoporto.github.io/agsModuleList/";
     }
 }
