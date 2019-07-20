@@ -8,7 +8,7 @@ agsget is a package getter for ags resources.
 
 expected functionality, in no particular order.
 
-- [ ] get .scm script modules
+- [x] get .scm script modules
 - [ ] search an index of script modules
 - [ ] inject .scm file to a AGS Game project (Game.agf and script pairs)
 - [ ] do the above safely
