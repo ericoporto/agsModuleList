@@ -8,19 +8,19 @@ namespace agsget
 {
     public class BaseFiles
     {
-        private static readonly BaseFiles instance = new BaseFiles();
+        private static BaseFiles instance = null;
         public const string PackageCacheDirectory = "ags_packages_cache";
         public const string PackageIndexFile = "package_index";
         public const string GameAgfFile = "Game.agf";
 
-        private BaseFiles() {
-            SetRunDirectory("");
-        }
-
         public static BaseFiles Instance
         {
             get
-            {
+            {   
+                if(instance == null)
+                {
+                    instance = new BaseFiles();
+                }
                 return instance;
             }
         }
@@ -31,19 +31,21 @@ namespace agsget
 
         public static void SetRunDirectory(string rundir)
         {
+            Console.WriteLine(rundir);
             if (rundir.Length > 0)
             {
-                instance.RunDirectory = rundir;
+                Instance.RunDirectory = rundir;
             }
             else
             {
-                instance.RunDirectory = Path.GetFullPath(Directory.GetCurrentDirectory());
+                Instance.RunDirectory = Path.GetFullPath(Directory.GetCurrentDirectory());
             }
+            return;
         }
 
         public static string GetRunDirectory()
         {
-            return instance.RunDirectory;
+            return Instance.RunDirectory;
         }
 
         public static string GetIndexFilePath()
