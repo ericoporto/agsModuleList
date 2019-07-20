@@ -7,6 +7,8 @@ using Newtonsoft.Json.Linq;
 
 namespace agsget
 {
+    // This class should be the interface when interacting with the package cache
+    // some commands are distributed on BaseFiles, maybe they need to be here and not there?
     public class PackageCacheIO
     {
         public static void GetPackageIndex(string packageIndexUrl)

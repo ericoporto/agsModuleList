@@ -6,6 +6,7 @@ namespace agsget
 {
     class GetCommand : Command
     {
+        // Downloads a package to package cache.
         public static int Run(GetOptions GetOptions)
         {
             BaseFiles.SetRunDirectory(GetOptions.changeRunDir);

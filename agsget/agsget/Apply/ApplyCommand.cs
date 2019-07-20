@@ -4,8 +4,10 @@ using System.Text;
 
 namespace agsget
 {
+    
     class ApplyCommand : Command
     {
+        // Inserts a package from package cache into an AGS Game Project. If package not in cache, downloads it.
         public static int Run(ApplyOptions ApplyOptions)
         {
             BaseFiles.SetRunDirectory(ApplyOptions.changeRunDir);

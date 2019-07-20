@@ -7,6 +7,7 @@ using System.Xml.Linq;
 
 namespace agsget
 {
+    //I think I may need to refactor this for GameProjectIO
     public class GameAgfIO
     {
         public static bool Valid()
