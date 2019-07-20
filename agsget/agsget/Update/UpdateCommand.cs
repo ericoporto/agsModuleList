@@ -8,6 +8,7 @@ namespace agsget
     {
         public static int Run(UpdateOptions UpdateOptions)
         {
+            BaseFiles.SetRunDirectory(UpdateOptions.changeRunDir);
             //1. Checks if the command is run from a folder containing a valid Game.agf project. 
             if (!GameAgfIO.Valid())
             {
@@ -21,18 +22,9 @@ namespace agsget
 
             //3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
             //If it already exists, overwrites it.
+            PackageCacheIO.GetPackageIndex(UpdateOptions.PackageIndexURL);
 
-
-            Console.WriteLine("NOT IMPLEMENTED YET");
-            Console.WriteLine("Looked Directory URL: '{0}'", UpdateOptions.PackageIndexURL);
-
-            if (string.IsNullOrEmpty(UpdateOptions.PackageIndexURL) == true)
-            {
-                Console.WriteLine("No Directory Specified, will update from Default Module Index.");
-                return 0;
-            }
-
-            Console.WriteLine();
+            Console.WriteLine("Success.");
             return 0;
         }
     }
