@@ -52,7 +52,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)/agsget/build/'
+    sourceFolder: agsget/build/
     contents: 'agsconfig-Linux'
     targetFolder: $(Build.ArtifactStagingDirectory)
 
