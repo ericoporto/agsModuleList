@@ -67,7 +67,7 @@ steps:
     assetUploadMode: 'replace'
     action: 'edit'
     gitHubConnection: agsget
-    repositoryName: ericoporto/agsmoduleslist
+    repositoryName: ericoporto/agsModuleList
     assets: |
          $(Build.ArtifactStagingDirectory)/agsge*
 
