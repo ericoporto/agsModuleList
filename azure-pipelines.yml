@@ -31,7 +31,6 @@ steps:
     popd
   displayName: 'build'
 
-steps:
 - bash: |
     mkdir agsget/build
     cp agsget/agsget/bin/Debug/netcoreapp3.1/osx-x64/publish/agsget build/agsget-osx64
