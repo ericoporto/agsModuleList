@@ -1,6 +1,8 @@
 # agsModuleList
 [A list of AGS modules with search](https://ericoporto.github.io/agsModuleList/) - still a sketch
 
+[![Build Status](https://dev.azure.com/ericoporto/agsget/_apis/build/status/ericoporto.agsModuleList?branchName=master)](https://dev.azure.com/ericoporto/agsget/_build/latest?definitionId=14&branchName=master)
+
 👷IN CONSTRUCTION👷
 
 You can query by typing in the box or url.

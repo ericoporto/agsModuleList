@@ -2,6 +2,8 @@
 
 agsget is a package getter for ags resources.
 
+[![Build Status](https://dev.azure.com/ericoporto/agsget/_apis/build/status/ericoporto.agsModuleList?branchName=master)](https://dev.azure.com/ericoporto/agsget/_build/latest?definitionId=14&branchName=master)
+
 🚨EXPERIMENTAL CODE DO NOT USE🚨
 
 ## roadmap
