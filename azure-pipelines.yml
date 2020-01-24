@@ -44,10 +44,10 @@ steps:
 
 - bash: |
     mkdir agsget/build
-    cp agsget/agsget/bin/Debug/netcoreapp3.1/osx-x64/publish/agsget build/agsget-osx64
-    cp agsget/agsget/bin/Debug/netcoreapp3.1/linux-x64/publish/agsget build/agsget
-    cp agsget/agsget/bin/Debug/netcoreapp3.1/win-x64/publish/agsget.exe build/agsget.exe
-    cp agsget/agsget/bin/Debug/netcoreapp3.1/win-x86/publish/agsget.exe build/agsget-x86.exe
+    cp agsget/agsget/bin/Debug/netcoreapp3.1/osx-x64/publish/agsget agsget/build/agsget-osx64
+    cp agsget/agsget/bin/Debug/netcoreapp3.1/linux-x64/publish/agsget agsget/build/agsget
+    cp agsget/agsget/bin/Debug/netcoreapp3.1/win-x64/publish/agsget.exe agsget/build/agsget.exe
+    cp agsget/agsget/bin/Debug/netcoreapp3.1/win-x86/publish/agsget.exe agsget/build/agsget-x86.exe
   displayName: 'collect builds'
 
 - task: CopyFiles@2
