@@ -18,6 +18,17 @@ pool:
   vmImage: $(imageName)
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
+  inputs:
+    version: '3.1.x' 
+    performMultiLevelLookup: true
+- task: UseDotNet@2
+  inputs:
+    version: '3.1.x'
+    packageType: runtime
+
+
 - bash: |
     pushd agsget
     dotnet build --runtime linux-x64
