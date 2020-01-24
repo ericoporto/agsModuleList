@@ -31,19 +31,23 @@ steps:
 
 - bash: |
     pushd agsget
-    dotnet build --runtime linux-x64
-    dotnet build --runtime osx-x64
-    dotnet build --runtime win-x64
-    dotnet build --runtime win-x86
-    dotnet publish -r win-x86
-    dotnet publish -r win-x64
-    dotnet publish -r linux-x64
-    dotnet publish -r osx-x64
+    dotnet build --runtime linux-x64 --configuration Debug
+    dotnet build --runtime osx-x64 --configuration Debug
+    dotnet build --runtime win-x64 --configuration Debug
+    dotnet build --runtime win-x86 --configuration Debug
+    dotnet build --runtime linux-x64 --configuration Release
+    dotnet build --runtime osx-x64 --configuration Release
+    dotnet build --runtime win-x64 --configuration Release
+    dotnet build --runtime win-x86 --configuration Release
+    dotnet publish -r win-x86 --configuration Release
+    dotnet publish -r win-x64 --configuration Release
+    dotnet publish -r linux-x64 --configuration Release
+    dotnet publish -r osx-x64 --configuration Release
     popd
   displayName: 'build'
 
 - bash: |
-    pushd agsget/agsget/bin/Debug/netcoreapp3.1
+    pushd agsget/agsget/bin/Release/netcoreapp3.1
     cp osx-x64/publish/agsget $(Build.ArtifactStagingDirectory)/agsget-osx64
     cp linux-x64/publish/agsget $(Build.ArtifactStagingDirectory)/agsget
     cp win-x64/publish/agsget.exe $(Build.ArtifactStagingDirectory)/agsget.exe
