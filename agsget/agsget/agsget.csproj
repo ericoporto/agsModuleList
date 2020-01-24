@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <AssemblyName>agsget</AssemblyName>
     <LangVersion>8</LangVersion>
     <Title>agsget</Title>
