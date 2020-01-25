@@ -8,17 +8,7 @@ namespace agsget
     {
         public static int RunPackCommand(PackOptions PackOptions)
         {
-            Console.WriteLine("NOT IMPLEMENTED YET");
-            Console.WriteLine("Create Package: '{0}'", PackOptions.PairName);
-
-            if (string.IsNullOrEmpty(PackOptions.PairName) == true)
-            {
-                Console.WriteLine("No Script Pair Name Specified, will do nothing.");
-                return 1;
-            }
-
-            Console.WriteLine();
-            return 0;
+            return PackDo.Do(PackOptions.changeRunDir, PackOptions.PairName);
         }
     }
 }
