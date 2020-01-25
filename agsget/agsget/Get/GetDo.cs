@@ -4,7 +4,7 @@ namespace agsget
 {
     public class GetDo
     {
-        public static int Do(string changeRunDir, string packageName)
+        public static int Do(Action<string> writerMethod, string changeRunDir, string packageName)
         {
             BaseFiles.SetRunDirectory(changeRunDir);
 
@@ -12,15 +12,15 @@ namespace agsget
             // maybe the required keyword protects and we don't need this
             if (string.IsNullOrEmpty(packageName) == true)
             {
-                Console.WriteLine("No Package Specified, will do nothing.");
+                writerMethod("No Package Specified, will do nothing.");
                 return 1;
             }
 
             //2. Check if the command is run from a folder containing a valid Game.agf project.  If not, exit with error. 
             if (!GameAgfIO.Valid())
             {
-                Console.WriteLine("Not an AGS Game root directory.");
-                Console.WriteLine("You can only get packages for an AGS Game project.");
+                writerMethod("Not an AGS Game root directory.");
+                writerMethod("You can only get packages for an AGS Game project.");
                 return 1;
             }
 
@@ -38,8 +38,8 @@ namespace agsget
             //4.Check if PACKAGE_NAME exists on `./ ags_packages_cache / package_index`, if not, exit with error.
             if (!PackageCacheIO.PackageOnIndex(packageName))
             {
-                Console.WriteLine("Package {0} not found on package index.", packageName);
-                Console.WriteLine("If you are sure you spelled correctly, try updating your local package index.");
+                writerMethod(string.Format("Package {0} not found on package index.", packageName));
+                writerMethod("If you are sure you spelled correctly, try updating your local package index.");
                 return 1;
             }
 
@@ -48,7 +48,7 @@ namespace agsget
                 Configuration.PackageIndexURL,
                 packageName))
             {
-                Console.WriteLine("Error downloading package {0}.", packageName);
+                writerMethod(string.Format("Error downloading package {0}.", packageName));
                 return 1;
             }
 

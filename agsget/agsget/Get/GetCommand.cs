@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,7 +14,7 @@ namespace agsget
                 throw new ArgumentNullException(nameof(GetOptions));
             }
 
-            return  GetDo.Do(GetOptions.changeRunDir, GetOptions.PackageName);
+            return  GetDo.Do(Console.WriteLine, GetOptions.changeRunDir, GetOptions.PackageName);
         }
     }
 }

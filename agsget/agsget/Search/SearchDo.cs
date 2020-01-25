@@ -4,18 +4,18 @@ namespace agsget
 {
     public class SearchDo
     {
-        public static int Do(string changeRunDir, string searchQuery)
+        public static int Do(Action<string> writerMethod, string changeRunDir, string searchQuery)
         {
-            Console.WriteLine("NOT IMPLEMENTED YET");
-            Console.WriteLine("Search query: '{0}'", searchQuery);
+            writerMethod("NOT IMPLEMENTED YET");
+            writerMethod(string.Format("Search query: '{0}'", searchQuery));
 
             if (string.IsNullOrEmpty(searchQuery) == true)
             {
-                Console.WriteLine("No query to use for search.");
+                writerMethod("No query to use for search.");
                 return 1;
             }
 
-            Console.WriteLine();
+            writerMethod("-" );
             return 0;
         }
     }

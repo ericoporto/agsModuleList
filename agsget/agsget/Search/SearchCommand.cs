@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using CommandLine;
@@ -9,7 +9,7 @@ namespace agsget
     {
         public static int Run(SearchOptions SearchOptions)
         {
-            return SearchDo.Do(SearchOptions.changeRunDir, SearchOptions.SearchQuery);
+            return SearchDo.Do(Console.WriteLine, SearchOptions.changeRunDir, SearchOptions.SearchQuery);
         }
     }
 }

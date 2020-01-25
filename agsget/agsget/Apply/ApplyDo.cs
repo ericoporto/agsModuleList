@@ -4,7 +4,7 @@ namespace agsget
 {
     public class ApplyDo
     {
-        public static int Do(string changeRunDir, string packageName)
+        public static int Do(Action<string> writerMethod, string changeRunDir, string packageName)
         {
             BaseFiles.SetRunDirectory(changeRunDir);
 
@@ -12,23 +12,23 @@ namespace agsget
             // maybe the required keyword protects and we don't need this
             if (string.IsNullOrEmpty(packageName) == true)
             {
-                Console.WriteLine("No Package Specified, will do nothing.");
+                writerMethod("No Package Specified, will do nothing.");
                 return 1;
             }
 
             //2. Check if the command is run from a folder containing a valid Game.agf project.  If not, exit with error.
             if (!GameAgfIO.Valid())
             {
-                Console.WriteLine("Not an AGS Game root directory.");
-                Console.WriteLine("You can only get packages for an AGS Game project.");
+                writerMethod("Not an AGS Game root directory.");
+                writerMethod("You can only get packages for an AGS Game project.");
                 return 1;
             }
 
             //3. Check if AGS Editor is open by looking for a lockfile in the folder, if it is, exit with error.
             if (GameAgfIO.IsProjectOpenOnAGSEditor())
             {
-                Console.WriteLine("AGS Editor is open on project file.");
-                Console.WriteLine("Close AGS Editor, and try again.");
+                writerMethod("AGS Editor is open on project file.");
+                writerMethod("Close AGS Editor, and try again.");
                 return 1;
             }
 
@@ -52,8 +52,8 @@ namespace agsget
                 //Get.4. Check if PACKAGE_NAME exists on `./ ags_packages_cache / package_index`, if not, exit with error.
                 if (!PackageCacheIO.PackageOnIndex(packageName))
                 {
-                    Console.WriteLine("Package {0} not found on package index.", packageName);
-                    Console.WriteLine("If you are sure you spelled correctly, try updating your local package index.");
+                    writerMethod(string.Format("Package {0} not found on package index.", packageName));
+                    writerMethod("If you are sure you spelled correctly, try updating your local package index.");
                     return 1;
                 }
 
@@ -62,7 +62,7 @@ namespace agsget
                     Configuration.PackageIndexURL,
                     packageName))
                 {
-                    Console.WriteLine("Error downloading package {0}.", packageName);
+                    writerMethod(string.Format("Error downloading package {0}.", packageName));
                     return 1;
                 }
             }
@@ -75,7 +75,7 @@ namespace agsget
                 Console.WriteLine("Script already found on Game.agf.");
                 if (!ConsoleExtra.ConfirmYN("Are you sure you want to replace?"))
                 {
-                    Console.WriteLine("Package already inserted and will not be replaced.");
+                    writerMethod("Package already inserted and will not be replaced.");
                     return 1;
                 }
             }
@@ -90,16 +90,16 @@ namespace agsget
             // copy(or overwrite) script pairs in the project folder.
 
 
-            Console.WriteLine("NOT IMPLEMENTED YET");
-            Console.WriteLine("Install Package: '{0}'", packageName);
+            writerMethod("NOT IMPLEMENTED YET");
+            writerMethod(string.Format("Install Package: '{0}'", packageName));
 
             if (string.IsNullOrEmpty(packageName) == true)
             {
-                Console.WriteLine("No Package Specified, will do nothing.");
+                writerMethod("No Package Specified, will do nothing.");
                 return 1;
             }
 
-            Console.WriteLine();
+            writerMethod("-");
             return 0;
         }
     }

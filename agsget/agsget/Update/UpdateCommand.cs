@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +12,7 @@ namespace agsget
         //to a general option available for all commands, but not sure yet
         public static int Run(UpdateOptions UpdateOptions)
         {
-            return UpdateDo.Do(UpdateOptions.changeRunDir, UpdateOptions.PackageIndexURL);
+            return UpdateDo.Do(Console.WriteLine, UpdateOptions.changeRunDir, UpdateOptions.PackageIndexURL);
         }
     }
 }

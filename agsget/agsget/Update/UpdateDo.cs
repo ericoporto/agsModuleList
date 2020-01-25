@@ -8,14 +8,14 @@ namespace agsget
         // Otherwise, use default package index url.
         // I think maybe the url should be moved 
         //to a general option available for all commands, but not sure yet
-        public static int Do(string changeRunDir, string packageIndexURL)
+        public static int Do(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
         {
             BaseFiles.SetRunDirectory(changeRunDir);
             //1. Checks if the command is run from a folder containing a valid Game.agf project. 
             if (!GameAgfIO.Valid())
             {
-                Console.WriteLine("Not an AGS Game root directory.");
-                Console.WriteLine("You can only update agsget package cache for an AGS Game project.");
+                writerMethod("Not an AGS Game root directory.");
+                writerMethod("You can only update agsget package cache for an AGS Game project.");
                 return 1;
             }
 
@@ -26,7 +26,7 @@ namespace agsget
             //If it already exists, overwrites it.
             PackageCacheIO.GetPackageIndex(packageIndexURL);
 
-            Console.WriteLine("Success.");
+            writerMethod("Success.");
             return 0;
         }
     }
