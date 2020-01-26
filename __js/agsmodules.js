@@ -57,6 +57,14 @@ var agsModules = [
     "author": "Khris"
   },
   {
+    "id": "controlz",
+    "name": "Controlz",
+    "text": "Move your character with keyboard or joystick controls with controlz module.",
+    "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57427.0",
+    "version": "0.1.0",
+    "author": "eri0o"
+  },
+  {
     "id": "credits",
     "name": "Credits",
     "text": "Credits",
