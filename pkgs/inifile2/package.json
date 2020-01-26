@@ -4,5 +4,6 @@
   "text": "IniFile 2 module for reading .ini files, read and write configuration files.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=46631.0",
   "version": "1.0.0",
-  "author": "Wyz"
+  "author": "Wyz",
+  "keywords": "ini file parser and writer"
 }

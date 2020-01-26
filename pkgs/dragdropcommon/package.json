@@ -7,5 +7,6 @@
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
   "version": "1.0.0",
   "author": "Crimson Wizard",
-  "depends": "dragdrop"
+  "depends": "dragdrop",
+  "keywords": "drag and drop dragandrop dragging"
 }

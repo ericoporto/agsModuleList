@@ -4,5 +4,6 @@
   "text": "Select things using arrows keys or joystick hat, things can be characters/hotspot/objects/GUIs.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57379.0",
   "version": "0.5.0",
-  "author": "eri0o"
+  "author": "eri0o",
+  "keywords": "select point arrow keyboard joystick gamepad"
 }

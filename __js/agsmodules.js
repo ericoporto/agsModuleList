@@ -5,7 +5,8 @@ var agsModules = [
     "text": "Joystick for BASS Template.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55235.0",
     "version": "0.1.0",
-    "author": "eri0o"
+    "author": "eri0o",
+	"keywords": "joystick gamepad"
   },
   {
     "id": "altkeyboardmovement",
@@ -14,7 +15,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=42843.0",
     "original_download": "https://mega.nz/#!JBZgyBKZ!QfNt-W7GSXtO8dXbYvGPiQ87Jxf125LQ0sCu8UnHtNA",
     "version": "0.3.0",
-    "author": "Khris"
+    "author": "Khris",
+	"keywords": "keyboard"
   },
   {
     "id": "animobjs",
@@ -23,7 +25,8 @@ var agsModules = [
     "github": "https://github.com/QCPolmer/animObjs",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=56038.0",
     "version": "1.0.0",
-    "author": "QCPolmer"
+    "author": "QCPolmer",
+	"keywords": "move objects grouping"
   },
   {
     "id": "arrowselect",
@@ -31,7 +34,8 @@ var agsModules = [
     "text": "Select things using arrows keys or joystick hat, things can be characters/hotspot/objects/GUIs.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57379.0",
     "version": "0.5.0",
-    "author": "eri0o"
+    "author": "eri0o",
+	"keywords": "select point arrow keyboard joystick gamepad"
   },
   {
     "id": "backgroundspeech",
@@ -39,7 +43,8 @@ var agsModules = [
     "text": "An easy way to get a character to say something in the background, while animating a speech view and playing a voice clip.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=35787.0",
     "version": "1.1.0",
-    "author": "Electroshokker"
+    "author": "Electroshokker",
+	"keywords": "background speech say backgroundsay"
   },
   {
     "id": "caterpillar",
@@ -47,14 +52,16 @@ var agsModules = [
     "text": "Caterpillar to follow the player from behind.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=44845.0",
     "version": "0.1.0",
-    "author": "Daniel Eakins"
+    "author": "Daniel Eakins",
+	"keywords": "party walk"
   },
   {
     "id": "chatdisplay",
     "name": "ChatDisplay",
     "text": "WhatsApp like dialog chat display.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54557.0",
-    "author": "Khris"
+    "author": "Khris",
+	"keywords": "chat conversation app dialog"
   },
   {
     "id": "controlz",
@@ -62,7 +69,8 @@ var agsModules = [
     "text": "Move your character with keyboard or joystick controls with controlz module.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57427.0",
     "version": "0.1.0",
-    "author": "eri0o"
+    "author": "eri0o",
+	"keywords": "keyboard gamepad"
   },
   {
     "id": "credits",
@@ -70,7 +78,8 @@ var agsModules = [
     "text": "Credits",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28659.0",
     "version": "1.19.0",
-    "author": "SSH"
+    "author": "SSH",
+	"keywords": "credit ending"
   },
   {
     "id": "customdialoggui",
@@ -79,7 +88,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=36313.0",
     "original_download": "http://shatten.sonores.de/wp-content/uploads/2017/01/CustomDialogGui_17.zip",
     "version": "1.7.0",
-    "author": "abstauber"
+    "author": "abstauber",
+	"keywords": "custom graphical dialog customdialog"
   },
   {
     "id": "daynightcycle",
@@ -87,7 +97,8 @@ var agsModules = [
     "text": "This module for having dynamic time in your game, with day/night-cycles and seasons. The module takes care of the timekeeping and working out what that means in terms of time-of-day, season, etc.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=49791.0",
     "version": "1.2.0",
-    "author": "Snarky"
+    "author": "Snarky",
+	"keywords": "day and night dayandnight morning afternoon clock season"
   },
   {
     "id": "description",
@@ -96,7 +107,8 @@ var agsModules = [
     "github": "https://github.com/QCPolmer/animObjs",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=26306.0",
     "version": "1.6.0",
-    "author": "SSH"
+    "author": "SSH",
+	"keywords": "tooltip"
   },
   {
     "id": "displaybasedgui",
@@ -104,7 +116,8 @@ var agsModules = [
     "text": "Creates a GUI using display.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55331.0",
     "version": "1.0.0",
-    "author": "Monsieur OUXX"
+    "author": "Monsieur OUXX",
+	"keywords": "DisplayGUI"
   },
   {
     "id": "doubleclick",
@@ -112,7 +125,8 @@ var agsModules = [
     "text": "AGS does not have built-in mouse double-click events. DoubleClick module solves this by detecting when player made two consecutive clicks within short duration.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53226.0",
     "version": "1.0.0",
-    "author": "Crimson Wizard"
+    "author": "Crimson Wizard",
+	"keywords": "double click module"
   },
   {
     "id": "dragdrop",
@@ -122,7 +136,8 @@ var agsModules = [
     "original_download": "https://bitbucket.org/ivan-mogilko/ags-script-modules/downloads/DragDrop_1.0.0.scm",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
     "version": "1.0.0",
-    "author": "Crimson Wizard"
+    "author": "Crimson Wizard",
+	"keywords": "drag and drop dragandrop dragging"
   },
   {
     "id": "dragdropcommon",
@@ -133,7 +148,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
     "version": "1.0.0",
     "author": "Crimson Wizard",
-    "depends": "dragdrop"
+    "depends": "dragdrop",
+	"keywords": "drag and drop dragandrop dragging"
   },
   {
     "id": "drawantialiased",
@@ -143,7 +159,8 @@ var agsModules = [
     "original_download": "http://www.kweepa.org/step/ags/tech/DrawAntialiased.zip",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=39846.0",
     "version": "1.1.0",
-    "author": "Kweepa"
+    "author": "Kweepa",
+	"keywords": "antialiased smooth"
   },
   {
     "id": "easymirrors",
@@ -151,7 +168,8 @@ var agsModules = [
     "text": "This allow you to create small mirrors in your game very quickly.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=48641.0",
     "version": "2.0.0",
-    "author": "Monsieur OUXX"
+    "author": "Monsieur OUXX",
+	"keywords": "mirror"
   },
   {
     "id": "fakescreen",
@@ -159,7 +177,8 @@ var agsModules = [
     "text": "FakeScreen draws a sprite with the objects, character and room on a drawing surface.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
     "version": "1.0.0",
-    "author": "Kweepa"
+    "author": "Kweepa",
+	"keywords": "screen to sprite"
   },
   {
     "id": "floatinghotspot",
@@ -167,7 +186,8 @@ var agsModules = [
     "text": "Floating Hotspot Label Module to handle a label that follows the cursor when the mouse is over a hotspot/object/character.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=49970.0",
     "version": "0.1.0",
-    "author": "Calin Leafshade"
+    "author": "Calin Leafshade",
+	"keywords": "tooltip"
   },
   {
     "id": "hinthighlighting",
@@ -175,7 +195,8 @@ var agsModules = [
     "text": "Adds an overlay which highlights all the visible and clickable objects, hotspots and charactes, to avoid pixel hunting and need of hints.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=56463.0",
     "version": "2.2.0",
-    "author": "artium"
+    "author": "artium",
+	"keywords": "hotspot show highlight"
   },
   {
     "id": "inifile2",
@@ -183,7 +204,8 @@ var agsModules = [
     "text": "IniFile 2 module for reading .ini files, read and write configuration files.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=46631.0",
     "version": "1.0.0",
-    "author": "Wyz"
+    "author": "Wyz",
+	"keywords": "ini file parser and writer"
   },
   {
     "id": "keylistener",
@@ -191,7 +213,8 @@ var agsModules = [
     "text": "KeyListener is a more sophisticated script module, that keeps track and record of the particular key and mouse button states in your game. Since AGS is limited in which key and mouse events it reports to the script, this module may be a useful workaround.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53226.0",
     "version": "0.9.7",
-    "author": "Crimson Wizard"
+    "author": "Crimson Wizard",
+	"keywords": "key state keyboard"
   },
   {
     "id": "lake",
@@ -200,7 +223,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27356.0",
     "original_download": "http://shatten.sonores.de/wp-content/uploads/2017/01/LakeModule14.zip",
     "version": "1.4.0",
-    "author": "Kweepa"
+    "author": "Kweepa",
+	"keywords": "water"
   },
   {
     "id": "magnifier",
@@ -208,7 +232,8 @@ var agsModules = [
     "text": "Magnifier module.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37548.0",
     "version": "1.0.0",
-    "author": "monkey0506"
+    "author": "monkey0506",
+	"keywords": "magnify glass zoom"
   },
   {
     "id": "mathsplus",
@@ -217,7 +242,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27930.0",
     "original_download": "https://sites.google.com/site/monkey0506/ScrollingDialog-3.0.rar?attredirects=0&d=1",
     "version": "1.0.0",
-    "author": "monkey0506"
+    "author": "monkey0506",
+	"keywords": "mathematical utility functions"
   },
   {
     "id": "multiresponse",
@@ -225,7 +251,8 @@ var agsModules = [
     "text": "MultiResponse",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27947.0",
     "version": "1.2.0",
-    "author": "SSH"
+    "author": "SSH",
+	"keywords": "multiple dialog response"
   },
   {
     "id": "normrnd",
@@ -233,7 +260,8 @@ var agsModules = [
     "text": "Standard normal random number.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55133.0",
     "version": "0.1.0",
-    "author": "eri0o"
+    "author": "eri0o",
+	"keywords": "random generator"
   },
   {
     "id": "queuedspeech",
@@ -241,7 +269,8 @@ var agsModules = [
     "text": "Provides queue for enabling queuing speech",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
     "version": "4.1.0",
-    "author": "monkey0506"
+    "author": "monkey0506",
+	"keywords": "queue of speech sound"
   },
   {
     "id": "scrollingdialog",
@@ -251,28 +280,32 @@ var agsModules = [
     "original_download": "https://sites.google.com/site/monkey0506/ScrollingDialog-3.0.rar?attredirects=0&d=1",
     "version": "3.0.0",
     "author": "monkey0506",
-    "depends": "mathsplus"
+    "depends": "mathsplus",
+	"keywords": "scroll in dialog story"
   },
   {
     "id": "shadow",
     "name": "Shadow",
     "text": "adds shadow",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28905.0",
-    "author": "SSH"
+    "author": "SSH",
+	"keywords": "shadows"
   },
   {
     "id": "shash",
     "name": "sHash",
     "text": "provides hash objects",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
-    "author": "QCPolmer"
+    "author": "QCPolmer",
+	"keywords": "hash data container"
   },
   {
     "id": "slist",
     "name": "sList",
     "text": "provides list objects",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
-    "author": "QCPolmer"
+    "author": "QCPolmer",
+	"keywords": "list"
   },
   {
     "id": "smoothscrollingandparallax",
@@ -280,7 +313,8 @@ var agsModules = [
     "text": "Adds independent Smooth Scrolling camera and parallax effect on room objects.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=33142.0",
     "version": "1.7.1",
-    "author": "Ali"
+    "author": "Ali",
+	"keywords": "smooth scroll camera parallax"
   },
   {
     "id": "speechbubble",
@@ -288,14 +322,16 @@ var agsModules = [
     "text": "A module to do comic book-style speech bubbles. SpeechBubble is an alternative to Phylactere, because the older module doesn't work properly with 32-bit color.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55542.0",
     "version": "0.8.0",
-    "author": "Snarky"
+    "author": "Snarky",
+	"keywords": "speech bubble baloon comicbook dialog"
   },
   {
     "id": "stack",
     "name": "Stack",
     "text": "Vectorized Stacks",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37232.0",
-    "author": "monkey0506"
+    "author": "monkey0506",
+	"keywords": "vector array"
   },
   {
     "id": "textfield",
@@ -303,7 +339,8 @@ var agsModules = [
     "text": "TextField",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55915.0",
     "version": "1.2.0",
-    "author": "Snarky"
+    "author": "Snarky",
+	"keywords": "text"
   },
   {
     "id": "timer",
@@ -311,7 +348,8 @@ var agsModules = [
     "text": "Timer module.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55545.0",
     "version": "0.9.0",
-    "author": "Crimson Wizard"
+    "author": "Crimson Wizard",
+	"keywords": "timer object oop time"
   },
   {
     "id": "timero",
@@ -319,7 +357,8 @@ var agsModules = [
     "text": "Timer module.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28979.0",
     "version": "3.1.0",
-    "author": "monkey0506"
+    "author": "monkey0506",
+	"keywords": "timer object oop time"
   },
   {
     "id": "totallipsync",
@@ -327,7 +366,8 @@ var agsModules = [
     "text": "TotalLipSync is a module for voice-based lip sync. It allows you to play back speech animations that have been synchronized with voice clips. TotalLipSync has all the same capabilities as the voice-based lip sync that is built into AGS, and offers the following additional advantage.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54722.0",
     "version": "0.5.0",
-    "author": "Snarky"
+    "author": "Snarky",
+	"keywords": "lip synchronization"
   },
   {
     "id": "tween",
@@ -335,7 +375,8 @@ var agsModules = [
     "text": "The AGS Tween Module allows you to programmatically interpolate many of the AGS properties (objects, characters, regions, viewport, audio, gui, gui controls, etc.) over time in amazing ways. The term tween comes from 'inbetweening'. It's typically used in Adobe Flash to indicate interpolation of an object from one keyframe to another.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=51820.0",
     "version": "2.1.0",
-    "author": "Edmundito"
+    "author": "Edmundito",
+	"keywords": "in between inbetweening smooth animation"
   },
   {
     "id": "typedtext",
@@ -343,7 +384,8 @@ var agsModules = [
     "text": "Typed Text",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
     "version": "0.7.0",
-    "author": "Crimson Wizard"
+    "author": "Crimson Wizard",
+	"keywords": "typewriter typed typing letter retro"
   },
   {
     "id": "typedtextdrawing",
@@ -352,7 +394,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
     "version": "0.7.0",
     "author": "Crimson Wizard",
-    "depends": "typedtext"
+    "depends": "typedtext",
+	"keywords": "typewriter typed typing letter retro"
   },
   {
     "id": "typedtexthelper",
@@ -361,7 +404,8 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
     "version": "0.7.0",
     "author": "Crimson Wizard",
-    "depends": "typedtext"
+    "depends": "typedtext",
+	"keywords": "typewriter typed typing letter retro"
   },
   {
     "id": "underwater",
@@ -370,6 +414,7 @@ var agsModules = [
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
     "version": "1.1.0",
     "author": "Kweepa",
-    "depends": "fakescreen"
+    "depends": "fakescreen",
+	"keywords": "underwater effect"
   }
 ]

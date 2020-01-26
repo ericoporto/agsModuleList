@@ -4,5 +4,6 @@
   "text": "AGS does not have built-in mouse double-click events. DoubleClick module solves this by detecting when player made two consecutive clicks within short duration.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53226.0",
   "version": "1.0.0",
-  "author": "Crimson Wizard"
+  "author": "Crimson Wizard",
+  "keywords": "double click module"
 }

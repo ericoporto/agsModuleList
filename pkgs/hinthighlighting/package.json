@@ -4,5 +4,6 @@
   "text": "Adds an overlay which highlights all the visible and clickable objects, hotspots and charactes, to avoid pixel hunting and need of hints.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=56463.0",
   "version": "2.2.0",
-  "author": "artium"
+  "author": "artium",
+  "keywords": "hotspot show highlight"
 }

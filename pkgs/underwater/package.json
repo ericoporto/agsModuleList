@@ -5,5 +5,6 @@
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
   "version": "1.1.0",
   "author": "Kweepa",
-  "depends": "fakescreen"
+  "depends": "fakescreen",
+  "keywords": "underwater effect"
 }

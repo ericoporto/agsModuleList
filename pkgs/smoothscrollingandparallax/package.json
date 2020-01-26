@@ -4,5 +4,6 @@
   "text": "Adds independent Smooth Scrolling camera and parallax effect on room objects.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=33142.0",
   "version": "1.7.1",
-  "author": "Ali"
+  "author": "Ali",
+  "keywords": "smooth scroll camera parallax"
 }
