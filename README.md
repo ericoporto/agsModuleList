@@ -16,7 +16,7 @@ The list right now is a single file: [`index/package_index.json`](index/package_
 
 This is a simplified package system for Adventure Game Studio, inspired by early versions of the C++ package manager `vcpkg`. For now it only support script modules.
 
-The way it works, is it provides a website to browse for packages, pkgs can be added directly or through pull requests from the package developer, a command line tool (`agsget`) is provided too for browsing and downloading packages. An Editor Plug-in is planned too. 
+The way it works, is it provides a website to browse for packages, pkgs can be added directly or through pull requests from the package developer, a command line tool ([**`agsget`**](https://github.com/ericoporto/agsModuleList/tree/master/agsget)) is provided too for browsing and downloading packages. An Editor Plug-in is planned too. 
 
 ## How to include a package
 
