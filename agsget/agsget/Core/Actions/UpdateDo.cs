@@ -1,6 +1,6 @@
 using System;
 
-namespace agsget
+namespace AgsGetCore.Actions
 {
     public class UpdateDo
     {
@@ -24,7 +24,7 @@ namespace agsget
 
             //3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
             //If it already exists, overwrites it.
-            PackageCacheIO.GetPackageIndex(packageIndexURL);
+            PackageCacheIO.GetPackageIndex(writerMethod, packageIndexURL);
 
             writerMethod("Success.");
             return 0;

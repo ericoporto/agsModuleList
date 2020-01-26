@@ -1,25 +1,25 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace agsget
+namespace AgsGetCore
 {
     // This class should be the interface when interacting with the package cache
     // some commands are distributed on BaseFiles, maybe they need to be here and not there?
     public class PackageCacheIO
     {
-        public static void GetPackageIndex(string packageIndexUrl)
+        public static void GetPackageIndex(Action<string> writerMethod, string packageIndexUrl)
         {
             if (string.IsNullOrEmpty(packageIndexUrl))
             {
-                DownloadPretty.File(Configuration.PackageIndexURL + "index/package_index.json", BaseFiles.GetIndexFilePath());
+                DownloadPretty.File(writerMethod, Configuration.PackageIndexURL + "index/package_index.json", BaseFiles.GetIndexFilePath());
             }
             else
             {
-                DownloadPretty.File(packageIndexUrl + "index/package_index.json", BaseFiles.GetIndexFilePath());
+                DownloadPretty.File(writerMethod, packageIndexUrl + "index/package_index.json", BaseFiles.GetIndexFilePath());
             }
         }
 
@@ -52,7 +52,7 @@ namespace agsget
             return File.Exists(scriptModuleFile);
         }
 
-        public static bool GetPackage(string packageIndexUrl, string packageName)
+        public static bool GetPackage(Action<string> writerMethod, string packageIndexUrl, string packageName)
         {
             var packageDirPath = Path.Combine(BaseFiles.GetCacheDirectoryPath(), packageName);
 
@@ -67,7 +67,7 @@ namespace agsget
             // for the package.
             var destinationFile = Path.Combine(packageDirPath, packageName + ".scm");
 
-            if (!DownloadPretty.File(
+            if (!DownloadPretty.File(writerMethod,
                 packageIndexUrl + "pkgs/" + packageName + "/" + packageName + ".scm",
                 destinationFile))
             {

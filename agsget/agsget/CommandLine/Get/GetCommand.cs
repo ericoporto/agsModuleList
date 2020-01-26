@@ -14,7 +14,7 @@ namespace agsget
                 throw new ArgumentNullException(nameof(GetOptions));
             }
 
-            return  GetDo.Do(Console.WriteLine, GetOptions.changeRunDir, GetOptions.PackageName);
+            return  AgsGetCore.AgsGetCore.Get(Console.WriteLine, GetOptions.changeRunDir, GetOptions.PackageName);
         }
     }
 }

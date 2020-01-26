@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
 
-namespace agsget
+namespace AgsGetCore
 {
     public class BaseFiles
     {

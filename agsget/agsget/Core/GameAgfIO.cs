@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace agsget
+namespace AgsGetCore
 {
     //I think I may need to refactor this for GameProjectIO
     public class GameAgfIO

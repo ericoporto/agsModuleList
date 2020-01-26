@@ -1,6 +1,6 @@
 using System;
 
-namespace agsget
+namespace AgsGetCore.Actions
 {
     public class SearchDo
     {

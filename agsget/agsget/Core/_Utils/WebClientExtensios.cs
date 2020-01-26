@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace agsget
+namespace AgsGetCore
 {
     public static class WebClientExtensios
     {

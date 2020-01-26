@@ -12,7 +12,7 @@ namespace agsget
         //to a general option available for all commands, but not sure yet
         public static int Run(UpdateOptions UpdateOptions)
         {
-            return UpdateDo.Do(Console.WriteLine, UpdateOptions.changeRunDir, UpdateOptions.PackageIndexURL);
+            return AgsGetCore.AgsGetCore.Update(Console.WriteLine, UpdateOptions.changeRunDir, UpdateOptions.PackageIndexURL);
         }
     }
 }

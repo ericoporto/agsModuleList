@@ -1,6 +1,6 @@
 using System;
 
-namespace agsget
+namespace AgsGetCore.Actions
 {
     public class ApplyDo
     {
@@ -41,7 +41,7 @@ namespace agsget
 
                 //Update.3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
                 //If it already exists, overwrites it.
-                PackageCacheIO.GetPackageIndex(null);
+                PackageCacheIO.GetPackageIndex(writerMethod, null);
             }
 
             //5. Check if PACKAGE_NAME exists on `./ ags_packages_cache / PACKAGE_NAME`, 
@@ -59,6 +59,7 @@ namespace agsget
 
                 //Get.5. Download PACKAGE_NAME to `./ags_packages_cache/PACKAGE_NAME`.
                 if (!PackageCacheIO.GetPackage(
+                    writerMethod,
                     Configuration.PackageIndexURL,
                     packageName))
                 {
@@ -73,6 +74,8 @@ namespace agsget
             if (GameAgfIO.IsScriptPairInserted(packageName))
             {
                 Console.WriteLine("Script already found on Game.agf.");
+
+                //TODO: This question must be console on console or a callback to an yes/no GUI, need to figure out how
                 if (!ConsoleExtra.ConfirmYN("Are you sure you want to replace?"))
                 {
                     writerMethod("Package already inserted and will not be replaced.");

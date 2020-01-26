@@ -9,7 +9,7 @@ namespace agsget
     {
         public static int Run(SearchOptions SearchOptions)
         {
-            return SearchDo.Do(Console.WriteLine, SearchOptions.changeRunDir, SearchOptions.SearchQuery);
+            return AgsGetCore.AgsGetCore.Search(Console.WriteLine, SearchOptions.changeRunDir, SearchOptions.SearchQuery);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace agsget
     {
         public static int RunPackCommand(PackOptions PackOptions)
         {
-            return PackDo.Do(Console.WriteLine, PackOptions.changeRunDir, PackOptions.PairName);
+            return AgsGetCore.AgsGetCore.Pack(Console.WriteLine, PackOptions.changeRunDir, PackOptions.PairName);
         }
     }
 }

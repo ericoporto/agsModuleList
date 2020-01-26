@@ -1,6 +1,6 @@
 using System;
 
-namespace agsget
+namespace AgsGetCore.Actions
 {
     public class GetDo
     {
@@ -32,7 +32,7 @@ namespace agsget
 
                 //Update.3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
                 //If it already exists, overwrites it.
-                PackageCacheIO.GetPackageIndex(null);
+                PackageCacheIO.GetPackageIndex(writerMethod, null);
             }
 
             //4.Check if PACKAGE_NAME exists on `./ ags_packages_cache / package_index`, if not, exit with error.
@@ -45,6 +45,7 @@ namespace agsget
 
             //5. Download PACKAGE_NAME to `./ags_packages_cache/PACKAGE_NAME`.
             if(!PackageCacheIO.GetPackage(
+                writerMethod,
                 Configuration.PackageIndexURL,
                 packageName))
             {
