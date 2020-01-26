@@ -76,6 +76,37 @@ namespace AgsGetCore
 
             return true;
         }
+
+        public static int PackagesCount()
+        {
+            var packageIndexAsString = File.ReadAllText(BaseFiles.GetIndexFilePath());
+
+            // I need to iterate through the array until I find a package with the id that I need.
+            var packageList = JsonConvert.DeserializeObject<List<Package>>(packageIndexAsString);
+
+            return packageList.Count;
+        }
+
+        public static Package[] PackagesPage(int pageNumber, int pageSize)
+        {
+            if (pageSize < 0 || pageNumber < 0) return new Package[0];
+
+            var packageIndexAsString = File.ReadAllText(BaseFiles.GetIndexFilePath());
+
+            // I need to iterate through the array until I find a package with the id that I need.
+            var packageList = JsonConvert.DeserializeObject<List<Package>>(packageIndexAsString);
+
+            if (pageSize == 0 || pageSize > packageList.Count) return packageList.ToArray();
+            if ((pageNumber+1) * pageSize > packageList.Count + pageSize) return new Package[0];
+
+            int clampedPageSize = pageSize;
+            if ((pageNumber + 1) * pageSize > packageList.Count)
+            {
+                clampedPageSize = packageList.Count - pageNumber * pageSize;
+            }
+
+            return packageList.GetRange(pageNumber * pageSize, clampedPageSize).ToArray();
+        }
     }
 
     public class Package
