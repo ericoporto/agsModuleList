@@ -1,0 +1,8 @@
+{
+  "id": "floatinghotspot",
+  "name": "FloatingHotspot",
+  "text": "Floating Hotspot Label Module to handle a label that follows the cursor when the mouse is over a hotspot/object/character.",
+  "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=49970.0",
+  "version": "0.1.0",
+  "author": "Calin Leafshade"
+}
