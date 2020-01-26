@@ -26,6 +26,14 @@
     "author": "QCPolmer"
   },
   {
+    "id": "arrowselect",
+    "name": "ArrowSelect",
+    "text": "Select things using arrows keys or joystick hat, things can be characters/hotspot/objects/GUIs.",
+    "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57379.0",
+    "version": "0.5.0",
+    "author": "eri0o"
+  },
+  {
     "id": "backgroundspeech",
     "name": "Background Speech",
     "text": "An easy way to get a character to say something in the background, while animating a speech view and playing a voice clip.",
@@ -195,6 +203,15 @@
     "author": "monkey0506"
   },
   {
+    "id": "mathsplus",
+    "name": "MathsPlus",
+    "text": "Maths Plus more math functions module.",
+    "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27930.0",
+    "original_download": "https://sites.google.com/site/monkey0506/ScrollingDialog-3.0.rar?attredirects=0&d=1",
+    "version": "1.0.0",
+    "author": "monkey0506"
+  },
+  {
     "id": "multiresponse",
     "name": "MultiResponse",
     "text": "MultiResponse",
@@ -217,6 +234,16 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
     "version": "4.1.0",
     "author": "monkey0506"
+  },
+  {
+    "id": "scrollingdialog",
+    "name": "ScrollingDialog",
+    "text": "Scrolling Dialog module.",
+    "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27930.0",
+    "original_download": "https://sites.google.com/site/monkey0506/ScrollingDialog-3.0.rar?attredirects=0&d=1",
+    "version": "3.0.0",
+    "author": "monkey0506",
+    "depends": "mathsplus"
   },
   {
     "id": "shadow",
