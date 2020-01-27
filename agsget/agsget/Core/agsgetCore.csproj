@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PublishSingleFile>true</PublishSingleFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <AssemblyName>agsget</AssemblyName>
+    <LangVersion>8</LangVersion>
+    <Title>agsget</Title>
+    <Authors>eri0o</Authors>
+    <PackageProjectUrl>https://ericoporto.github.io/agsModuleList/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ericoporto/agsModuleList/tree/master/agsget</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>agsget is a package getter for Adventure Game Studio resources.</Description>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+</Project>

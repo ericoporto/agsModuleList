@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="AGS.Types">
+      <HintPath>/Program Files (x86)/Adventure Game Studio 3.5.0/AGS.Types.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
