@@ -46,6 +46,23 @@ Edit `index/package_index.json` with your preferred json editor (I use Oxygen XM
 
 After you are done editing, use the script `indexToPkgsDirectories.js` to update the individual package.json files.
 
+## Root Files and directory description
+
+```
+__css/      // webpage style
+__js/       // webpage js->lunr, pk index
+agsget/     // tool and plugin to get pkg
+index/      // the package index       
+pkgs        // all packages we have
+scripts     // utility scripts
+.gitignore  // 
+.nojekyll   // required for GitHub Pages
+LICENSE     // our license
+README.md   // this readme
+azure-pipelines.yml  // the ci for agsget
+index.html  // website home page
+```
+
 ## challenges and notes
 
 Here are some challenges I am a bit unsure how to fix:
