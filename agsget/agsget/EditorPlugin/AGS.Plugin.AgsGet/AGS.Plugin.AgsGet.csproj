@@ -1,13 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net45</TargetFramework>
+    <Authors>eri0o</Authors>
+    <Company>Myths Untold</Company>
+    <Copyright>Copyright © eri0o, 2020</Copyright>
+    <ApplicationIcon>PluginIcon.ico</ApplicationIcon>
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="AGS.Types">
       <HintPath>/Program Files (x86)/Adventure Game Studio 3.5.0/AGS.Types.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PluginIcon.ico" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+
+  <Target Name="ILMerge">
+    <!-- the ILMergePath property points to the location of ILMerge.exe console application -->
+    <Exec Command="$(ILMergeConsolePath) Bin\x64\Release\AGS.Plugin.AgsGet-final.dll  /out:myapp.exe Bin\x64\Release\AGS.Plugin.AgsGet.dll \..\..\Core\Bin\Release\net45\win-x64\agsget.dll " />
+  </Target>
 
 </Project>

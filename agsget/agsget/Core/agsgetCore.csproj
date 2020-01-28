@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net45</TargetFramework>
     <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <AssemblyName>agsget</AssemblyName>
     <LangVersion>8</LangVersion>
     <Title>agsget</Title>
@@ -14,6 +14,9 @@
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>agsget is a package getter for Adventure Game Studio resources.</Description>
+    <ApplicationIcon />
+    <StartupObject />
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
 

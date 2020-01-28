@@ -13,6 +13,7 @@ namespace AGS.Plugin.AgsGet
         public PluginMain(IAGSEditor editor)
         {
             _editor = editor;
+            _editor.AddComponent(new AgsGetComponent(editor));
         }
 
 
