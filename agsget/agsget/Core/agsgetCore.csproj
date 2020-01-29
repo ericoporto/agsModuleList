@@ -5,7 +5,7 @@
     <TargetFramework>net45</TargetFramework>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
-    <AssemblyName>agsget</AssemblyName>
+    <AssemblyName>Core.agsget</AssemblyName>
     <LangVersion>8</LangVersion>
     <Title>agsget</Title>
     <Authors>eri0o</Authors>
