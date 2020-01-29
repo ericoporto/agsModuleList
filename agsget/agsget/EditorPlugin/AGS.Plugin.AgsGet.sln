@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGS.Plugin.AgsGet", "AGS.Plugin.AgsGet\AGS.Plugin.AgsGet.csproj", "{540DA59C-39F9-4B95-B2C0-8458FF7E0B95}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B} = {CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "agsgetCore", "..\Core\agsgetCore.csproj", "{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,14 +21,6 @@ Global
 		{540DA59C-39F9-4B95-B2C0-8458FF7E0B95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{540DA59C-39F9-4B95-B2C0-8458FF7E0B95}.Release|x86.ActiveCfg = Release|x86
 		{540DA59C-39F9-4B95-B2C0-8458FF7E0B95}.Release|x86.Build.0 = Release|x86
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Debug|x86.ActiveCfg = Release|x86
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Debug|x86.Build.0 = Release|x86
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Release|x86.ActiveCfg = Release|x86
-		{CC9603CE-4260-4DA7-BF6C-131DECC5BE5B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
