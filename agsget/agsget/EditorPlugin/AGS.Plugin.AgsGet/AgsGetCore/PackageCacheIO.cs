@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace AgsGetCore
 {
@@ -87,6 +88,31 @@ namespace AgsGetCore
             return packageList.Count;
         }
 
+        public static List<Package> AllPackages()
+        {
+            var packageIndexAsString = File.ReadAllText(BaseFiles.GetIndexFilePath());
+
+            return JsonConvert.DeserializeObject<List<Package>>(packageIndexAsString);
+        }
+
+
+        public static List<Package> QueryPackages(string searchQuery)
+        {
+            var packageIndexAsString = File.ReadAllText(BaseFiles.GetIndexFilePath());
+
+            var packageList = JsonConvert.DeserializeObject<List<Package>>(packageIndexAsString);
+
+            var searchResult = packageList.Where<Package>(p => {
+                return p.name.Contains(searchQuery) ||
+                       p.id.Contains(searchQuery.ToLower()) ||
+                       p.author.ToLower().Contains(searchQuery.ToLower()) ||
+                       p.text.Contains(searchQuery) ||
+                       p.keywords.ToLower().Contains(searchQuery.ToLower());
+                });
+
+            return searchResult.ToList();
+        }
+
         public static List<Package> PackagesPage(int pageNumber, int pageSize)
         {
             if (pageSize < 0 || pageNumber < 0) return new List<Package>();
@@ -118,5 +144,6 @@ namespace AgsGetCore
         public string forum { get; set; }
         public string author { get; set; }
         public string depends { get; set; }
+        public string keywords { get; set; }
     }
 }

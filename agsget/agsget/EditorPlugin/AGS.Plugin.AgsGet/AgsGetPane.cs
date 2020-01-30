@@ -296,6 +296,7 @@ namespace AGS.Plugin.AgsGet
             // button_GetPackage
             // 
             this.button_GetPackage.AutoSize = true;
+            this.button_GetPackage.Enabled = false;
             this.button_GetPackage.Location = new System.Drawing.Point(241, 3);
             this.button_GetPackage.Name = "button_GetPackage";
             this.button_GetPackage.Size = new System.Drawing.Size(80, 23);

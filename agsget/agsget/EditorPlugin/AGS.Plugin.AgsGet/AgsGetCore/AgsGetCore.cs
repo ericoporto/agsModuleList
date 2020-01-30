@@ -23,9 +23,9 @@ namespace AgsGetCore
             return PackDo.Do(writerMethod, changeRunDir, pairName);
         }
 
-        public static int Search(Action<string> writerMethod, string changeRunDir, string searchQuery)
+        public static async System.Threading.Tasks.Task<List<Package>> SearchAsync(Action<string> writerMethod, string changeRunDir, string searchQuery)
         {
-            return SearchDo.Do(writerMethod, changeRunDir, searchQuery);
+            return await SearchDo.DoAsync(writerMethod, changeRunDir, searchQuery);
         }
 
         public static async System.Threading.Tasks.Task<int> UpdateAsync(Action<string> writerMethod, string changeRunDir, string packageIndexURL)

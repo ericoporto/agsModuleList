@@ -28,6 +28,8 @@ namespace AGS.Plugin.AgsGet
 
         public void AppendToConsoleOut(string text)
         {
+            if (text.StartsWith("\r")) textBox_ConsoleOut.Undo();
+
             textBox_ConsoleOut.AppendText(text);
             textBox_ConsoleOut.AppendText(Environment.NewLine);
         }
@@ -37,28 +39,53 @@ namespace AGS.Plugin.AgsGet
             if (e.KeyChar == (char)Keys.Return)
             {
                 // Do Package Search
-                packages = await AgsGetCore.AgsGetCore.ListAllAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
-                listBox_packagesResults.BeginUpdate();
-                listBox_packagesResults.Items.Clear();
-                string[] package_names = packages.Select(p => p.id).ToArray();
-                listBox_packagesResults.Items.AddRange(package_names);
-                listBox_packagesResults.EndUpdate();
+                List<AgsGetCore.Package> package_query_result;
+
+                if (textBox_searchQuery.Text.Length < 1)
+                {
+                    package_query_result = await AgsGetCore.AgsGetCore.ListAllAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
+                }
+                else
+                {
+                    package_query_result = await AgsGetCore.AgsGetCore.SearchAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, textBox_searchQuery.Text);
+                }
+
+                if (package_query_result != null)
+                {
+                    button_GetPackage.Enabled = false;
+                    packages = package_query_result;
+                    listBox_packagesResults.BeginUpdate();
+                    listBox_packagesResults.Items.Clear();
+                    string[] package_names = packages.Select(p => p.id).ToArray();
+                    listBox_packagesResults.Items.AddRange(package_names);
+                    listBox_packagesResults.EndUpdate();
+                }
             }
         }
         private async void listBox_packagesResults_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (packages.Count <= 0) return;
-            if (listBox_packagesResults.SelectedIndex < 0 ||
+            if (packages.Count <= 0 ||
+                listBox_packagesResults.SelectedIndex < 0 ||
                 listBox_packagesResults.SelectedItem == null ||
-                listBox_packagesResults.SelectedItem.ToString().Length <= 0) return;
+                listBox_packagesResults.SelectedItem.ToString().Length <= 0)
+            {
+                button_GetPackage.Enabled = false;
+                return;
+            }
 
             string selected_item = listBox_packagesResults.SelectedItem.ToString();
 
             AgsGetCore.Package match = packages
                 .FirstOrDefault(p => p.id.Equals(selected_item, StringComparison.InvariantCultureIgnoreCase));
-            
-            if (match == null) return;
 
+            if (match == null)
+            {
+                button_GetPackage.Enabled = false;
+                return;
+            }
+
+
+            button_GetPackage.Enabled = true;
             label_selectedPackageName.Text = match.name;
             linkLabel_selectedPackageForumPage.Text = match.forum;
             textBox_selectedPackageText.Text = match.text;
