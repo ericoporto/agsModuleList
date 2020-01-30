@@ -5,7 +5,7 @@ namespace AgsGetCore.Actions
 {
     public class ListDo
     {
-        public static List<Package> Do(Action<string> writerMethod, string changeRunDir, string packageIndexURL, int pageSize, int pageNumber)
+        public static async System.Threading.Tasks.Task<List<Package>> DoAsync(Action<string> writerMethod, string changeRunDir, string packageIndexURL, int pageSize, int pageNumber)
         {
             BaseFiles.SetRunDirectory(changeRunDir);
 
@@ -27,7 +27,7 @@ namespace AgsGetCore.Actions
 
                 //Update.3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
                 //If it already exists, overwrites it.
-                PackageCacheIO.GetPackageIndex(writerMethod, packageIndexURL);
+                await PackageCacheIO.GetPackageIndexAsync(writerMethod, packageIndexURL);
             }
 
             if (!BaseFiles.ExistsIndexFile())

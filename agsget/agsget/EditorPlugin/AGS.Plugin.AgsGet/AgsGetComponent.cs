@@ -30,11 +30,6 @@ namespace AGS.Plugin.AgsGet
             _editor.GUIController.RegisterIcon("AgsGetPluginIcon", GetIcon("PluginIcon.ico"));
             _editor.GUIController.ProjectTree.AddTreeRoot(this, CONTROL_ID_ROOT_NODE, "AgsGet plugin", "AgsGetPluginIcon");
             _pane = new ContentDocument(new AgsGetPane(editor), "Plugin pane", this);
-
-            _mainMenuItems = new MenuCommands(NEW_MAIN_MENU_ID);
-            _mainMenuItems.Commands.Add(new MenuCommand(CONTROL_ID_MAIN_MENU_OPTION, "Main menu option"));
-            _editor.GUIController.AddMenu(this, NEW_MAIN_MENU_ID, "AgsGetPlugin", _editor.GUIController.FileMenuID);
-            _editor.GUIController.AddMenuItems(this, _mainMenuItems);
         }
 
         private Icon GetIcon(string fileName)
@@ -50,7 +45,7 @@ namespace AGS.Plugin.AgsGet
         IList<MenuCommand> IEditorComponent.GetContextMenu(string controlID)
         {
             List<MenuCommand> contextMenu = new List<MenuCommand>();
-            contextMenu.Add(new MenuCommand(CONTROL_ID_CONTEXT_MENU_OPTION, "AgsGet context menu option"));
+            contextMenu.Add(new MenuCommand(CONTROL_ID_CONTEXT_MENU_OPTION, "About..."));
             return contextMenu;
         }
 
@@ -58,11 +53,7 @@ namespace AGS.Plugin.AgsGet
         {
             if (controlID == CONTROL_ID_CONTEXT_MENU_OPTION)
             {
-                _editor.GUIController.ShowMessage("You clicked the context menu option!", MessageBoxIconType.Information);
-            }
-            else if (controlID == CONTROL_ID_MAIN_MENU_OPTION)
-            {
-                _editor.GUIController.ShowMessage("You clicked the main menu option!", MessageBoxIconType.Information);
+                _editor.GUIController.ShowMessage("AgsGet Editor Plugin made by eri0o", MessageBoxIconType.Information);
             }
             else if (controlID == CONTROL_ID_ROOT_NODE)
             {

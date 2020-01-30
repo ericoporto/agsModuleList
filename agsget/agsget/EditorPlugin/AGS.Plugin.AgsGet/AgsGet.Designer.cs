@@ -32,12 +32,12 @@ namespace AGS.Plugin.AgsGet
             textBox_ConsoleOut.AppendText(Environment.NewLine);
         }
 
-        private void textBox_searchQuery_KeyPress(object sender, KeyPressEventArgs e)
+        private async void textBox_searchQuery_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
             {
                 // Do Package Search
-                packages = AgsGetCore.AgsGetCore.ListAll(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
+                packages = await AgsGetCore.AgsGetCore.ListAllAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
                 listBox_packagesResults.BeginUpdate();
                 listBox_packagesResults.Items.Clear();
                 string[] package_names = packages.Select(p => p.id).ToArray();
@@ -45,7 +45,7 @@ namespace AGS.Plugin.AgsGet
                 listBox_packagesResults.EndUpdate();
             }
         }
-        private void listBox_packagesResults_SelectedIndexChanged(object sender, EventArgs e)
+        private async void listBox_packagesResults_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (packages.Count <= 0) return;
             if (listBox_packagesResults.SelectedIndex < 0 ||
@@ -61,7 +61,45 @@ namespace AGS.Plugin.AgsGet
 
             label_selectedPackageName.Text = match.name;
             linkLabel_selectedPackageForumPage.Text = match.forum;
-            label_selectedPackageText.Text = match.text;
+            textBox_selectedPackageText.Text = match.text;
+            label_selectedPackageAuthor.Text = "author: " + match.author;
+            if (match.depends != null && match.depends.Length > 0) 
+                label_selectedPackageDepends.Text = "depends: " + match.depends;
+            else 
+                label_selectedPackageDepends.Text = "";
+            label_selectedPackageVersion.Text = "version: " + match.version;
+        }
+
+        private void linkLabel_selectedPackageForumPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            bool IsValidUri(string uri)
+            {
+                if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
+                    return false;
+                Uri tmp;
+                if (!Uri.TryCreate(uri, UriKind.Absolute, out tmp))
+                    return false;
+                return tmp.Scheme == Uri.UriSchemeHttp || tmp.Scheme == Uri.UriSchemeHttps;
+            }
+            linkLabel_selectedPackageForumPage.Text = linkLabel_selectedPackageForumPage.Text.Trim();
+            if (!linkLabel_selectedPackageForumPage.Text.StartsWith("https://www.adventuregamestudio.co.uk/forums/index.php?topic=", StringComparison.InvariantCultureIgnoreCase)) return;
+            if (!IsValidUri(linkLabel_selectedPackageForumPage.Text)) return;
+            if (!linkLabel_selectedPackageForumPage.Text.EndsWith(".0", StringComparison.InvariantCultureIgnoreCase)) return;
+            if (linkLabel_selectedPackageForumPage.Text.Length > 72) return;
+            System.Diagnostics.Process.Start(linkLabel_selectedPackageForumPage.Text);
+        }
+        private async void button_UpdateIndex_Click(object sender, EventArgs e)
+        {
+            await AgsGetCore.AgsGetCore.UpdateAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
+        }
+
+        private async void button_GetPackage_Click(object sender, EventArgs e)
+        {
+
+            string selected_item = listBox_packagesResults.SelectedItem.ToString();
+            if (selected_item == null || selected_item.Length <= 0) return;
+
+            await AgsGetCore.AgsGetCore.GetAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
         }
     }
 }

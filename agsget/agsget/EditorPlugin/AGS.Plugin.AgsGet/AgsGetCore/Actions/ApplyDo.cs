@@ -4,7 +4,7 @@ namespace AgsGetCore.Actions
 {
     public class ApplyDo
     {
-        public static int Do(Action<string> writerMethod, string changeRunDir, string packageName)
+        public static async System.Threading.Tasks.Task<int> DoAsync(Action<string> writerMethod, string changeRunDir, string packageName)
         {
             BaseFiles.SetRunDirectory(changeRunDir);
 
@@ -41,7 +41,7 @@ namespace AgsGetCore.Actions
 
                 //Update.3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
                 //If it already exists, overwrites it.
-                PackageCacheIO.GetPackageIndex(writerMethod, null);
+                await PackageCacheIO.GetPackageIndexAsync(writerMethod, null);
             }
 
             //5. Check if PACKAGE_NAME exists on `./ ags_packages_cache / PACKAGE_NAME`, 
@@ -58,7 +58,7 @@ namespace AgsGetCore.Actions
                 }
 
                 //Get.5. Download PACKAGE_NAME to `./ags_packages_cache/PACKAGE_NAME`.
-                if (!PackageCacheIO.GetPackage(
+                if (!await PackageCacheIO.GetPackageAsync(
                     writerMethod,
                     Configuration.PackageIndexURL,
                     packageName))

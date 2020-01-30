@@ -11,15 +11,15 @@ namespace AgsGetCore
     // some commands are distributed on BaseFiles, maybe they need to be here and not there?
     public class PackageCacheIO
     {
-        public static void GetPackageIndex(Action<string> writerMethod, string packageIndexUrl)
+        public static async System.Threading.Tasks.Task GetPackageIndexAsync(Action<string> writerMethod, string packageIndexUrl)
         {
             if (string.IsNullOrEmpty(packageIndexUrl))
             {
-                DownloadPretty.File(writerMethod, Configuration.PackageIndexURL + "index/package_index.json", BaseFiles.GetIndexFilePath());
+                await DownloadPretty.FileAsync(writerMethod, Configuration.PackageIndexURL + "index/package_index.json", BaseFiles.GetIndexFilePath());
             }
             else
             {
-                DownloadPretty.File(writerMethod, packageIndexUrl + "index/package_index.json", BaseFiles.GetIndexFilePath());
+                await DownloadPretty.FileAsync(writerMethod, packageIndexUrl + "index/package_index.json", BaseFiles.GetIndexFilePath());
             }
         }
 
@@ -52,7 +52,7 @@ namespace AgsGetCore
             return File.Exists(scriptModuleFile);
         }
 
-        public static bool GetPackage(Action<string> writerMethod, string packageIndexUrl, string packageName)
+        public static async System.Threading.Tasks.Task<bool> GetPackageAsync(Action<string> writerMethod, string packageIndexUrl, string packageName)
         {
             var packageDirPath = Path.Combine(BaseFiles.GetCacheDirectoryPath(), packageName);
 
@@ -67,7 +67,7 @@ namespace AgsGetCore
             // for the package.
             var destinationFile = Path.Combine(packageDirPath, packageName + ".scm");
 
-            if (!DownloadPretty.File(writerMethod,
+            if (!await DownloadPretty.FileAsync(writerMethod,
                 packageIndexUrl + "pkgs/" + packageName + "/" + packageName + ".scm",
                 destinationFile))
             {

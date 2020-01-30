@@ -7,15 +7,15 @@ namespace AgsGetCore
 {
     class AgsGetCore
     {
-        public static int Apply(Action<string> writerMethod, string changeRunDir, string packageName)
+        public static async System.Threading.Tasks.Task<int> ApplyAsync(Action<string> writerMethod, string changeRunDir, string packageName)
         {
 
-            return ApplyDo.Do(writerMethod, changeRunDir, packageName);
+            return await ApplyDo.DoAsync(writerMethod, changeRunDir, packageName);
         }
 
-        public static int Get(Action<string> writerMethod, string changeRunDir, string packageName)
+        public static async System.Threading.Tasks.Task<int> GetAsync(Action<string> writerMethod, string changeRunDir, string packageName)
         {
-            return GetDo.Do(writerMethod, changeRunDir, packageName);
+            return await GetDo.DoAsync(writerMethod, changeRunDir, packageName);
         }
 
         public static int Pack(Action<string> writerMethod, string changeRunDir, string pairName)
@@ -28,14 +28,14 @@ namespace AgsGetCore
             return SearchDo.Do(writerMethod, changeRunDir, searchQuery);
         }
 
-        public static int Update(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
+        public static async System.Threading.Tasks.Task<int> UpdateAsync(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
         {
-            return UpdateDo.Do(writerMethod, changeRunDir, packageIndexURL);
+            return await UpdateDo.DoAsync(writerMethod, changeRunDir, packageIndexURL);
         }
 
-        public static List<Package> ListAll(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
+        public static async System.Threading.Tasks.Task<List<Package>> ListAllAsync(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
         {
-            return ListDo.Do(writerMethod, changeRunDir, packageIndexURL, 0, 0);
+            return await ListDo.DoAsync(writerMethod, changeRunDir, packageIndexURL, 0, 0);
         }
     }
 }

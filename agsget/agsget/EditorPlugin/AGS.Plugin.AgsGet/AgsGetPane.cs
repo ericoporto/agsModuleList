@@ -21,11 +21,17 @@ namespace AGS.Plugin.AgsGet
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private SplitContainer splitContainer1;
-        private Label label_selectedPackageText;
         private LinkLabel linkLabel_selectedPackageForumPage;
         private Label label_selectedPackageName;
         private FlowLayoutPanel flowLayoutPanel1;
         private TextBox textBox_searchQuery;
+        private Label label_selectedPackageVersion;
+        private Label label_selectedPackageAuthor;
+        private Label label_selectedPackageDepends;
+        private TextBox textBox_selectedPackageText;
+        private Label label1;
+        private Button button_UpdateIndex;
+        private Button button_GetPackage;
         private IAGSEditor _editor;
 
 		public AgsGetPane(IAGSEditor editor)
@@ -56,10 +62,16 @@ namespace AGS.Plugin.AgsGet
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label_selectedPackageText = new System.Windows.Forms.Label();
+            this.textBox_selectedPackageText = new System.Windows.Forms.TextBox();
+            this.label_selectedPackageDepends = new System.Windows.Forms.Label();
             this.linkLabel_selectedPackageForumPage = new System.Windows.Forms.LinkLabel();
+            this.label_selectedPackageVersion = new System.Windows.Forms.Label();
+            this.label_selectedPackageAuthor = new System.Windows.Forms.Label();
             this.label_selectedPackageName = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button_UpdateIndex = new System.Windows.Forms.Button();
+            this.button_GetPackage = new System.Windows.Forms.Button();
             this.textBox_searchQuery = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -124,6 +136,7 @@ namespace AGS.Plugin.AgsGet
             // 
             // btn_InstallPackage
             // 
+            this.btn_InstallPackage.AutoSize = true;
             this.btn_InstallPackage.Location = new System.Drawing.Point(3, 3);
             this.btn_InstallPackage.Name = "btn_InstallPackage";
             this.btn_InstallPackage.Size = new System.Drawing.Size(111, 25);
@@ -172,34 +185,70 @@ namespace AGS.Plugin.AgsGet
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageText);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox_selectedPackageText);
+            this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageDepends);
             this.splitContainer1.Panel2.Controls.Add(this.linkLabel_selectedPackageForumPage);
+            this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageVersion);
+            this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageAuthor);
             this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageName);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(1063, 348);
             this.splitContainer1.SplitterDistance = 354;
             this.splitContainer1.TabIndex = 2;
             // 
-            // label_selectedPackageText
+            // textBox_selectedPackageText
             // 
-            this.label_selectedPackageText.AutoSize = true;
-            this.label_selectedPackageText.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label_selectedPackageText.Location = new System.Drawing.Point(0, 57);
-            this.label_selectedPackageText.Name = "label_selectedPackageText";
-            this.label_selectedPackageText.Size = new System.Drawing.Size(35, 13);
-            this.label_selectedPackageText.TabIndex = 3;
-            this.label_selectedPackageText.Text = "label2";
+            this.textBox_selectedPackageText.CausesValidation = false;
+            this.textBox_selectedPackageText.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_selectedPackageText.Location = new System.Drawing.Point(0, 96);
+            this.textBox_selectedPackageText.MinimumSize = new System.Drawing.Size(4, 60);
+            this.textBox_selectedPackageText.Multiline = true;
+            this.textBox_selectedPackageText.Name = "textBox_selectedPackageText";
+            this.textBox_selectedPackageText.ReadOnly = true;
+            this.textBox_selectedPackageText.Size = new System.Drawing.Size(705, 60);
+            this.textBox_selectedPackageText.TabIndex = 7;
+            // 
+            // label_selectedPackageDepends
+            // 
+            this.label_selectedPackageDepends.AutoSize = true;
+            this.label_selectedPackageDepends.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label_selectedPackageDepends.Location = new System.Drawing.Point(0, 83);
+            this.label_selectedPackageDepends.Name = "label_selectedPackageDepends";
+            this.label_selectedPackageDepends.Size = new System.Drawing.Size(35, 13);
+            this.label_selectedPackageDepends.TabIndex = 6;
+            this.label_selectedPackageDepends.Text = "label1";
             // 
             // linkLabel_selectedPackageForumPage
             // 
             this.linkLabel_selectedPackageForumPage.AutoSize = true;
             this.linkLabel_selectedPackageForumPage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.linkLabel_selectedPackageForumPage.Location = new System.Drawing.Point(0, 44);
+            this.linkLabel_selectedPackageForumPage.Location = new System.Drawing.Point(0, 70);
             this.linkLabel_selectedPackageForumPage.Name = "linkLabel_selectedPackageForumPage";
             this.linkLabel_selectedPackageForumPage.Size = new System.Drawing.Size(55, 13);
             this.linkLabel_selectedPackageForumPage.TabIndex = 2;
             this.linkLabel_selectedPackageForumPage.TabStop = true;
             this.linkLabel_selectedPackageForumPage.Text = "linkLabel1";
+            this.linkLabel_selectedPackageForumPage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_selectedPackageForumPage_LinkClicked);
+            // 
+            // label_selectedPackageVersion
+            // 
+            this.label_selectedPackageVersion.AutoSize = true;
+            this.label_selectedPackageVersion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label_selectedPackageVersion.Location = new System.Drawing.Point(0, 57);
+            this.label_selectedPackageVersion.Name = "label_selectedPackageVersion";
+            this.label_selectedPackageVersion.Size = new System.Drawing.Size(35, 13);
+            this.label_selectedPackageVersion.TabIndex = 4;
+            this.label_selectedPackageVersion.Text = "label1";
+            // 
+            // label_selectedPackageAuthor
+            // 
+            this.label_selectedPackageAuthor.AutoSize = true;
+            this.label_selectedPackageAuthor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label_selectedPackageAuthor.Location = new System.Drawing.Point(0, 44);
+            this.label_selectedPackageAuthor.Name = "label_selectedPackageAuthor";
+            this.label_selectedPackageAuthor.Size = new System.Drawing.Size(35, 13);
+            this.label_selectedPackageAuthor.TabIndex = 5;
+            this.label_selectedPackageAuthor.Text = "label1";
             // 
             // label_selectedPackageName
             // 
@@ -215,11 +264,45 @@ namespace AGS.Plugin.AgsGet
             // 
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.btn_InstallPackage);
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.button_UpdateIndex);
+            this.flowLayoutPanel1.Controls.Add(this.button_GetPackage);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(705, 31);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(120, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "       ";
+            // 
+            // button_UpdateIndex
+            // 
+            this.button_UpdateIndex.AutoSize = true;
+            this.button_UpdateIndex.Location = new System.Drawing.Point(154, 3);
+            this.button_UpdateIndex.Name = "button_UpdateIndex";
+            this.button_UpdateIndex.Size = new System.Drawing.Size(81, 23);
+            this.button_UpdateIndex.TabIndex = 3;
+            this.button_UpdateIndex.Text = "Update Index";
+            this.button_UpdateIndex.UseVisualStyleBackColor = true;
+            this.button_UpdateIndex.Click += new System.EventHandler(this.button_UpdateIndex_Click);
+            // 
+            // button_GetPackage
+            // 
+            this.button_GetPackage.AutoSize = true;
+            this.button_GetPackage.Location = new System.Drawing.Point(241, 3);
+            this.button_GetPackage.Name = "button_GetPackage";
+            this.button_GetPackage.Size = new System.Drawing.Size(80, 23);
+            this.button_GetPackage.TabIndex = 5;
+            this.button_GetPackage.Text = "Get Package";
+            this.button_GetPackage.UseVisualStyleBackColor = true;
+            this.button_GetPackage.Click += new System.EventHandler(this.button_GetPackage_Click);
             // 
             // textBox_searchQuery
             // 
@@ -248,6 +331,7 @@ namespace AGS.Plugin.AgsGet
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

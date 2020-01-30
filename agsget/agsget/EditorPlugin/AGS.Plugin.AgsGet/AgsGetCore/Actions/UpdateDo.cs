@@ -8,7 +8,7 @@ namespace AgsGetCore.Actions
         // Otherwise, use default package index url.
         // I think maybe the url should be moved 
         //to a general option available for all commands, but not sure yet
-        public static int Do(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
+        public static async System.Threading.Tasks.Task<int> DoAsync(Action<string> writerMethod, string changeRunDir, string packageIndexURL)
         {
             BaseFiles.SetRunDirectory(changeRunDir);
             //1. Checks if the command is run from a folder containing a valid Game.agf project. 
@@ -24,7 +24,7 @@ namespace AgsGetCore.Actions
 
             //3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
             //If it already exists, overwrites it.
-            PackageCacheIO.GetPackageIndex(writerMethod, packageIndexURL);
+            await PackageCacheIO.GetPackageIndexAsync(writerMethod, packageIndexURL);
 
             writerMethod("Success.");
             return 0;
