@@ -16,6 +16,11 @@ namespace AgsGetCore
         {
             var destinationFile = BaseFiles.GetIndexFilePath();
             bool downloadResult;
+            const string bkp_ext = ".bkp";
+            string bkp_downloadFile = destinationFile + bkp_ext;
+
+            if (File.Exists(destinationFile)) File.Move(destinationFile, bkp_downloadFile);
+
             if (string.IsNullOrEmpty(packageIndexUrl))
             {
                 downloadResult = await DownloadPretty.FileAsync(writerMethod, Configuration.PackageIndexURL + "index/package_index.json", destinationFile);
@@ -24,8 +29,18 @@ namespace AgsGetCore
             {
                 downloadResult = await DownloadPretty.FileAsync(writerMethod, packageIndexUrl + "index/package_index.json", destinationFile);
             }
+
+            // If the download succeeds we delete the backup, if not, we replace it with the backup
+            if(!downloadResult)
+            {
+                if (File.Exists(destinationFile)) File.Delete(destinationFile);
+                File.Move(bkp_downloadFile, destinationFile);
+                return false;
+            }
+
+            if (File.Exists(bkp_downloadFile)) File.Delete(bkp_downloadFile);
             writerMethod("Index downloaded to:" + destinationFile);
-            return downloadResult;
+            return true;
         }
 
         public static bool PackageOnIndex(string packageName)
@@ -71,14 +86,21 @@ namespace AgsGetCore
             // This will enable downloading license, readme and extra resources
             // for the package.
             var destinationFile = Path.Combine(packageDirPath, packageName + ".scm");
+            const string bkp_ext = ".bkp";
+            string bkp_downloadFile = destinationFile + bkp_ext;
+
+            if (File.Exists(destinationFile)) File.Move(destinationFile, bkp_downloadFile);
 
             if (!await DownloadPretty.FileAsync(writerMethod,
                 packageIndexUrl + "pkgs/" + packageName + "/" + packageName + ".scm",
                 destinationFile))
             {
+                if (File.Exists(destinationFile)) File.Delete(destinationFile);
+                File.Move(bkp_downloadFile, destinationFile);
                 return false;
             }
 
+            if (File.Exists(bkp_downloadFile)) File.Delete(bkp_downloadFile);
             writerMethod("Package downloaded to:" + destinationFile);
 
             return true;
