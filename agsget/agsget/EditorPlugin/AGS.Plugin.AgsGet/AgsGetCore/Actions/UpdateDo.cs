@@ -24,9 +24,13 @@ namespace AgsGetCore.Actions
 
             //3.Downloads the index of packages to `./ ags_packages_cache / package_index`.
             //If it already exists, overwrites it.
-            await PackageCacheIO.GetPackageIndexAsync(writerMethod, packageIndexURL);
+            if(!await PackageCacheIO.GetPackageIndexAsync(writerMethod, packageIndexURL))
+            {
+                writerMethod("Could not update package index.");
+                return 1;
+            }
 
-            writerMethod("Success.");
+            writerMethod("Index updated with success.");
             return 0;
         }
     }

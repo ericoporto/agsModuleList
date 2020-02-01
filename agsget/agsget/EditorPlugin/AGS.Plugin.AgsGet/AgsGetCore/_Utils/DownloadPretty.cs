@@ -12,11 +12,6 @@ namespace AgsGetCore
 
             writerMethod("Will download from:"+ url);
 
-            bool is_async = true;
-
-            if (writerMethod == Console.WriteLine) is_async = false;
-
-
             var downloadTask = webClient.DownloadFileTaskAsync(
             new Uri(url),
                 filename,

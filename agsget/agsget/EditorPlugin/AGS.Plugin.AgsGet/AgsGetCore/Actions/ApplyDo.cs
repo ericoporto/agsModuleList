@@ -102,7 +102,7 @@ namespace AgsGetCore.Actions
                 return 1;
             }
 
-            writerMethod("-");
+            writerMethod("");
             return 0;
         }
     }

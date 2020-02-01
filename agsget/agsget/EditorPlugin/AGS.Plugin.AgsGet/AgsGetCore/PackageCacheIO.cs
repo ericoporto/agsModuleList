@@ -12,16 +12,20 @@ namespace AgsGetCore
     // some commands are distributed on BaseFiles, maybe they need to be here and not there?
     public class PackageCacheIO
     {
-        public static async System.Threading.Tasks.Task GetPackageIndexAsync(Action<string> writerMethod, string packageIndexUrl)
+        public static async System.Threading.Tasks.Task<bool> GetPackageIndexAsync(Action<string> writerMethod, string packageIndexUrl)
         {
+            var destinationFile = BaseFiles.GetIndexFilePath();
+            bool downloadResult;
             if (string.IsNullOrEmpty(packageIndexUrl))
             {
-                await DownloadPretty.FileAsync(writerMethod, Configuration.PackageIndexURL + "index/package_index.json", BaseFiles.GetIndexFilePath());
+                downloadResult = await DownloadPretty.FileAsync(writerMethod, Configuration.PackageIndexURL + "index/package_index.json", destinationFile);
             }
             else
             {
-                await DownloadPretty.FileAsync(writerMethod, packageIndexUrl + "index/package_index.json", BaseFiles.GetIndexFilePath());
+                downloadResult = await DownloadPretty.FileAsync(writerMethod, packageIndexUrl + "index/package_index.json", destinationFile);
             }
+            writerMethod("Index downloaded to:" + destinationFile);
+            return downloadResult;
         }
 
         public static bool PackageOnIndex(string packageName)
@@ -75,7 +79,7 @@ namespace AgsGetCore
                 return false;
             }
 
-            writerMethod("Package Downloaded to:" + destinationFile);
+            writerMethod("Package downloaded to:" + destinationFile);
 
             return true;
         }

@@ -17,19 +17,17 @@ namespace AGS.Plugin.AgsGet
         private const string COMPONENT_ID = "AgsGetComponent";
         private const string CONTROL_ID_CONTEXT_MENU_OPTION = "AgsGetPluginOptionClick";
         private const string CONTROL_ID_ROOT_NODE = "AgsGetPluginRoot";
-        private const string CONTROL_ID_MAIN_MENU_OPTION = "AgsGetPluginMainMenuOptionClick";
-        private const string NEW_MAIN_MENU_ID = "AgsGetPluginMenu";
+        private const string ICON_KEY = "AgsGetPluginIcon";
 
-        private IAGSEditor _editor;
-        private ContentDocument _pane;
-        private MenuCommands _mainMenuItems;
+        private readonly IAGSEditor _editor;
+        private readonly ContentDocument _pane;
 
         public AgsGetComponent(IAGSEditor editor)
         {
             _editor = editor;
-            _editor.GUIController.RegisterIcon("AgsGetPluginIcon", GetIcon("PluginIcon.ico"));
-            _editor.GUIController.ProjectTree.AddTreeRoot(this, CONTROL_ID_ROOT_NODE, "AgsGet plugin", "AgsGetPluginIcon");
-            _pane = new ContentDocument(new AgsGetPane(editor), "Plugin pane", this);
+            _editor.GUIController.RegisterIcon(ICON_KEY, GetIcon("PluginIcon.ico"));
+            _editor.GUIController.ProjectTree.AddTreeRoot(this, CONTROL_ID_ROOT_NODE, "AgsGet plugin", ICON_KEY);
+            _pane = new ContentDocument(new AgsGetPane(editor), "AgsGet", this, ICON_KEY);
         }
 
         private Icon GetIcon(string fileName)
@@ -81,21 +79,21 @@ namespace AGS.Plugin.AgsGet
 
         void IEditorComponent.ToXml(System.Xml.XmlTextWriter writer)
         {
-            writer.WriteElementString("TextBoxContents", ((AgsGetPane)_pane.Control).TextBoxContents);
+           // writer.WriteElementString("TextBoxContents", ((AgsGetPane)_pane.Control).TextBoxContents);
         }
 
         void IEditorComponent.FromXml(System.Xml.XmlNode node)
         {
-            if (node == null)
-            {
-                // node will be null if loading a 2.72 game or if
-                // the game hasn't used this plugin before
-                ((AgsGetPane)_pane.Control).TextBoxContents = "Default text";
-            }
-            else
-            {
-                ((AgsGetPane)_pane.Control).TextBoxContents = node.SelectSingleNode("TextBoxContents").InnerText;
-            }
+            //if (node == null)
+            //{
+            //    // node will be null if loading a 2.72 game or if
+            //    // the game hasn't used this plugin before
+            //    ((AgsGetPane)_pane.Control).TextBoxContents = "";
+            //}
+            //else
+            //{
+            //    ((AgsGetPane)_pane.Control).TextBoxContents = node.SelectSingleNode("TextBoxContents").InnerText;
+            //}
         }
 
         void IEditorComponent.EditorShutdown()
