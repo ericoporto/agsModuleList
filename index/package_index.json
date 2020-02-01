@@ -6,7 +6,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55235.0",
     "version": "0.1.0",
     "author": "eri0o",
-	"keywords": "joystick gamepad"
+    "keywords": "joystick gamepad"
   },
   {
     "id": "altkeyboardmovement",
@@ -16,7 +16,7 @@
     "original_download": "https://mega.nz/#!JBZgyBKZ!QfNt-W7GSXtO8dXbYvGPiQ87Jxf125LQ0sCu8UnHtNA",
     "version": "0.3.0",
     "author": "Khris",
-	"keywords": "keyboard"
+    "keywords": "keyboard"
   },
   {
     "id": "animobjs",
@@ -26,7 +26,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=56038.0",
     "version": "1.0.0",
     "author": "QCPolmer",
-	"keywords": "move objects grouping"
+    "keywords": "move objects grouping"
   },
   {
     "id": "arrowselect",
@@ -35,7 +35,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57379.0",
     "version": "0.5.0",
     "author": "eri0o",
-	"keywords": "select point arrow keyboard joystick gamepad"
+    "keywords": "select point arrow keyboard joystick gamepad"
   },
   {
     "id": "backgroundspeech",
@@ -44,7 +44,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=35787.0",
     "version": "1.1.0",
     "author": "Electroshokker",
-	"keywords": "background speech say backgroundsay"
+    "keywords": "background speech say backgroundsay"
   },
   {
     "id": "caterpillar",
@@ -53,7 +53,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=44845.0",
     "version": "0.1.0",
     "author": "Daniel Eakins",
-	"keywords": "party walk"
+    "keywords": "party walk"
   },
   {
     "id": "chatdisplay",
@@ -61,7 +61,7 @@
     "text": "WhatsApp like dialog chat display.",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54557.0",
     "author": "Khris",
-	"keywords": "chat conversation app dialog"
+    "keywords": "chat conversation app dialog"
   },
   {
     "id": "controlz",
@@ -70,7 +70,16 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=57427.0",
     "version": "0.1.0",
     "author": "eri0o",
-	"keywords": "keyboard gamepad"
+    "keywords": "keyboard gamepad"
+  },
+  {
+    "id": "countdown",
+    "name": "Count Down",
+    "text": "Provides functions to simplify adding a count-down timer to your game and, optionally, display the remaining time on a label.",
+    "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=39606.0",
+    "version": "1.1.0",
+    "author": "monkey0506",
+    "keywords": "timer countdown time"
   },
   {
     "id": "credits",
@@ -79,7 +88,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28659.0",
     "version": "1.19.0",
     "author": "SSH",
-	"keywords": "credit ending"
+    "keywords": "credit ending"
   },
   {
     "id": "customdialoggui",
@@ -89,7 +98,7 @@
     "original_download": "http://shatten.sonores.de/wp-content/uploads/2017/01/CustomDialogGui_17.zip",
     "version": "1.7.0",
     "author": "abstauber",
-	"keywords": "custom graphical dialog customdialog"
+    "keywords": "custom graphical dialog customdialog"
   },
   {
     "id": "daynightcycle",
@@ -98,7 +107,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=49791.0",
     "version": "1.2.0",
     "author": "Snarky",
-	"keywords": "day and night dayandnight morning afternoon clock season"
+    "keywords": "day and night dayandnight morning afternoon clock season"
   },
   {
     "id": "description",
@@ -108,7 +117,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=26306.0",
     "version": "1.6.0",
     "author": "SSH",
-	"keywords": "tooltip"
+    "keywords": "tooltip"
   },
   {
     "id": "displaybasedgui",
@@ -117,7 +126,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55331.0",
     "version": "1.0.0",
     "author": "Monsieur OUXX",
-	"keywords": "DisplayGUI"
+    "keywords": "DisplayGUI"
   },
   {
     "id": "doubleclick",
@@ -126,7 +135,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53226.0",
     "version": "1.0.0",
     "author": "Crimson Wizard",
-	"keywords": "double click module"
+    "keywords": "double click module"
   },
   {
     "id": "dragdrop",
@@ -137,7 +146,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53332.0",
     "version": "1.0.0",
     "author": "Crimson Wizard",
-	"keywords": "drag and drop dragandrop dragging"
+    "keywords": "drag and drop dragandrop dragging"
   },
   {
     "id": "dragdropcommon",
@@ -149,7 +158,7 @@
     "version": "1.0.0",
     "author": "Crimson Wizard",
     "depends": "dragdrop",
-	"keywords": "drag and drop dragandrop dragging"
+    "keywords": "drag and drop dragandrop dragging"
   },
   {
     "id": "drawantialiased",
@@ -160,7 +169,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=39846.0",
     "version": "1.1.0",
     "author": "Kweepa",
-	"keywords": "antialiased smooth"
+    "keywords": "antialiased smooth"
   },
   {
     "id": "easymirrors",
@@ -169,7 +178,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=48641.0",
     "version": "2.0.0",
     "author": "Monsieur OUXX",
-	"keywords": "mirror"
+    "keywords": "mirror"
   },
   {
     "id": "fakescreen",
@@ -178,7 +187,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=38592.0",
     "version": "1.0.0",
     "author": "Kweepa",
-	"keywords": "screen to sprite"
+    "keywords": "screen to sprite"
   },
   {
     "id": "floatinghotspot",
@@ -187,7 +196,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=49970.0",
     "version": "0.1.0",
     "author": "Calin Leafshade",
-	"keywords": "tooltip"
+    "keywords": "tooltip"
   },
   {
     "id": "hinthighlighting",
@@ -196,7 +205,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=56463.0",
     "version": "2.2.0",
     "author": "artium",
-	"keywords": "hotspot show highlight"
+    "keywords": "hotspot show highlight"
   },
   {
     "id": "inifile2",
@@ -205,7 +214,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=46631.0",
     "version": "1.0.0",
     "author": "Wyz",
-	"keywords": "ini file parser and writer"
+    "keywords": "ini file parser and writer"
   },
   {
     "id": "keylistener",
@@ -214,7 +223,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=53226.0",
     "version": "0.9.7",
     "author": "Crimson Wizard",
-	"keywords": "key state keyboard"
+    "keywords": "key state keyboard"
   },
   {
     "id": "lake",
@@ -224,7 +233,7 @@
     "original_download": "http://shatten.sonores.de/wp-content/uploads/2017/01/LakeModule14.zip",
     "version": "1.4.0",
     "author": "Kweepa",
-	"keywords": "water"
+    "keywords": "water"
   },
   {
     "id": "magnifier",
@@ -233,7 +242,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37548.0",
     "version": "1.0.0",
     "author": "monkey0506",
-	"keywords": "magnify glass zoom"
+    "keywords": "magnify glass zoom"
   },
   {
     "id": "mathsplus",
@@ -243,7 +252,7 @@
     "original_download": "https://sites.google.com/site/monkey0506/ScrollingDialog-3.0.rar?attredirects=0&d=1",
     "version": "1.0.0",
     "author": "monkey0506",
-	"keywords": "mathematical utility functions"
+    "keywords": "mathematical utility functions"
   },
   {
     "id": "multiresponse",
@@ -252,7 +261,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=27947.0",
     "version": "1.2.0",
     "author": "SSH",
-	"keywords": "multiple dialog response"
+    "keywords": "multiple dialog response"
   },
   {
     "id": "normrnd",
@@ -261,7 +270,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55133.0",
     "version": "0.1.0",
     "author": "eri0o",
-	"keywords": "random generator"
+    "keywords": "random generator"
   },
   {
     "id": "queuedspeech",
@@ -270,7 +279,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
     "version": "4.1.0",
     "author": "monkey0506",
-	"keywords": "queue of speech sound"
+    "keywords": "queue of speech sound"
   },
   {
     "id": "scrollingdialog",
@@ -281,7 +290,7 @@
     "version": "3.0.0",
     "author": "monkey0506",
     "depends": "mathsplus",
-	"keywords": "scroll in dialog story"
+    "keywords": "scroll in dialog story"
   },
   {
     "id": "shadow",
@@ -289,7 +298,7 @@
     "text": "adds shadow",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28905.0",
     "author": "SSH",
-	"keywords": "shadows"
+    "keywords": "shadows"
   },
   {
     "id": "shash",
@@ -297,7 +306,7 @@
     "text": "provides hash objects",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
     "author": "QCPolmer",
-	"keywords": "hash data container"
+    "keywords": "hash data container"
   },
   {
     "id": "slist",
@@ -305,7 +314,7 @@
     "text": "provides list objects",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54749.0",
     "author": "QCPolmer",
-	"keywords": "list"
+    "keywords": "list"
   },
   {
     "id": "smoothscrollingandparallax",
@@ -314,7 +323,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=33142.0",
     "version": "1.7.1",
     "author": "Ali",
-	"keywords": "smooth scroll camera parallax"
+    "keywords": "smooth scroll camera parallax"
   },
   {
     "id": "speechbubble",
@@ -323,7 +332,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55542.0",
     "version": "0.8.0",
     "author": "Snarky",
-	"keywords": "speech bubble baloon comicbook dialog"
+    "keywords": "speech bubble baloon comicbook dialog"
   },
   {
     "id": "stack",
@@ -331,7 +340,7 @@
     "text": "Vectorized Stacks",
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=37232.0",
     "author": "monkey0506",
-	"keywords": "vector array"
+    "keywords": "vector array"
   },
   {
     "id": "textfield",
@@ -340,7 +349,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55915.0",
     "version": "1.2.0",
     "author": "Snarky",
-	"keywords": "text"
+    "keywords": "text"
   },
   {
     "id": "timer",
@@ -349,7 +358,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=55545.0",
     "version": "0.9.0",
     "author": "Crimson Wizard",
-	"keywords": "timer object oop time"
+    "keywords": "timer object oop time"
   },
   {
     "id": "timero",
@@ -358,7 +367,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=28979.0",
     "version": "3.1.0",
     "author": "monkey0506",
-	"keywords": "timer object oop time"
+    "keywords": "timer object oop time"
   },
   {
     "id": "totallipsync",
@@ -367,7 +376,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54722.0",
     "version": "0.5.0",
     "author": "Snarky",
-	"keywords": "lip synchronization"
+    "keywords": "lip synchronization"
   },
   {
     "id": "tween",
@@ -376,7 +385,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=51820.0",
     "version": "2.1.0",
     "author": "Edmundito",
-	"keywords": "in between inbetweening smooth animation"
+    "keywords": "in between inbetweening smooth animation"
   },
   {
     "id": "typedtext",
@@ -385,7 +394,7 @@
     "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=54450.0",
     "version": "0.7.0",
     "author": "Crimson Wizard",
-	"keywords": "typewriter typed typing letter retro"
+    "keywords": "typewriter typed typing letter retro"
   },
   {
     "id": "typedtextdrawing",
@@ -395,7 +404,7 @@
     "version": "0.7.0",
     "author": "Crimson Wizard",
     "depends": "typedtext",
-	"keywords": "typewriter typed typing letter retro"
+    "keywords": "typewriter typed typing letter retro"
   },
   {
     "id": "typedtexthelper",
@@ -405,7 +414,7 @@
     "version": "0.7.0",
     "author": "Crimson Wizard",
     "depends": "typedtext",
-	"keywords": "typewriter typed typing letter retro"
+    "keywords": "typewriter typed typing letter retro"
   },
   {
     "id": "underwater",
@@ -415,6 +424,6 @@
     "version": "1.1.0",
     "author": "Kweepa",
     "depends": "fakescreen",
-	"keywords": "underwater effect"
+    "keywords": "underwater effect"
   }
 ]
