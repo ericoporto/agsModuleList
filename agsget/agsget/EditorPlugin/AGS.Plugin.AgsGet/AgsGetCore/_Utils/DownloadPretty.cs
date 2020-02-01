@@ -25,7 +25,20 @@ namespace AgsGetCore
                 writerMethod(string.Format($"\r({t.Item2,25:#,###}) Bytes received: {t.Item1,25:#,###}/{t.Item3,25:#,###}"));
             }));
 
-            await downloadTask;
+
+            try
+            {
+                await downloadTask;
+            } catch(WebException wex)
+            {
+                if (((HttpWebResponse)wex.Response).StatusCode == HttpStatusCode.NotFound)
+                {
+                    // error 404, do what you need to do
+                    writerMethod("The file your tried to download was not found on the server.");
+                }
+                writerMethod("An error has occurred and we could not download: " + ((HttpWebResponse)wex.Response).StatusDescription);
+                return false;
+            }
 
             return true;
         }
