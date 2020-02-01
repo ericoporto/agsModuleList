@@ -85,7 +85,7 @@ steps:
 - task: CopyFiles@2
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)/Release'
+    sourceFolder: '$(Build.SourcesDirectory)/agsget/agsget/EditorPlugin/AGS.Plugin.AgsGet/bin/x86/Release/net45/'
     contents: 'AGS.Plugin.AgsGet.dll'
     targetFolder: $(Build.ArtifactStagingDirectory)
 
