@@ -12,7 +12,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>/Program Files (x86)/Adventure Game Studio 3.5.0/Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('/Program Files (x86)/Adventure Game Studio 3.5.0/')">/Program Files (x86)/Adventure Game Studio 3.5.0/Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Adventure Game Studio 3.5.0\')">C:\Program Files (x86)\Adventure Game Studio 3.5.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -23,7 +24,8 @@
 
   <ItemGroup>
     <Reference Include="AGS.Types">
-      <HintPath>/Program Files (x86)/Adventure Game Studio 3.5.0/AGS.Types.dll</HintPath>
+      <HintPath Condition="Exists('/Program Files (x86)/Adventure Game Studio 3.5.0/')">/Program Files (x86)/Adventure Game Studio 3.5.0/AGS.Types.dll</HintPath>
+      <HintPath Condition="Exists('C:\Program Files (x86)\Adventure Game Studio 3.5.0\')">C:\Program Files (x86)\Adventure Game Studio 3.5.0\AGS.Types.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
