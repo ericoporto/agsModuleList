@@ -34,7 +34,7 @@ namespace AgsGetCore
             if(!downloadResult)
             {
                 if (File.Exists(destinationFile)) File.Delete(destinationFile);
-                File.Move(bkp_downloadFile, destinationFile);
+                if (File.Exists(bkp_downloadFile)) File.Move(bkp_downloadFile, destinationFile);
                 return false;
             }
 
@@ -96,7 +96,7 @@ namespace AgsGetCore
                 destinationFile))
             {
                 if (File.Exists(destinationFile)) File.Delete(destinationFile);
-                File.Move(bkp_downloadFile, destinationFile);
+                if (File.Exists(bkp_downloadFile)) File.Move(bkp_downloadFile, destinationFile);
                 return false;
             }
 
