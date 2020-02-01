@@ -75,6 +75,8 @@ namespace AgsGetCore
                 return false;
             }
 
+            writerMethod("Package Downloaded to:" + destinationFile);
+
             return true;
         }
 
