@@ -30,17 +30,4 @@
     <EmbeddedResource Include="PluginIcon.ico" />
 
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-
-  <Target Name="ILMerge">
-    <!-- the ILMergePath property points to the location of ILMerge.exe console application -->
-    <Exec Command="$(ILMergeConsolePath) Bin\x64\Release\AGS.Plugin.AgsGet-final.dll  /out:myapp.exe Bin\x64\Release\AGS.Plugin.AgsGet.dll \..\..\Core\Bin\Release\net45\win-x64\agsget.dll " />
-  </Target>
-
 </Project>
