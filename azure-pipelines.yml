@@ -13,6 +13,8 @@ strategy:
   matrix:
     linux:
       imageName: 'ubuntu-18.04'
+    windows:
+      imageName: 'windows-2019'
 
 pool:
   vmImage: $(imageName)
@@ -20,10 +22,13 @@ pool:
 steps:
 - task: UseDotNet@2
   displayName: 'Install .NET Core SDK'
+  condition: eq( variables['Agent.OS'], 'Linux' )
   inputs:
     version: '3.1.x' 
     performMultiLevelLookup: true
+
 - task: UseDotNet@2
+  condition: eq( variables['Agent.OS'], 'Linux' )
   inputs:
     version: '3.1.x'
     packageType: runtime
@@ -44,6 +49,7 @@ steps:
     dotnet publish -r linux-x64 --configuration Release
     dotnet publish -r osx-x64 --configuration Release
     popd
+  condition: eq( variables['Agent.OS'], 'Linux' )
   displayName: 'build'
 
 - bash: |
@@ -53,7 +59,29 @@ steps:
     cp win-x64/publish/agsget.exe $(Build.ArtifactStagingDirectory)/agsget.exe
     cp win-x86/publish/agsget.exe $(Build.ArtifactStagingDirectory)/agsget-x86.exe
     popd
+  condition: eq( variables['Agent.OS'], 'Linux' )
   displayName: 'collect builds'
+
+
+- task: CmdLine@2
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  displayName: 'Install AGS on Windows'
+  inputs:
+    script: choco install -y ags --version=3.5.0.23
+
+- task: VSBuild@1
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  inputs:
+    solution: 'agsget/agsget/EditorPlugin/AGS.Plugin.AgsGet.sln'
+    platform: x86
+    configuration: Release
+
+- task: CopyFiles@2
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)/Release'
+    contents: 'AGS.Plugin.AgsGet.dll'
+    targetFolder: $(Build.ArtifactStagingDirectory)
 
 - bash: |
     echo "##vso[task.setvariable variable=tagname]$(git describe --tags $(git rev-list --tags --max-count=1))"
@@ -71,4 +99,5 @@ steps:
     repositoryName: ericoporto/agsModuleList
     assets: |
          $(Build.ArtifactStagingDirectory)/agsge*
+         $(Build.ArtifactStagingDirectory)/AGS.Plugin.AgsGet.*
 
