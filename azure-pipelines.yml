@@ -69,6 +69,12 @@ steps:
   inputs:
     script: choco install -y ags --version=3.5.0.23
 
+- task: NuGetCommand@2
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  inputs:
+    command: 'restore'
+    restoreSolution: 'agsget/agsget/EditorPlugin/AGS.Plugin.AgsGet.sln'
+
 - task: VSBuild@1
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   inputs:
