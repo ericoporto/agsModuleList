@@ -19,11 +19,16 @@ namespace AgsGetCore
     {
         private const string ManifestFile = "agsget-manifest.json";
 
-        private static string GetManifestFilePath()
+        public static string GetManifestFilePath(string changeRunDir)
         {
+            BaseFiles.SetRunDirectory(changeRunDir);
             return Path.Combine(BaseFiles.GetRunDirectory(), ManifestFile);
         }
 
+        public static string GetManifestFilePath()
+        {
+            return Path.Combine(BaseFiles.GetRunDirectory(), ManifestFile);
+        }
         public static bool ManifestExists()
         {
             return File.Exists(GetManifestFilePath());

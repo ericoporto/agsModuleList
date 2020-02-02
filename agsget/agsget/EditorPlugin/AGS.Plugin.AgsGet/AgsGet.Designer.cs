@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -127,6 +128,60 @@ namespace AGS.Plugin.AgsGet
             if (selected_item == null || selected_item.Length <= 0) return;
 
             await AgsGetCore.AgsGetCore.GetAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+        }
+
+
+        private async void button_AddPackage_Click(object sender, EventArgs e)
+        {
+            string selected_item = listBox_packagesResults.SelectedItem.ToString();
+            if (selected_item == null || selected_item.Length <= 0) return;
+
+            await AgsGetCore.AgsGetCore.AddPackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+        }
+
+        private async void button_RemovePackage_Click(object sender, EventArgs e)
+        {
+            string selected_item = listBox_packagesResults.SelectedItem.ToString();
+            if (selected_item == null || selected_item.Length <= 0) return;
+
+            await AgsGetCore.AgsGetCore.RemovePackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+        }
+
+        private void listBox_packagesInstalled_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileSystemWatcher_LockFile_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            textBox_LockFile.Text = "";
+            if (e.ChangeType == WatcherChangeTypes.Created || e.ChangeType == WatcherChangeTypes.Changed)
+            {
+                textBox_LockFile.Text = File.ReadAllText(AgsGetCore.AgsGetCore.GetLockFilePath(_editor.CurrentGame.DirectoryPath));
+            }
+        }
+
+        private void fileSystemWatcher_Manifest_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            textBox_ManifestFile.Text = "";
+            if (e.ChangeType == WatcherChangeTypes.Created || e.ChangeType == WatcherChangeTypes.Changed)
+            {
+                textBox_ManifestFile.Text = File.ReadAllText(AgsGetCore.AgsGetCore.GetManifestFilePath(_editor.CurrentGame.DirectoryPath));
+            }
+        }
+
+        public void PanelReload()
+        {
+            string lockFileFullPath = AgsGetCore.AgsGetCore.GetLockFilePath(_editor.CurrentGame.DirectoryPath);
+            string manifestFileFullPath = AgsGetCore.AgsGetCore.GetManifestFilePath(_editor.CurrentGame.DirectoryPath);
+            fileSystemWatcher_LockFile.Path = new FileInfo(lockFileFullPath).Directory.FullName;
+            fileSystemWatcher_LockFile.Filter = new FileInfo(lockFileFullPath).Name;
+            fileSystemWatcher_Manifest.Path = new FileInfo(manifestFileFullPath).Directory.FullName;
+            fileSystemWatcher_Manifest.Filter = new FileInfo(manifestFileFullPath).Name;
+            if(File.Exists(lockFileFullPath)) 
+                textBox_LockFile.Text = File.ReadAllText(AgsGetCore.AgsGetCore.GetLockFilePath(_editor.CurrentGame.DirectoryPath));
+            if(File.Exists(manifestFileFullPath))
+                textBox_ManifestFile.Text = File.ReadAllText(AgsGetCore.AgsGetCore.GetManifestFilePath(_editor.CurrentGame.DirectoryPath));
         }
     }
 }

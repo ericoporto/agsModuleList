@@ -21,13 +21,15 @@ namespace AGS.Plugin.AgsGet
 
         private readonly IAGSEditor _editor;
         private readonly ContentDocument _pane;
+        private readonly AgsGetPane _agsGetPane;
 
         public AgsGetComponent(IAGSEditor editor)
         {
             _editor = editor;
             _editor.GUIController.RegisterIcon(ICON_KEY, GetIcon("PluginIcon.ico"));
             _editor.GUIController.ProjectTree.AddTreeRoot(this, CONTROL_ID_ROOT_NODE, "AgsGet plugin", ICON_KEY);
-            _pane = new ContentDocument(new AgsGetPane(editor), "AgsGet", this, ICON_KEY);
+            _agsGetPane = new AgsGetPane(editor);
+            _pane = new ContentDocument(_agsGetPane, "AgsGet", this, ICON_KEY);
         }
 
         private Icon GetIcon(string fileName)
@@ -56,6 +58,7 @@ namespace AGS.Plugin.AgsGet
             else if (controlID == CONTROL_ID_ROOT_NODE)
             {
                 _editor.GUIController.AddOrShowPane(_pane);
+                _agsGetPane.PanelReload();
             }
         }
 

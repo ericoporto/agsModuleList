@@ -32,6 +32,15 @@ namespace AGS.Plugin.AgsGet
         private Label label1;
         private Button button_UpdateIndex;
         private Button button_GetPackage;
+        private TextBox textBox_LockFile;
+        private Button button_AddPackage;
+        private Button button_RemovePackage;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TextBox textBox_ManifestFile;
+        private System.IO.FileSystemWatcher fileSystemWatcher_LockFile;
+        private System.IO.FileSystemWatcher fileSystemWatcher_Manifest;
         private IAGSEditor _editor;
 
 		public AgsGetPane(IAGSEditor editor)
@@ -62,6 +71,11 @@ namespace AGS.Plugin.AgsGet
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox_LockFile = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_ManifestFile = new System.Windows.Forms.TextBox();
             this.textBox_selectedPackageText = new System.Windows.Forms.TextBox();
             this.label_selectedPackageDepends = new System.Windows.Forms.Label();
             this.linkLabel_selectedPackageForumPage = new System.Windows.Forms.LinkLabel();
@@ -72,14 +86,23 @@ namespace AGS.Plugin.AgsGet
             this.label1 = new System.Windows.Forms.Label();
             this.button_UpdateIndex = new System.Windows.Forms.Button();
             this.button_GetPackage = new System.Windows.Forms.Button();
+            this.button_AddPackage = new System.Windows.Forms.Button();
+            this.button_RemovePackage = new System.Windows.Forms.Button();
             this.textBox_searchQuery = new System.Windows.Forms.TextBox();
+            this.fileSystemWatcher_LockFile = new System.IO.FileSystemWatcher();
+            this.fileSystemWatcher_Manifest = new System.IO.FileSystemWatcher();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher_LockFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher_Manifest)).BeginInit();
             this.SuspendLayout();
             // 
             // label_packageSearch
@@ -117,15 +140,16 @@ namespace AGS.Plugin.AgsGet
             // 
             this.listBox_packagesInstalled.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBox_packagesInstalled.Location = new System.Drawing.Point(0, 225);
-            this.listBox_packagesInstalled.MinimumSize = new System.Drawing.Size(4, 100);
+            this.listBox_packagesInstalled.MinimumSize = new System.Drawing.Size(60, 60);
             this.listBox_packagesInstalled.Name = "listBox_packagesInstalled";
-            this.listBox_packagesInstalled.Size = new System.Drawing.Size(354, 95);
+            this.listBox_packagesInstalled.Size = new System.Drawing.Size(354, 56);
             this.listBox_packagesInstalled.TabIndex = 2;
+            this.listBox_packagesInstalled.SelectedIndexChanged += new System.EventHandler(this.listBox_packagesInstalled_SelectedIndexChanged);
             // 
             // textBox_ConsoleOut
             // 
-            this.textBox_ConsoleOut.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox_ConsoleOut.Location = new System.Drawing.Point(3, 406);
+            this.textBox_ConsoleOut.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_ConsoleOut.Location = new System.Drawing.Point(3, 455);
             this.textBox_ConsoleOut.Multiline = true;
             this.textBox_ConsoleOut.Name = "textBox_ConsoleOut";
             this.textBox_ConsoleOut.ReadOnly = true;
@@ -148,8 +172,8 @@ namespace AGS.Plugin.AgsGet
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.textBox_ConsoleOut);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -165,7 +189,7 @@ namespace AGS.Plugin.AgsGet
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(3, 16);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1069, 387);
+            this.groupBox2.Size = new System.Drawing.Size(1069, 439);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "AgsGet Package Search";
@@ -174,10 +198,12 @@ namespace AGS.Plugin.AgsGet
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainer1.Location = new System.Drawing.Point(3, 36);
+            this.splitContainer1.MinimumSize = new System.Drawing.Size(0, 400);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
             this.splitContainer1.Panel1.Controls.Add(this.listBox_packagesInstalled);
             this.splitContainer1.Panel1.Controls.Add(this.label_packageInstalled);
             this.splitContainer1.Panel1.Controls.Add(this.listBox_packagesResults);
@@ -192,9 +218,66 @@ namespace AGS.Plugin.AgsGet
             this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageAuthor);
             this.splitContainer1.Panel2.Controls.Add(this.label_selectedPackageName);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1063, 348);
+            this.splitContainer1.Size = new System.Drawing.Size(1063, 400);
             this.splitContainer1.SplitterDistance = 354;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Location = new System.Drawing.Point(0, 281);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(354, 120);
+            this.tabControl1.TabIndex = 5;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.textBox_LockFile);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(346, 94);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "LockFile";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBox_LockFile
+            // 
+            this.textBox_LockFile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_LockFile.Location = new System.Drawing.Point(3, 3);
+            this.textBox_LockFile.MinimumSize = new System.Drawing.Size(90, 90);
+            this.textBox_LockFile.Multiline = true;
+            this.textBox_LockFile.Name = "textBox_LockFile";
+            this.textBox_LockFile.ReadOnly = true;
+            this.textBox_LockFile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox_LockFile.Size = new System.Drawing.Size(340, 90);
+            this.textBox_LockFile.TabIndex = 4;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.textBox_ManifestFile);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(346, 94);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "ManifestFile";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox_ManifestFile
+            // 
+            this.textBox_ManifestFile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_ManifestFile.Location = new System.Drawing.Point(3, 3);
+            this.textBox_ManifestFile.MinimumSize = new System.Drawing.Size(90, 90);
+            this.textBox_ManifestFile.Multiline = true;
+            this.textBox_ManifestFile.Name = "textBox_ManifestFile";
+            this.textBox_ManifestFile.ReadOnly = true;
+            this.textBox_ManifestFile.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox_ManifestFile.Size = new System.Drawing.Size(340, 90);
+            this.textBox_ManifestFile.TabIndex = 0;
             // 
             // textBox_selectedPackageText
             // 
@@ -267,6 +350,8 @@ namespace AGS.Plugin.AgsGet
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.button_UpdateIndex);
             this.flowLayoutPanel1.Controls.Add(this.button_GetPackage);
+            this.flowLayoutPanel1.Controls.Add(this.button_AddPackage);
+            this.flowLayoutPanel1.Controls.Add(this.button_RemovePackage);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -305,6 +390,28 @@ namespace AGS.Plugin.AgsGet
             this.button_GetPackage.UseVisualStyleBackColor = true;
             this.button_GetPackage.Click += new System.EventHandler(this.button_GetPackage_Click);
             // 
+            // button_AddPackage
+            // 
+            this.button_AddPackage.AutoSize = true;
+            this.button_AddPackage.Location = new System.Drawing.Point(327, 3);
+            this.button_AddPackage.Name = "button_AddPackage";
+            this.button_AddPackage.Size = new System.Drawing.Size(82, 23);
+            this.button_AddPackage.TabIndex = 6;
+            this.button_AddPackage.Text = "Add Package";
+            this.button_AddPackage.UseVisualStyleBackColor = true;
+            this.button_AddPackage.Click += new System.EventHandler(this.button_AddPackage_Click);
+            // 
+            // button_RemovePackage
+            // 
+            this.button_RemovePackage.AutoSize = true;
+            this.button_RemovePackage.Location = new System.Drawing.Point(415, 3);
+            this.button_RemovePackage.Name = "button_RemovePackage";
+            this.button_RemovePackage.Size = new System.Drawing.Size(103, 23);
+            this.button_RemovePackage.TabIndex = 7;
+            this.button_RemovePackage.Text = "Remove Package";
+            this.button_RemovePackage.UseVisualStyleBackColor = true;
+            this.button_RemovePackage.Click += new System.EventHandler(this.button_RemovePackage_Click);
+            // 
             // textBox_searchQuery
             // 
             this.textBox_searchQuery.Dock = System.Windows.Forms.DockStyle.Top;
@@ -313,6 +420,20 @@ namespace AGS.Plugin.AgsGet
             this.textBox_searchQuery.Size = new System.Drawing.Size(1063, 20);
             this.textBox_searchQuery.TabIndex = 1;
             this.textBox_searchQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_searchQuery_KeyPress);
+            // 
+            // fileSystemWatcher_LockFile
+            // 
+            this.fileSystemWatcher_LockFile.EnableRaisingEvents = true;
+            this.fileSystemWatcher_LockFile.NotifyFilter = System.IO.NotifyFilters.LastWrite;
+            this.fileSystemWatcher_LockFile.SynchronizingObject = this;
+            this.fileSystemWatcher_LockFile.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher_LockFile_Changed);
+            // 
+            // fileSystemWatcher_Manifest
+            // 
+            this.fileSystemWatcher_Manifest.EnableRaisingEvents = true;
+            this.fileSystemWatcher_Manifest.NotifyFilter = System.IO.NotifyFilters.LastWrite;
+            this.fileSystemWatcher_Manifest.SynchronizingObject = this;
+            this.fileSystemWatcher_Manifest.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher_Manifest_Changed);
             // 
             // AgsGetPane
             // 
@@ -331,8 +452,15 @@ namespace AGS.Plugin.AgsGet
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher_LockFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher_Manifest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

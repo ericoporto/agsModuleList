@@ -16,21 +16,66 @@ using Newtonsoft.Json;
 
 namespace AgsGetCore
 {
-    class MinimalPackageWithDependencies : MinimalPackageDescriptor
+    class MinimalPackageWithDependencies
     {
-        public List<MinimalPackageWithDependencies> Dependencies { get; private set; }
+        public string id_and_version { get; private set; }
+        public List<string> Dependencies { get; private set; }
 
-        public MinimalPackageWithDependencies(MinimalPackageDescriptor _mpd, List<MinimalPackageWithDependencies> dependencies)
+        public MinimalPackageWithDependencies(MinimalPackageDescriptor _mpd, List<MinimalPackageDescriptor> dependencies)
         {
-            id = _mpd.id;
-            version = _mpd.version;
+            id_and_version = _mpd.id + "#" + _mpd.version;
+            Dependencies = dependencies.Select(p => p.id + "#" + p.version).ToList();
+        }
+        public MinimalPackageWithDependencies(string _id, string _version, List<string> dependencies)
+        {
+            id_and_version = _id + "#" + _version;
             Dependencies = dependencies;
         }
-        public MinimalPackageWithDependencies(string _id, string _version, List<MinimalPackageWithDependencies> dependencies)
+
+        public MinimalPackageWithDependencies(string _id_and_version, List<string> dependencies)
         {
-            id = _id;
-            version = _version;
+            id_and_version = _id_and_version;
             Dependencies = dependencies;
+        }
+
+        private static void Visit(
+            MinimalPackageWithDependencies item, 
+            HashSet<string> visited, 
+            List<MinimalPackageWithDependencies> sorted, 
+            Func<MinimalPackageWithDependencies, IEnumerable<string>> dependencies, 
+            bool throwOnCycle)
+        {
+            if (!visited.Contains(item.id_and_version))
+            {
+                visited.Add(item.id_and_version);
+
+                if (dependencies(item) != null)
+                {
+                    foreach (var dep in dependencies(item))
+                        Visit(new MinimalPackageWithDependencies(dep, null), visited, sorted, dependencies, throwOnCycle);
+                }
+
+                sorted.Add(item);
+            }
+            else
+            {
+                if (throwOnCycle && !sorted.Contains(item))
+                    throw new Exception("Cyclic dependency found");
+            }
+        }
+        public static IEnumerable<MinimalPackageWithDependencies> Sort(
+            IEnumerable<MinimalPackageWithDependencies> source, 
+            Func<MinimalPackageWithDependencies, 
+            IEnumerable<string>> dependencies, 
+            bool throwOnCycle = false)
+        {
+            var sorted = new List<MinimalPackageWithDependencies>();
+            var visited = new HashSet<string>();
+
+            foreach (var item in source)
+                Visit(item, visited, sorted, dependencies, throwOnCycle);
+
+            return sorted;
         }
     }
 
@@ -38,7 +83,12 @@ namespace AgsGetCore
     {
         private const string LockFile = "agsget-lock.json";
 
-        private static string GetLockFilePath()
+        public static string GetLockFilePath(string changeRunDir)
+        {
+            BaseFiles.SetRunDirectory(changeRunDir);
+            return Path.Combine(BaseFiles.GetRunDirectory(), LockFile);
+        }
+        public static string GetLockFilePath()
         {
             return Path.Combine(BaseFiles.GetRunDirectory(), LockFile);
         }
@@ -59,7 +109,10 @@ namespace AgsGetCore
         }
         private static List<MinimalPackageDescriptor> PackageWithDependenciesToMPD(List<MinimalPackageWithDependencies> mpwd)
         {
-            return mpwd.Select(p => new MinimalPackageDescriptor { id = p.id, version = p.version }).ToList();
+            return mpwd.Select(p => new MinimalPackageDescriptor { 
+                id = p.id_and_version.Split('#')[0], 
+                version = p.id_and_version.Split('#')[1]
+            }).ToList();
         }
 
         private static List<Package> MPDToPackage(List<MinimalPackageDescriptor> packages)
@@ -77,7 +130,7 @@ namespace AgsGetCore
             {
                 List<MinimalPackageDescriptor> package_dependency = index.Where(p =>
                 {
-                    return p.id == package.id;
+                    return p.id == package.id && p.depends != null;
                 }).Select(p => new MinimalPackageDescriptor
                 {
                     id = p.depends
@@ -85,7 +138,7 @@ namespace AgsGetCore
 
                 packagesWithDependencies.Add(
                     new MinimalPackageWithDependencies(
-                        package, MPDToPackageWithDependencies(package_dependency)));
+                        package, package_dependency));
             }
 
             return packagesWithDependencies;
@@ -117,7 +170,7 @@ namespace AgsGetCore
             List<MinimalPackageWithDependencies> packagesWithDependencies)
         {
             return PackageWithDependenciesToMPD(
-                TopologicalSort
+                MinimalPackageWithDependencies
                     .Sort(packagesWithDependencies, pd => pd.Dependencies)
                     .ToList());
         }

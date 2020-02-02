@@ -37,5 +37,25 @@ namespace AgsGetCore
         {
             return await ListDo.DoAsync(writerMethod, changeRunDir, packageIndexURL, 0, 0);
         }
+
+        public static async System.Threading.Tasks.Task<int> AddPackageAsync(Action<string> writerMethod, string changeRunDir, string packageName)
+        {
+            return await AddPackageDo.DoAsync(writerMethod, changeRunDir, packageName);
+        }
+
+        public static async System.Threading.Tasks.Task<int> RemovePackageAsync(Action<string> writerMethod, string changeRunDir, string packageName)
+        {
+            return await RemovePackageDo.DoAsync(writerMethod, changeRunDir, packageName);
+        }
+
+        public static string GetLockFilePath(string changeRunDir)
+        {
+            return PackageLocker.GetLockFilePath(changeRunDir);
+        }
+
+        public static string GetManifestFilePath(string changeRunDir)
+        {
+            return IntentDescriptor.GetManifestFilePath(changeRunDir);
+        }
     }
 }
