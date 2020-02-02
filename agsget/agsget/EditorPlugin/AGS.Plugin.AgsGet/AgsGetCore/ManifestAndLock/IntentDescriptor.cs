@@ -24,9 +24,14 @@ namespace AgsGetCore
             return Path.Combine(BaseFiles.GetRunDirectory(), ManifestFile);
         }
 
+        public static bool ManifestExists()
+        {
+            return File.Exists(GetManifestFilePath());
+        }
+
         public static List<MinimalPackageDescriptor> GetManifestAsList()
         {
-            if (!File.Exists(GetManifestFilePath()))
+            if (!ManifestExists())
             {
                 return new List<MinimalPackageDescriptor>();
             }
@@ -107,12 +112,6 @@ namespace AgsGetCore
             if (File.Exists(bkp_manifest_file)) File.Delete(bkp_manifest_file);
 
             return true;
-        }
-
-        public class MinimalPackageDescriptor
-        {
-            public string id { get; set; }
-            //public string version { get; set; }
         }
     }
 }
