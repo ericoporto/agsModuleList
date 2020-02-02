@@ -28,9 +28,22 @@ namespace AgsGetCore
             System.IO.File.WriteAllText(GetLockFilePath(), contents);
         }
 
-        private static List<MinimalPackageDescriptor> FlatOrderedDependencies()
+        private static List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>> BuildDependencyGraph(
+            List<MinimalPackageDescriptor> packagesToInstall,
+            List<Package> index)
         {
             return null;
+        }
+        private static List<MinimalPackageDescriptor> FlatOrderedDependencies(
+            List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>> dependencyGraph)
+        {
+            return null;
+        }
+
+        private static bool AreAllPackagesOnIndex(List<MinimalPackageDescriptor> packages)
+        {
+            List<string> packageIDs = packages.Select(p => p.id).ToList();
+            return PackageCacheIO.AreAllPackagesOnIndex(packageIDs);
         }
 
         public static bool Lock()
@@ -48,6 +61,13 @@ namespace AgsGetCore
             }
 
             var manifest = IntentDescriptor.GetManifestAsList();
+
+            if (!AreAllPackagesOnIndex(manifest))
+            {
+                // if not all packages are on the index, our dependency graph generation will fail
+                // note: we will skip checking if the index itself is sane here - has all dependencies it can point to.
+                return false;
+            }
 
             if(manifest.Count() <= 0)
             {

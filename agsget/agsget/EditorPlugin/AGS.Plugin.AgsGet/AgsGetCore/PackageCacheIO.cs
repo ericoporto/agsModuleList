@@ -43,7 +43,7 @@ namespace AgsGetCore
             return true;
         }
 
-        public static bool PackageOnIndex(string packageName)
+        public static bool PackageOnIndex(string packageID)
         {
             var packageIndexAsString = File.ReadAllText(BaseFiles.GetIndexFilePath());
 
@@ -52,13 +52,27 @@ namespace AgsGetCore
                         
             foreach (var pack in packageList)
             {
-                if (packageName.Equals(pack.id))
+                if (packageID.Equals(pack.id))
                 {
                     return true;
                 }
             }
             
             return false;
+        }
+
+        public static bool AreAllPackagesOnIndex(List<string> packageIDs)
+        {
+            var packageIndexAsString = File.ReadAllText(BaseFiles.GetIndexFilePath());
+
+            // I need to iterate through the array until I find a package with the id that I need.
+            var packageList = JsonConvert.DeserializeObject<List<Package>>(packageIndexAsString);
+
+            foreach (string _id in packageIDs)
+            {
+                if (packageList.Where(p => { return p.id == _id; }).Count() <= 0) return false;
+            }
+            return true;
         }
 
         public static bool IsPackageOnLocalCache(string packageName)
