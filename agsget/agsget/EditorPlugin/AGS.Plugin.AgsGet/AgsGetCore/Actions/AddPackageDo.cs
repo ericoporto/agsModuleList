@@ -67,6 +67,29 @@ namespace AgsGetCore.Actions
             }
 
             writerMethod(string.Format("Package {0} add to manifest and lock file successfully generated.",packageName));
+
+            if(!PackageLocker.LockFileExists())
+            {
+                writerMethod("No lockfile, we don't have packages to add.");
+                return 0;
+            }
+
+            var packagesNeeded = PackageLocker.GetLockFileAsList();
+
+            if(packagesNeeded.Count() <= 0)
+            {
+                writerMethod("Lockfile is empty, we don't have packages to add.");
+                return 0;
+            }
+
+            foreach(var package in packagesNeeded)
+            {
+                if (!PackageCacheIO.IsPackageOnLocalCache(package.id))
+                {
+                    await GetDo.DoAsync(writerMethod, changeRunDir, package.id);
+                }
+            }
+
             return 0;
         }
     }

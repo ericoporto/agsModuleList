@@ -38,10 +38,10 @@ namespace AgsGetCore
         }
 
         private static void Visit(
-            MinimalPackageWithDependencies item, 
-            HashSet<string> visited, 
-            List<MinimalPackageWithDependencies> sorted, 
-            Func<MinimalPackageWithDependencies, IEnumerable<string>> dependencies, 
+            MinimalPackageWithDependencies item,
+            HashSet<string> visited,
+            List<MinimalPackageWithDependencies> sorted,
+            Func<MinimalPackageWithDependencies, IEnumerable<string>> dependencies,
             bool throwOnCycle)
         {
             if (!visited.Contains(item.id_and_version))
@@ -63,9 +63,9 @@ namespace AgsGetCore
             }
         }
         public static IEnumerable<MinimalPackageWithDependencies> Sort(
-            IEnumerable<MinimalPackageWithDependencies> source, 
-            Func<MinimalPackageWithDependencies, 
-            IEnumerable<string>> dependencies, 
+            IEnumerable<MinimalPackageWithDependencies> source,
+            Func<MinimalPackageWithDependencies,
+            IEnumerable<string>> dependencies,
             bool throwOnCycle = false)
         {
             var sorted = new List<MinimalPackageWithDependencies>();
@@ -92,6 +92,11 @@ namespace AgsGetCore
             return Path.Combine(BaseFiles.GetRunDirectory(), LockFile);
         }
 
+        public static bool LockFileExists()
+        {
+            return File.Exists(GetLockFilePath());
+        }
+
         private static void WriteToLock(string contents)
         {
             System.IO.File.WriteAllText(GetLockFilePath(), contents);
@@ -99,8 +104,9 @@ namespace AgsGetCore
 
         private static List<MinimalPackageDescriptor> PackageWithDependenciesToMPD(List<MinimalPackageWithDependencies> mpwd)
         {
-            return mpwd.Select(p => new MinimalPackageDescriptor { 
-                id = p.id_and_version.Split('#')[0], 
+            return mpwd.Select(p => new MinimalPackageDescriptor
+            {
+                id = p.id_and_version.Split('#')[0],
                 version = p.id_and_version.Split('#')[1]
             }).ToList();
         }
@@ -120,7 +126,7 @@ namespace AgsGetCore
                 {
                     id = p.depends
                 }).ToList();
-                
+
                 packagesWithDependencies.Add(
                     new MinimalPackageWithDependencies(
                         package, package_dependency));
@@ -167,7 +173,7 @@ namespace AgsGetCore
                 return false;
             }
 
-            if(manifest.Count() <= 0)
+            if (manifest.Count() <= 0)
             {
                 // our manifest is empty, we generate a empty lock
                 WriteToLock("[]\r\n");
@@ -178,16 +184,28 @@ namespace AgsGetCore
             var packageIndex = PackageCacheIO.AllPackages();
 
             var packagesWithDependencies = GetPackagesWithDependencies(
-                desiredPackagesToInstall, 
+                desiredPackagesToInstall,
                 packageIndex);
 
             var sortedPackages = FlatOrderedDependencies(packagesWithDependencies);
 
-            
+
 
             WriteToLock(SerializerExtra.ObjectToJSON(sortedPackages));
 
             return true;
+        }
+
+        public static List<MinimalPackageDescriptor> GetLockFileAsList()
+        {
+            if (!LockFileExists())
+            {
+                return new List<MinimalPackageDescriptor>();
+            }
+
+            var lockFileAsString = File.ReadAllText(GetLockFilePath());
+
+            return JsonConvert.DeserializeObject<List<MinimalPackageDescriptor>>(lockFileAsString);
         }
     }
 }
