@@ -35,33 +35,38 @@ namespace AGS.Plugin.AgsGet
             textBox_ConsoleOut.AppendText(Environment.NewLine);
         }
 
+        private async void DoSearchQuery(string query)
+        {
+            // Do Package Search
+            List<AgsGetCore.Package> package_query_result;
+
+            if ( string.IsNullOrEmpty(query) || query.Length < 1)
+            {
+                package_query_result = await AgsGetCore.AgsGetCore.ListAllAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
+            }
+            else
+            {
+                package_query_result = await AgsGetCore.AgsGetCore.SearchAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, textBox_searchQuery.Text);
+            }
+
+            if (package_query_result != null)
+            {
+                button_GetPackage.Enabled = false;
+                button_AddPackage.Enabled = false;
+                packages = package_query_result;
+                listBox_packagesResults.BeginUpdate();
+                listBox_packagesResults.Items.Clear();
+                string[] package_names = packages.Select(p => p.id).ToArray();
+                listBox_packagesResults.Items.AddRange(package_names);
+                listBox_packagesResults.EndUpdate();
+            }
+        }
+
         private async void textBox_searchQuery_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
             {
-                // Do Package Search
-                List<AgsGetCore.Package> package_query_result;
-
-                if (textBox_searchQuery.Text.Length < 1)
-                {
-                    package_query_result = await AgsGetCore.AgsGetCore.ListAllAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, null);
-                }
-                else
-                {
-                    package_query_result = await AgsGetCore.AgsGetCore.SearchAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, textBox_searchQuery.Text);
-                }
-
-                if (package_query_result != null)
-                {
-                    button_GetPackage.Enabled = false;
-                    button_AddPackage.Enabled = false;
-                    packages = package_query_result;
-                    listBox_packagesResults.BeginUpdate();
-                    listBox_packagesResults.Items.Clear();
-                    string[] package_names = packages.Select(p => p.id).ToArray();
-                    listBox_packagesResults.Items.AddRange(package_names);
-                    listBox_packagesResults.EndUpdate();
-                }
+                DoSearchQuery(textBox_searchQuery.Text);
             }
         }
         private async void listBox_packagesResults_SelectedIndexChanged(object sender, EventArgs e)
@@ -186,6 +191,12 @@ namespace AGS.Plugin.AgsGet
                 textBox_LockFile.Text = File.ReadAllText(AgsGetCore.AgsGetCore.GetLockFilePath(_editor.CurrentGame.DirectoryPath));
             if(File.Exists(manifestFileFullPath))
                 textBox_ManifestFile.Text = File.ReadAllText(AgsGetCore.AgsGetCore.GetManifestFilePath(_editor.CurrentGame.DirectoryPath));
+            label_selectedPackageAuthor.Text = "";
+            label_selectedPackageDepends.Text = "";
+            label_selectedPackageVersion.Text = "";
+            label_selectedPackageName.Text = "";
+            linkLabel_selectedPackageForumPage.Text = "";
+            DoSearchQuery(null);
         }
     }
 }
