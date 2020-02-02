@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AgsGetCore.ManifestAndLock;
+using Newtonsoft.Json;
 
 // The PackageLocker is meant to produce a lock file using the manifest and package index as inputs
 // It's function is to analyze dependencies and write the lock file
@@ -14,6 +16,24 @@ using System.Threading.Tasks;
 
 namespace AgsGetCore
 {
+    class MinimalPackageWithDependencies : MinimalPackageDescriptor
+    {
+        public List<MinimalPackageWithDependencies> Dependencies { get; private set; }
+
+        public MinimalPackageWithDependencies(MinimalPackageDescriptor _mpd, List<MinimalPackageWithDependencies> dependencies)
+        {
+            id = _mpd.id;
+            version = _mpd.version;
+            Dependencies = dependencies;
+        }
+        public MinimalPackageWithDependencies(string _id, string _version, List<MinimalPackageWithDependencies> dependencies)
+        {
+            id = _id;
+            version = _version;
+            Dependencies = dependencies;
+        }
+    }
+
     class PackageLocker
     {
         private const string LockFile = "agsget-lock.json";
@@ -28,16 +48,78 @@ namespace AgsGetCore
             System.IO.File.WriteAllText(GetLockFilePath(), contents);
         }
 
-        private static List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>> BuildDependencyGraph(
+        private static List<MinimalPackageDescriptor> PackageToMPD(List<Package> packages)
+        {
+            return packages.Select(p => new MinimalPackageDescriptor { id = p.id, version = p.version }).ToList();
+        }
+
+        private static List<MinimalPackageWithDependencies> MPDToPackageWithDependencies(List<MinimalPackageDescriptor> mpwd)
+        {
+            return mpwd.Select(p => new MinimalPackageWithDependencies(p.id, p.version, null) ).ToList();
+        }
+        private static List<MinimalPackageDescriptor> PackageWithDependenciesToMPD(List<MinimalPackageWithDependencies> mpwd)
+        {
+            return mpwd.Select(p => new MinimalPackageDescriptor { id = p.id, version = p.version }).ToList();
+        }
+
+        private static List<Package> MPDToPackage(List<MinimalPackageDescriptor> packages)
+        {
+            return packages.Select(p => new Package { id = p.id, version = p.version }).ToList();
+        }
+
+        private static List<MinimalPackageWithDependencies> GetPackagesWithDependencies(
             List<MinimalPackageDescriptor> packagesToInstall,
             List<Package> index)
         {
-            return null;
+            List<MinimalPackageWithDependencies> packagesWithDependencies = new List<MinimalPackageWithDependencies>();
+
+            foreach (MinimalPackageDescriptor package in packagesToInstall)
+            {
+                List<MinimalPackageDescriptor> package_dependency = index.Where(p =>
+                {
+                    return p.id == package.id;
+                }).Select(p => new MinimalPackageDescriptor
+                {
+                    id = p.depends
+                }).ToList();
+
+                packagesWithDependencies.Add(
+                    new MinimalPackageWithDependencies(
+                        package, MPDToPackageWithDependencies(package_dependency)));
+            }
+
+            return packagesWithDependencies;
         }
+        //private static List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>> BuildDependencyGraph(
+        //    List<MinimalPackageDescriptor> packagesToInstall,
+        //    List<Package> index)
+        //{
+        //    List < KeyValuePair < MinimalPackageDescriptor, List < MinimalPackageDescriptor >>> dependencyGraph = new List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>>();
+
+        //    foreach (MinimalPackageDescriptor package in packagesToInstall) {
+        //        List<MinimalPackageDescriptor> package_dependency = index.Where(p =>
+        //        {
+        //            return p.id == package.id;
+        //        }).Select(p => new MinimalPackageDescriptor
+        //        {
+        //            id = p.depends
+        //        }).ToList();
+
+        //        dependencyGraph.Add(
+        //            new KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>(
+        //                package, package_dependency));
+        //    }
+
+        //    return dependencyGraph;
+        //}
+
         private static List<MinimalPackageDescriptor> FlatOrderedDependencies(
-            List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>> dependencyGraph)
+            List<MinimalPackageWithDependencies> packagesWithDependencies)
         {
-            return null;
+            return PackageWithDependenciesToMPD(
+                TopologicalSort
+                    .Sort(packagesWithDependencies, pd => pd.Dependencies)
+                    .ToList());
         }
 
         private static bool AreAllPackagesOnIndex(List<MinimalPackageDescriptor> packages)
@@ -76,7 +158,16 @@ namespace AgsGetCore
                 return true;
             }
 
+            var desiredPackagesToInstall = IntentDescriptor.GetManifestAsList();
+            var packageIndex = PackageCacheIO.AllPackages();
 
+            var packagesWithDependencies = GetPackagesWithDependencies(
+                desiredPackagesToInstall, 
+                packageIndex);
+
+            var sortedPackages = FlatOrderedDependencies(packagesWithDependencies);
+
+            WriteToLock(JsonConvert.SerializeObject(sortedPackages));
 
             return true;
         }
