@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AgsGetCore.ManifestAndLock;
 using Newtonsoft.Json;
 
 // The PackageLocker is meant to produce a lock file using the manifest and package index as inputs
@@ -98,26 +97,12 @@ namespace AgsGetCore
             System.IO.File.WriteAllText(GetLockFilePath(), contents);
         }
 
-        private static List<MinimalPackageDescriptor> PackageToMPD(List<Package> packages)
-        {
-            return packages.Select(p => new MinimalPackageDescriptor { id = p.id, version = p.version }).ToList();
-        }
-
-        private static List<MinimalPackageWithDependencies> MPDToPackageWithDependencies(List<MinimalPackageDescriptor> mpwd)
-        {
-            return mpwd.Select(p => new MinimalPackageWithDependencies(p.id, p.version, null) ).ToList();
-        }
         private static List<MinimalPackageDescriptor> PackageWithDependenciesToMPD(List<MinimalPackageWithDependencies> mpwd)
         {
             return mpwd.Select(p => new MinimalPackageDescriptor { 
                 id = p.id_and_version.Split('#')[0], 
                 version = p.id_and_version.Split('#')[1]
             }).ToList();
-        }
-
-        private static List<Package> MPDToPackage(List<MinimalPackageDescriptor> packages)
-        {
-            return packages.Select(p => new Package { id = p.id, version = p.version }).ToList();
         }
 
         private static List<MinimalPackageWithDependencies> GetPackagesWithDependencies(
@@ -135,7 +120,7 @@ namespace AgsGetCore
                 {
                     id = p.depends
                 }).ToList();
-
+                
                 packagesWithDependencies.Add(
                     new MinimalPackageWithDependencies(
                         package, package_dependency));
@@ -143,28 +128,6 @@ namespace AgsGetCore
 
             return packagesWithDependencies;
         }
-        //private static List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>> BuildDependencyGraph(
-        //    List<MinimalPackageDescriptor> packagesToInstall,
-        //    List<Package> index)
-        //{
-        //    List < KeyValuePair < MinimalPackageDescriptor, List < MinimalPackageDescriptor >>> dependencyGraph = new List<KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>>();
-
-        //    foreach (MinimalPackageDescriptor package in packagesToInstall) {
-        //        List<MinimalPackageDescriptor> package_dependency = index.Where(p =>
-        //        {
-        //            return p.id == package.id;
-        //        }).Select(p => new MinimalPackageDescriptor
-        //        {
-        //            id = p.depends
-        //        }).ToList();
-
-        //        dependencyGraph.Add(
-        //            new KeyValuePair<MinimalPackageDescriptor, List<MinimalPackageDescriptor>>(
-        //                package, package_dependency));
-        //    }
-
-        //    return dependencyGraph;
-        //}
 
         private static List<MinimalPackageDescriptor> FlatOrderedDependencies(
             List<MinimalPackageWithDependencies> packagesWithDependencies)
@@ -220,7 +183,9 @@ namespace AgsGetCore
 
             var sortedPackages = FlatOrderedDependencies(packagesWithDependencies);
 
-            WriteToLock(JsonConvert.SerializeObject(sortedPackages));
+            
+
+            WriteToLock(SerializerExtra.ObjectToJSON(sortedPackages));
 
             return true;
         }

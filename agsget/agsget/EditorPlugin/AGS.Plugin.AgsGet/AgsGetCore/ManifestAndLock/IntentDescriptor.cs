@@ -77,7 +77,7 @@ namespace AgsGetCore
 
             manifestList.Add(mpd);
 
-            string resulting_json_manifest = JsonConvert.SerializeObject(manifestList);
+            string resulting_json_manifest = SerializerExtra.ObjectToJSON(manifestList);
             const string bkp_ext = ".bkp";
             string manifest_file = GetManifestFilePath();
             string bkp_manifest_file = manifest_file + bkp_ext;
@@ -107,7 +107,7 @@ namespace AgsGetCore
                 return !_mpd.id.Equals(package_id.ToLower());
             }).ToList();
 
-            string resulting_json_manifest = JsonConvert.SerializeObject(manifestList);
+            string resulting_json_manifest = SerializerExtra.ObjectToJSON(manifestList);
             const string bkp_ext = ".bkp";
             string manifest_file = GetManifestFilePath();
             string bkp_manifest_file = manifest_file + bkp_ext;

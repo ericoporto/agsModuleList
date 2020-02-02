@@ -54,6 +54,7 @@ namespace AGS.Plugin.AgsGet
                 if (package_query_result != null)
                 {
                     button_GetPackage.Enabled = false;
+                    button_AddPackage.Enabled = false;
                     packages = package_query_result;
                     listBox_packagesResults.BeginUpdate();
                     listBox_packagesResults.Items.Clear();
@@ -71,6 +72,7 @@ namespace AGS.Plugin.AgsGet
                 listBox_packagesResults.SelectedItem.ToString().Length <= 0)
             {
                 button_GetPackage.Enabled = false;
+                button_AddPackage.Enabled = false;
                 return;
             }
 
@@ -82,11 +84,13 @@ namespace AGS.Plugin.AgsGet
             if (match == null)
             {
                 button_GetPackage.Enabled = false;
+                button_AddPackage.Enabled = false;
                 return;
             }
 
 
             button_GetPackage.Enabled = true;
+            button_AddPackage.Enabled = true;
             label_selectedPackageName.Text = match.name;
             linkLabel_selectedPackageForumPage.Text = match.forum;
             textBox_selectedPackageText.Text = match.text;
