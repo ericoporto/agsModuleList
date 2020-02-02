@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 // when we want to remove a package, we remove it from the list
 // we will use this file to store the state of which packages we need to install later on
 // in another step we will get these packages, and figure out dependencies and the order to insert!
+// in the future we probably want to modify this so we also store versions and go latest when we don't.
 
 namespace AgsGetCore
 {
@@ -111,6 +112,7 @@ namespace AgsGetCore
         public class MinimalPackageDescriptor
         {
             public string id { get; set; }
+            //public string version { get; set; }
         }
     }
 }
