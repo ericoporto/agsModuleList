@@ -144,6 +144,7 @@ namespace AGS.Plugin.AgsGet
 
         private async void button_AddPackage_Click(object sender, EventArgs e)
         {
+            if (listBox_packagesResults.SelectedIndex < 0) return;
             string selected_item = listBox_packagesResults.SelectedItem.ToString();
             if (selected_item == null || selected_item.Length <= 0) return;
 
