@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using AGS.Types;
 
@@ -54,7 +55,6 @@ namespace AGS.Plugin.AgsGet
             if (package_query_result != null)
             {
                 button_GetPackage.Enabled = false;
-                button_AddPackage.Enabled = false;
                 packages = package_query_result;
                 listBox_packagesResults.BeginUpdate();
                 listBox_packagesResults.Items.Clear();
@@ -79,7 +79,6 @@ namespace AGS.Plugin.AgsGet
                 listBox_packagesResults.SelectedItem.ToString().Length <= 0)
             {
                 button_GetPackage.Enabled = false;
-                button_AddPackage.Enabled = false;
                 button_InstallPackage.Enabled = false;
                 return;
             }
@@ -92,14 +91,12 @@ namespace AGS.Plugin.AgsGet
             if (match == null)
             {
                 button_GetPackage.Enabled = false;
-                button_AddPackage.Enabled = false;
                 button_InstallPackage.Enabled = false;
                 return;
             }
 
 
             button_GetPackage.Enabled = true;
-            button_AddPackage.Enabled = true;
             button_InstallPackage.Enabled = true;
             label_selectedPackageName.Text = match.name;
             linkLabel_selectedPackageForumPage.Text = match.forum;
@@ -173,6 +170,45 @@ namespace AGS.Plugin.AgsGet
             if (File.Exists(header_file)) File.Delete(header_file);
             if (File.Exists(script_file)) File.Delete(script_file);
         }
+
+        public static async Task IsFileReady(string filename)
+        {
+            await Task.Run(() =>
+            {
+                if (!File.Exists(filename))
+                {
+                    throw new IOException("File does not exist!");
+                }
+
+                var isReady = false;
+
+                while (!isReady)
+                {
+                    // If the file can be opened for exclusive access it means that the file
+                    // is no longer locked by another process.
+                    try
+                    {
+                        using (FileStream inputStream =
+                            File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+                            isReady = inputStream.Length > 0;
+                    }
+                    catch (Exception e)
+                    {
+                        // Check if the exception is related to an IO error.
+                        if (e.GetType() == typeof(IOException))
+                        {
+                            isReady = false;
+                        }
+                        else
+                        {
+                            // Rethrow the exception as it's not an exclusively-opened-exception.
+                            throw;
+                        }
+                    }
+                }
+            });
+        }
+
         private void InsertScriptModules()
         {
             var packages_path = AgsGetCore.AgsGetCore.GetLockedPackagesPath();
@@ -182,6 +218,7 @@ namespace AGS.Plugin.AgsGet
                 string destFileName = Path.GetFileNameWithoutExtension(pkg_path);
                 RemoveScriptAndHeader(destFileName);
 
+                IsFileReady(pkg_path).Wait(200);                
                 List <Script> newScripts = ImportExport.ImportScriptModule(pkg_path);
                 newScripts[0].FileName = destFileName + ".ash";
                 newScripts[1].FileName = destFileName + ".asc";
@@ -251,7 +288,7 @@ namespace AGS.Plugin.AgsGet
                 listBox_packagesInstalled.SelectedItem == null ||
                 listBox_packagesInstalled.SelectedItem.ToString().Length <= 0)
             {
-                button_RemovePackage.Enabled = false;
+                button_UninstallPackage.Enabled = false;
                 return;
             }
 
@@ -262,11 +299,11 @@ namespace AGS.Plugin.AgsGet
 
             if (match == null)
             {
-                button_RemovePackage.Enabled = false;
+                button_UninstallPackage.Enabled = false;
                 return;
             }
 
-            button_RemovePackage.Enabled = true;
+            button_UninstallPackage.Enabled = true;
         }
 
         private void fileSystemWatcher_LockFile_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -306,6 +343,8 @@ namespace AGS.Plugin.AgsGet
             linkLabel_selectedPackageForumPage.Text = "";
             DoSearchQuery(null);
             PopulateInstalledPackages();
+            button_UninstallPackage.Enabled = false;
+            button_InstallPackage.Enabled = false;
         }
     }
 }

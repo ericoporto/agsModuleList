@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -14,10 +15,29 @@ public class ImportExport
     {
         private const string MODULE_FILE_SIGNATURE = "AGSScriptModule\0";
         private const uint MODULE_FILE_TRAILER = 0xb4f76a65;
-        
+
+        private static FileStream GetReadStream(string path, int timeoutMs)
+        {
+            var time = Stopwatch.StartNew();
+            while (time.ElapsedMilliseconds < timeoutMs)
+            {
+                try
+                {
+                    return new FileStream(path, FileMode.Open, FileAccess.Read,FileShare.ReadWrite);
+                }
+                catch (IOException e)
+                {
+                    // access error
+                    if (e.HResult != -2147024864)
+                        throw;
+                }
+            }
+
+            throw new TimeoutException($"Failed to get a write handle to {path} within {timeoutMs}ms.");
+        }
         public static List<Script> ImportScriptModule(string fileName)
         {
-            BinaryReader reader = new BinaryReader(new FileStream(fileName, FileMode.Open, FileAccess.Read));
+            BinaryReader reader = new BinaryReader(GetReadStream(fileName, 1000));
             string fileSig = Encoding.ASCII.GetString(reader.ReadBytes(16));
             if (fileSig != MODULE_FILE_SIGNATURE)
             {
