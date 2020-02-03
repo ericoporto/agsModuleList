@@ -210,9 +210,10 @@ namespace AGS.Plugin.AgsGet
             });
         }
 
-        private void InsertScriptModules()
+        private List<string> InsertScriptModules()
         {
             var packages_path = AgsGetCore.AgsGetCore.GetLockedPackagesPath();
+            List<string> failedPackages = new List<string>();
             packages_path.Reverse();
             foreach (var pkg_path in packages_path)
             {
@@ -231,9 +232,13 @@ namespace AGS.Plugin.AgsGet
                     newScripts[1].SaveToDisk();
                     ScriptAndHeader scripts = new ScriptAndHeader(newScripts[0], newScripts[1]);
                     _editor.CurrentGame.ScriptsAndHeaders.AddAt(scripts, 0);
+                } else
+                {
+                    failedPackages.Add(destFileName);
                 }
             }
             ReloadTreeIfPossible();
+            return failedPackages;
         }
 
         void PopulateInstalledPackages()
@@ -253,9 +258,20 @@ namespace AGS.Plugin.AgsGet
             string selected_item = listBox_packagesResults.SelectedItem.ToString();
             if (selected_item == null || selected_item.Length <= 0) return;
 
-            await AgsGetCore.AgsGetCore.AddPackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+            await AgsGetCore.AgsGetCore.AddPackageAsync(
+                AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
 
-            InsertScriptModules();
+            var failedPackages = InsertScriptModules();
+
+            if(failedPackages!=null && failedPackages.Count > 0)
+            {
+                foreach (string pkg in failedPackages)
+                {
+                    await AgsGetCore.AgsGetCore.RemovePackageAsync(
+                        AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, pkg);
+                }
+            }
+
             PopulateInstalledPackages();
         }
 
