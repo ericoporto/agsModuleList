@@ -219,16 +219,19 @@ namespace AGS.Plugin.AgsGet
                 string destFileName = Path.GetFileNameWithoutExtension(pkg_path);
                 RemoveScriptAndHeader(destFileName);
 
-                IsFileReady(pkg_path).Wait(200);                
-                List <Script> newScripts = ImportExport.ImportScriptModule(pkg_path);
-                newScripts[0].FileName = destFileName + ".ash";
-                newScripts[1].FileName = destFileName + ".asc";
-                newScripts[0].Modified = true;
-                newScripts[1].Modified = true;
-                newScripts[0].SaveToDisk();
-                newScripts[1].SaveToDisk();
-                ScriptAndHeader scripts = new ScriptAndHeader(newScripts[0], newScripts[1]);
-                _editor.CurrentGame.ScriptsAndHeaders.AddAt(scripts, 0);
+                IsFileReady(pkg_path).Wait(200);
+                if (File.Exists(pkg_path))
+                {
+                    List<Script> newScripts = ImportExport.ImportScriptModule(pkg_path);
+                    newScripts[0].FileName = destFileName + ".ash";
+                    newScripts[1].FileName = destFileName + ".asc";
+                    newScripts[0].Modified = true;
+                    newScripts[1].Modified = true;
+                    newScripts[0].SaveToDisk();
+                    newScripts[1].SaveToDisk();
+                    ScriptAndHeader scripts = new ScriptAndHeader(newScripts[0], newScripts[1]);
+                    _editor.CurrentGame.ScriptsAndHeaders.AddAt(scripts, 0);
+                }
             }
             ReloadTreeIfPossible();
         }
