@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 using AgsGetCore.Actions;
@@ -56,6 +57,30 @@ namespace AgsGetCore
         public static string GetManifestFilePath(string changeRunDir)
         {
             return IntentDescriptor.GetManifestFilePath(changeRunDir);
+        }
+
+        public static List<string> GetLockedPackagesPath()
+        {
+            var lockedPkgs = PackageLocker.GetLockFileAsList();
+            
+            return lockedPkgs.ConvertAll<string>(mpd => Path.Combine(BaseFiles.GetCacheDirectoryPath(), mpd.id, mpd.id + ".scm"));
+        }
+        public static List<string> GetLockedPackages()
+        {
+            var lockedPkgs = PackageLocker.GetLockFileAsList();
+
+            return lockedPkgs.ConvertAll<string>(mpd => mpd.id);
+        }
+        public static List<string> GetManifestPackages()
+        {
+            var pkgs = IntentDescriptor.GetManifestAsList();
+
+            return pkgs.ConvertAll<string>(mpd => mpd.id);
+        }
+
+        public static List<string> GetPackagesForRemoval()
+        {
+            return PackageLocker.LockedDifference();
         }
     }
 }

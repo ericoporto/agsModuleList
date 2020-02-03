@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using AGS.Types;
 
 namespace AGS.Plugin.AgsGet
 {
@@ -13,6 +14,7 @@ namespace AGS.Plugin.AgsGet
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
         private List<AgsGetCore.Package> packages = null;
+        private const string AGSGET_SCRIPT_FOLDER = "AgsGetPackages";
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -78,6 +80,7 @@ namespace AGS.Plugin.AgsGet
             {
                 button_GetPackage.Enabled = false;
                 button_AddPackage.Enabled = false;
+                button_InstallPackage.Enabled = false;
                 return;
             }
 
@@ -90,12 +93,14 @@ namespace AGS.Plugin.AgsGet
             {
                 button_GetPackage.Enabled = false;
                 button_AddPackage.Enabled = false;
+                button_InstallPackage.Enabled = false;
                 return;
             }
 
 
             button_GetPackage.Enabled = true;
             button_AddPackage.Enabled = true;
+            button_InstallPackage.Enabled = true;
             label_selectedPackageName.Text = match.name;
             linkLabel_selectedPackageForumPage.Text = match.forum;
             textBox_selectedPackageText.Text = match.text;
@@ -148,17 +153,120 @@ namespace AGS.Plugin.AgsGet
             await AgsGetCore.AgsGetCore.AddPackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
         }
 
+        private void ReloadTreeIfPossible()
+        {
+            var comp = _editor.Components.Where(p => p.ComponentID == "Scripts");
+            if (comp != null && comp.ToList().Count > 0)
+            {
+                _editor.GUIController.RePopulateTreeView(comp.First());
+            }
+        }
+        private void RemoveScriptAndHeader(string filename)
+        {
+            ScriptAndHeader scripts_to_del = _editor.CurrentGame.ScriptsAndHeaders.GetScriptAndHeaderByFilename(filename);
+            if (scripts_to_del != null)
+            {
+                _editor.CurrentGame.ScriptsAndHeaders.Remove(scripts_to_del);
+            }
+            var header_file = Path.Combine(_editor.CurrentGame.DirectoryPath, filename + ".ash");
+            var script_file = Path.Combine(_editor.CurrentGame.DirectoryPath, filename + ".asc");
+            if (File.Exists(header_file)) File.Delete(header_file);
+            if (File.Exists(script_file)) File.Delete(script_file);
+        }
+        private void InsertScriptModules()
+        {
+            var packages_path = AgsGetCore.AgsGetCore.GetLockedPackagesPath();
+            packages_path.Reverse();
+            foreach (var pkg_path in packages_path)
+            {
+                string destFileName = Path.GetFileNameWithoutExtension(pkg_path);
+                RemoveScriptAndHeader(destFileName);
+
+                List <Script> newScripts = ImportExport.ImportScriptModule(pkg_path);
+                newScripts[0].FileName = destFileName + ".ash";
+                newScripts[1].FileName = destFileName + ".asc";
+                newScripts[0].Modified = true;
+                newScripts[1].Modified = true;
+                newScripts[0].SaveToDisk();
+                newScripts[1].SaveToDisk();
+                ScriptAndHeader scripts = new ScriptAndHeader(newScripts[0], newScripts[1]);
+                _editor.CurrentGame.ScriptsAndHeaders.AddAt(scripts, 0);
+            }
+            ReloadTreeIfPossible();
+        }
+
+        void PopulateInstalledPackages()
+        {
+            listBox_packagesInstalled.BeginUpdate();
+            listBox_packagesInstalled.Items.Clear();
+            var packages = AgsGetCore.AgsGetCore.GetManifestPackages();
+            string[] package_names = packages.Where(
+                p => _editor.CurrentGame.ScriptsAndHeaders.GetScriptAndHeaderByFilename(p) != null).ToArray();
+            listBox_packagesInstalled.Items.AddRange(package_names);
+            listBox_packagesInstalled.EndUpdate();
+        }
+
+        private async void button_InstallPackage_Click(object sender, EventArgs e)
+        {
+            if (listBox_packagesResults.SelectedIndex < 0) return;
+            string selected_item = listBox_packagesResults.SelectedItem.ToString();
+            if (selected_item == null || selected_item.Length <= 0) return;
+
+            await AgsGetCore.AgsGetCore.AddPackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+
+            InsertScriptModules();
+            PopulateInstalledPackages();
+        }
+
+        private async void button_UninstallPackage_Click(object sender, EventArgs e)
+        {
+            if (listBox_packagesInstalled.SelectedIndex < 0) return;
+            string selected_item = listBox_packagesInstalled.SelectedItem.ToString();
+            if (selected_item == null || selected_item.Length <= 0) return;
+
+            await AgsGetCore.AgsGetCore.RemovePackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+
+            List<string> pkgForRemoval = AgsGetCore.AgsGetCore.GetPackagesForRemoval();
+            if (pkgForRemoval != null)
+            {
+                foreach (var pkg in pkgForRemoval) RemoveScriptAndHeader(pkg);
+            }
+            PopulateInstalledPackages();
+            ReloadTreeIfPossible();
+        }
+
         private async void button_RemovePackage_Click(object sender, EventArgs e)
         {
             string selected_item = listBox_packagesResults.SelectedItem.ToString();
             if (selected_item == null || selected_item.Length <= 0) return;
 
             await AgsGetCore.AgsGetCore.RemovePackageAsync(AppendToConsoleOut, _editor.CurrentGame.DirectoryPath, selected_item);
+            PopulateInstalledPackages();
         }
 
         private void listBox_packagesInstalled_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (
+                listBox_packagesInstalled.SelectedIndex < 0 ||
+                listBox_packagesInstalled.SelectedItem == null ||
+                listBox_packagesInstalled.SelectedItem.ToString().Length <= 0)
+            {
+                button_RemovePackage.Enabled = false;
+                return;
+            }
 
+            string selected_item = listBox_packagesInstalled.SelectedItem.ToString();
+
+            AgsGetCore.Package match = packages
+                .FirstOrDefault(p => p.id.Equals(selected_item, StringComparison.InvariantCultureIgnoreCase));
+
+            if (match == null)
+            {
+                button_RemovePackage.Enabled = false;
+                return;
+            }
+
+            button_RemovePackage.Enabled = true;
         }
 
         private void fileSystemWatcher_LockFile_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -197,6 +305,7 @@ namespace AGS.Plugin.AgsGet
             label_selectedPackageName.Text = "";
             linkLabel_selectedPackageForumPage.Text = "";
             DoSearchQuery(null);
+            PopulateInstalledPackages();
         }
     }
 }

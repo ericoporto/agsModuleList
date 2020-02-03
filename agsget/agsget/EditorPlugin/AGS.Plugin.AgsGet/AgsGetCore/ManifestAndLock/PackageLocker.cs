@@ -92,6 +92,11 @@ namespace AgsGetCore
             return Path.Combine(BaseFiles.GetRunDirectory(), LockFile);
         }
 
+        public static string GetLockFileForRemovalPath()
+        {
+            return Path.Combine(BaseFiles.GetRunDirectory(), LockFile + ".removal");
+        }
+
         public static bool LockFileExists()
         {
             return File.Exists(GetLockFilePath());
@@ -150,6 +155,12 @@ namespace AgsGetCore
             return PackageCacheIO.AreAllPackagesOnIndex(packageIDs);
         }
 
+        public static List<string> LockedDifference()
+        {
+            var lockedPkgs = GetLockFileAsList().ConvertAll<string>(mpd => mpd.id);
+            var lockedRemovalPkgs = GetLockFileForRemovalAsList().ConvertAll<string>(mpd => mpd.id);
+            return lockedRemovalPkgs.Except(lockedPkgs).ToList();
+        }
         public static bool Lock()
         {
             if (!BaseFiles.ExistsIndexFile())
@@ -171,6 +182,12 @@ namespace AgsGetCore
                 // if not all packages are on the index, our dependency graph generation will fail
                 // note: we will skip checking if the index itself is sane here - has all dependencies it can point to.
                 return false;
+            }
+
+            if (LockFileExists())
+            {
+                if (File.Exists(GetLockFileForRemovalPath())) File.Delete(GetLockFileForRemovalPath());
+                File.Move(GetLockFilePath(), GetLockFileForRemovalPath());
             }
 
             if (manifest.Count() <= 0)
@@ -206,6 +223,26 @@ namespace AgsGetCore
             var lockFileAsString = File.ReadAllText(GetLockFilePath());
 
             return JsonConvert.DeserializeObject<List<MinimalPackageDescriptor>>(lockFileAsString);
+        }
+
+        public static List<MinimalPackageDescriptor> GetLockFileForRemovalAsList()
+        {
+            if (!File.Exists(GetLockFileForRemovalPath()))
+            {
+                return new List<MinimalPackageDescriptor>();
+            }
+
+            var lockFileAsString = File.ReadAllText(GetLockFileForRemovalPath());
+
+            return JsonConvert.DeserializeObject<List<MinimalPackageDescriptor>>(lockFileAsString);
+        }
+
+        public static void RemoveLockFileForRemoval()
+        {
+            if (!File.Exists(GetLockFileForRemovalPath()))
+            {
+                File.Delete(GetLockFileForRemovalPath());
+            }
         }
     }
 }
