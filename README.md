@@ -67,6 +67,14 @@ azure-pipelines.yml  // the ci for agsget
 index.html  // website home page
 ```
 
+## Troubleshooting
+
+### I downloaded the plugin but AGS Crashed when loading.
+
+![](https://user-images.githubusercontent.com/2244442/73697349-3be48880-46d6-11ea-8a54-f934ba4629d5.png)
+
+First, make sure the plugin is unblocked, right click on it, and select Unblock, like in the picture above, then click OK.
+
 ## challenges and notes
 
 Here are some challenges I am a bit unsure how to fix:
