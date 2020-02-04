@@ -3,7 +3,7 @@
 
 [![Build Status](https://dev.azure.com/ericoporto/agsget/_apis/build/status/ericoporto.agsModuleList?branchName=master)](https://dev.azure.com/ericoporto/agsget/_build/latest?definitionId=14&branchName=master)
 
-[AgsGet Releases](https://github.com/ericoporto/agsModuleList/releases) | [AgsGet Help Manual](https://github.com/ericoporto/agsModuleList/blob/master/agsget/README.md)
+[AgsGet Releases](https://github.com/ericoporto/agsModuleList/releases) | [AgsGet Help Manual](https://github.com/ericoporto/agsModuleList/blob/master/agsget/README.md) | [AGS Forum Post](https://www.adventuregamestudio.co.uk/forums/index.php?topic=57763.0)
 
 ## Information
 
