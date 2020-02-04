@@ -1,0 +1,76 @@
+[b][size=14pt]AgsGet[/size][/b]  [color=gray][b] version 0.1.0 [/b][/color]
+
+[url=https://dev.azure.com/ericoporto/agsget/_build/latest?definitionId=14&branchName=master][img]https://dev.azure.com/ericoporto/agsget/_apis/build/status/ericoporto.agsModuleList?branchName=master[/img][/url]
+
+[img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img] [b][color=brown]Warning: Experimental! Read below before using![/color][/b] [img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img]
+
+[url=https://github.com/ericoporto/agsModuleList/releases/download/0.1.0/AGS.Plugin.AgsGet.dll]Get Latest Release [b]AGS.Plugin.AgsGet.dll[/b][/url] | [url=https://github.com/ericoporto/agsModuleList]GitHub Repository[/url]
+
+AgsGet is an Editor Plugin for Managing Script Modules
+
+[url=https://streamable.com/bmi9k][img]https://user-images.githubusercontent.com/2244442/73703045-7695f300-46cd-11ea-871b-f44adedf0fa4.gif[/img][/url]
+
+
+[img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img] [b][color=brown]Warning: Experimental! Read below before using![/color][/b] [img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img]
+
+This Editor Plug-in has the following limitations:
+[list]
+[li]It won't work in your game if you are using Script Folders;[/li]
+[li]There may be a case where it crashes and leaves your game in broken state, requiring manual edit of [tt]Game.agf[/tt];[/li]
+[li]If you install or remove a script module that has the same name of a script in your game it will delete your script and replace it for the module;[/li]
+[li]If you ever install or uninstall a package, any script module listed in the lockfile will replace any changes you do to them for the ones in the Package Cache.[/li]
+[/list]
+
+
+[b][size=12pt]Available features[/size][/b]
+
+Supports installing packages from [url=https://ericoporto.github.io/agsModuleList/]my AGS Module List[/url]. You can also uninstall packages installed through AgsGet interface. If a package depends on other packages, the dependencies will be installed too, on the correct order in the scripts list.
+
+A simplified search is provided too, an empty parameter will return all modules available.
+
+For now, it doesn't care for versions, so if you install a package and a newer version of the package is made available on the package index the module you are using may get overwritten by a new version if the package is updated in your package cache.
+
+This plugin should not save anything on itself on your Game.agf, so you should be able to just load a game you used it in an AGS Editor that doesn't have it.
+
+[b][size=12pt]How it works[/size][/b]
+
+AgsGet may create the following files in your game directory. 
+
+[code]
+├── ags_packages_cache/
+│   ├── package_index
+│   ├── pkg1/
+│   │   └── pkg1.scm
+│   └── pkg2/
+│       └── pkg2.scm
+│   ...
+│ 
+├── agsget-lock.json
+├── agsget-lock.json.removal
+└── agsget-manifest.json
+[/code]
+
+Let's see the steps involved in installing a package:
+
+[list type=decimal]
+[li]At first, when loading AgsGet, if no package_index is found, it will create the [tt]ags_packages_cache[/tt] directory, and place it inside the [tt]package_index[/tt] file, which is obtained directly from here: https://ericoporto.github.io/agsModuleList/index/package_index.json .[/li]
+[li]Whenever you install a package, AgsGet reads the [tt]agsget-manifest.json[/tt] to figure out which packages are already installed and recreates it including the new package.[/li]
+[li]If there's any [tt]agsget-lock.json.removal[/tt], it's deleted, and if there's any [tt]agsget-lock.json[/tt], it's renamed to [tt]agsget-lock.json.removal[/tt].[/li]
+[li]Then, it reads this generated [tt]agsget-manifest.json[/tt] and the [tt]package_index[/tt] to figure out if the packages have any dependencies, and order them correctly, using topological sorting, writing the resulting list in [tt]agsget-lock.json[/tt].[/li]
+[li]It then removes and deletes any script and headers in the project with the same name as a package in the [tt]agsget-lock.json[/tt]. [/li]
+[li]It then will download from https://ericoporto.github.io/agsModuleList any package not on cache that it's listed in the [tt]agsget-lock.json[/tt]. [/li]
+[li]Finally, all packages listed in [tt]agsget-lock.json[/tt] gets imported in the Game.agf project and shows in the editor. [/li]
+[/list]
+
+Removing a package will remove the package from [tt]agsget-manifest.json[/tt], and the [tt]agsget-lock.json[/tt] will be recreated, with the previous lock saved as [tt]agsget-lock.json.removal[/tt]. Packages that are listed on [tt]agsget-lock.json.removal[/tt], but not on [tt]agsget-lock.json[/tt] get removed.
+
+[b][size=12pt]Where do we go from here[/size][/b]
+
+This package manager implementation is created more as a proof of concept that it can be done. It appears that two things are actually the most iminent needs:
+
+- A place to list all Script Modules including their metadata (specially to allow creating modules that depends from other modules).
+- A place to store these Script Module that everyone can trust (this is a much harder problem to figure out).
+
+Once the above is properly structured, creating the package manager to work with above is a much minor problem.
+
+I created this Editor plug-in cuting a lot of corners to make it live in the shortest amount of time, the main idea was that people could experiment with it and talk about what they think of this idea, assessing if there's need from the community for a package manager or a central database...
