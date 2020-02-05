@@ -71,6 +71,8 @@ index.html  // website home page
 
 ## AgsGet Editor Plug-in and how it works
 
+For information on how to install, see the [AGS Manual on how to install plug-ins](https://adventuregamestudio.github.io/ags-manual/Plugins.html#plugins).
+
 AgsGet may create the following files in your game directory.
 
 ```
