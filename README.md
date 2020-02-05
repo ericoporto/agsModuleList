@@ -5,6 +5,8 @@
 
 [AgsGet Releases](https://github.com/ericoporto/agsModuleList/releases) | [AgsGet Help Manual](https://github.com/ericoporto/agsModuleList/blob/master/agsget/README.md) | [AGS Forum Post](https://www.adventuregamestudio.co.uk/forums/index.php?topic=57763.0)
 
+[![](https://user-images.githubusercontent.com/2244442/73703045-7695f300-46cd-11ea-871b-f44adedf0fa4.gif)](https://streamable.com/bmi9k)
+
 ## Information
 
 👷IN CONSTRUCTION👷
