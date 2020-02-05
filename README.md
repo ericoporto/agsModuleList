@@ -69,6 +69,36 @@ azure-pipelines.yml  // the ci for agsget
 index.html  // website home page
 ```
 
+## AgsGet Editor Plug-in and how it works
+
+AgsGet may create the following files in your game directory.
+
+```
+├── ags_packages_cache/
+│   ├── package_index
+│   ├── pkg1/
+│   │   └── pkg1.scm
+│   └── pkg2/
+│       └── pkg2.scm
+│   ...
+│
+├── agsget-lock.json
+├── agsget-lock.json.removal
+└── agsget-manifest.json
+```
+
+Let's see the steps involved in installing a package:
+
+1. At first, when loading AgsGet, if no `package_index` is found, it will create the ags_packages_cache directory, and place it inside the package_index file, which is obtained directly from here: https://ericoporto.github.io/agsModuleList/index/package_index.json .
+2. Whenever you install a package, AgsGet reads the `agsget-manifest.json` to figure out which packages are already installed and recreates it including the new package.
+3. If there's any `agsget-lock.json.removal`, it's deleted, and if there's any `agsget-lock.json`, it's renamed to `agsget-lock.json.removal`.
+4. Then, it reads this generated `agsget-manifest.json` and the `package_index` to figure out if the packages have any dependencies, and order them correctly, using topological sorting, writing the resulting list in `agsget-lock.json`.
+5. It then removes and deletes any script and headers in the project with the same name as a package in the `agsget-lock.json`.
+6. It then will download from `https://ericoporto.github.io/agsModuleList` any package not on cache that it's listed in the `agsget-lock.json`.
+7. Finally, all packages listed in `agsget-lock.json` gets imported in the Game.agf project and shows in the editor.
+
+
+
 ## Troubleshooting
 
 ### I downloaded the plugin but AGS Crashed when loading.
