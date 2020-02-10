@@ -1,22 +1,22 @@
-[b][size=14pt]AgsGet[/size][/b]  [color=gray][b] version 0.1.0 [/b][/color]
+[b][size=14pt]AgsGet[/size][/b]  [color=gray][b] version 0.1.0 [/b][/color]
 
-[url=https://dev.azure.com/ericoporto/agsget/_build/latest?definitionId=14&branchName=master][img]https://dev.azure.com/ericoporto/agsget/_apis/build/status/ericoporto.agsModuleList?branchName=master[/img][/url]
+[url=https://dev.azure.com/ericoporto/agsget/_build][img]https://dev.azure.com/ericoporto/agsget/_apis/build/status/ericoporto.agsModuleList?branchName=master[/img][/url]
 
-[img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img] [b][color=brown]Warning: Experimental! Read below before using![/color][/b] [img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img]
+[img width=16 height=16]https://user-images.githubusercontent.com/2244442/73706331-faa0a880-46d6-11ea-8f18-56495ad5ff67.png[/img] [b][color=brown]Warning: Dangerously Experimental! Read below before using![/color][/b] [img width=16 height=16]https://user-images.githubusercontent.com/2244442/73706331-faa0a880-46d6-11ea-8f18-56495ad5ff67.png[/img]
 
 [url=https://github.com/ericoporto/agsModuleList/releases/download/0.1.0/AGS.Plugin.AgsGet.dll]Get Latest Release [b]AGS.Plugin.AgsGet.dll[/b][/url] | [url=https://github.com/ericoporto/agsModuleList]GitHub Repository[/url]
 
-AgsGet is an Editor Plugin for Managing Script Modules
+AgsGet is an Editor Plugin for Managing Script Modules. Click the gif below to see it on video.
 
 [url=https://streamable.com/bmi9k][img]https://user-images.githubusercontent.com/2244442/73703045-7695f300-46cd-11ea-871b-f44adedf0fa4.gif[/img][/url]
 
 
-[img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img] [b][color=brown]Warning: Experimental! Read below before using![/color][/b] [img width=16 height=16]https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png[/img]
+[img width=16 height=16]https://user-images.githubusercontent.com/2244442/73706331-faa0a880-46d6-11ea-8f18-56495ad5ff67.png[/img] [b][color=brown]Warning: Dangerously Experimental! Read below before using![/color][/b] [img width=16 height=16]https://user-images.githubusercontent.com/2244442/73706331-faa0a880-46d6-11ea-8f18-56495ad5ff67.png[/img]
 
 This Editor Plug-in has the following limitations:
 [list]
 [li]It won't work in your game if you are using Script Folders;[/li]
-[li]There may be a case where it crashes and leaves your game in broken state, requiring manual edit of [tt]Game.agf[/tt];[/li]
+[li][b]There may be a case where it crashes and leaves your game in broken state, requiring manual edit of [tt]Game.agf[/tt][/b];[/li]
 [li]If you install or remove a script module that has the same name of a script in your game it will delete your script and replace it for the module;[/li]
 [li]If you ever install or uninstall a package, any script module listed in the lockfile will replace any changes you do to them for the ones in the Package Cache.[/li]
 [/list]
@@ -38,13 +38,13 @@ AgsGet may create the following files in your game directory.
 
 [code]
 ├── ags_packages_cache/
-│   ├── package_index
-│   ├── pkg1/
-│   │   └── pkg1.scm
-│   └── pkg2/
-│       └── pkg2.scm
-│   ...
-│ 
+│   ├── package_index
+│   ├── pkg1/
+│   │   └── pkg1.scm
+│   └── pkg2/
+│       └── pkg2.scm
+│   ...
+│ 
 ├── agsget-lock.json
 ├── agsget-lock.json.removal
 └── agsget-manifest.json
@@ -73,4 +73,10 @@ This package manager implementation is created more as a proof of concept that i
 
 Once the above is properly structured, creating the package manager to work with above is a much minor problem.
 
-I created this Editor plug-in cuting a lot of corners to make it live in the shortest amount of time, the main idea was that people could experiment with it and talk about what they think of this idea, assessing if there's need from the community for a package manager or a central database...
+I created this Editor plug-in cutting a lot of corners to make it live in the shortest amount of time, the main idea was that people could experiment with it and talk about what they think of this idea, assessing if there's need from the community for a package manager or a central database... It's important to note that this tool is supposed to work along with the forum since packages don't work without communities. Mostly of the ideas in making this package manager were taken [url=https://medium.com/@sdboyer/so-you-want-to-write-a-package-manager-4ae9c17d9527]from this article from Sam Boyer[/url], which has a presented design inspired by the package manager [url=https://en.wikipedia.org/wiki/Npm_(software)]npm[/url]. Additionally, the general design of the package repository is based on early iterations of the [url=https://github.com/microsoft/vcpkg]vcpkg[/url], see it's [tt]ports[/tt] directory.
+
+
+[b][size=12pt]Troubleshooting[/size][/b]
+
+If you downloaded this plugin from the internet and AGS complained something about policies when loading, the file is locked. You need to right click it, click on properties and then click Unblock, see image below.
+[img]https://user-images.githubusercontent.com/2244442/73697349-3be48880-46d6-11ea-8a54-f934ba4629d5.png[/img]
