@@ -245,6 +245,14 @@
     "keywords": "magnify glass zoom"
   },
   {
+    "id": "math3d",
+    "name": "math3d",
+    "text": "Maths for 3D calculations.",
+    "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=0.0",
+    "version": "0.1.0",
+    "author": "eri0o"
+  },
+  {
     "id": "mathsplus",
     "name": "MathsPlus",
     "text": "Maths Plus more math functions module.",
