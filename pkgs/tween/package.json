@@ -3,7 +3,7 @@
   "name": "Tween",
   "text": "The AGS Tween Module allows you to programmatically interpolate many of the AGS properties (objects, characters, regions, viewport, audio, gui, gui controls, etc.) over time in amazing ways. The term tween comes from 'inbetweening'. It's typically used in Adobe Flash to indicate interpolation of an object from one keyframe to another.",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=51820.0",
-  "version": "2.1.0",
+  "version": "2.2.2",
   "author": "Edmundito",
   "keywords": "in between inbetweening smooth animation"
 }
