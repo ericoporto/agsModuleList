@@ -3,7 +3,7 @@
   "name": "QueuedSpeech",
   "text": "Provides queue for enabling queuing speech",
   "forum": "https://www.adventuregamestudio.co.uk/forums/index.php?topic=23806.0",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "author": "monkey0506",
   "keywords": "queue of speech sound"
 }
